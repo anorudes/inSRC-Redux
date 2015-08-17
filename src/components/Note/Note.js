@@ -12,9 +12,9 @@ export default class Note extends Component {
     let classes = classNames(styles, { active: active });
 
     return (
-      <div className={ classes } onClick={ () => dispatch(openNote(note.id)) }>
-        <span className="title">{ note.title }</span>
-        <span className="keywords">{ note.keywords }</span>
+      <div className={classes} onClick={() => dispatch(openNote(note.id))}>
+        <span className="title">{note.title}</span>
+        <span className="keywords">{note.keywords}</span>
       </div>
     );
   }

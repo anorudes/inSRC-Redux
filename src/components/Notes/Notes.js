@@ -17,12 +17,15 @@ export default class Notes extends Component {
   }
 
   render() {
-    const { notes, activeNote } = this.props;
+    const { notes, activeNote, dispatch } = this.props;
 
     return (
-      <div className={ `${ styles }`} >
+      <div className={`${ styles }`} >
         {
-          notes.map(note => <Note active={ note.id === activeNote } note={ note } {...this.props} />)
+          notes.map(note => <Note key={note.id}
+                                  active={note.id === activeNote}
+                                  note={note}
+                                  dispatch={dispatch} />)
         }
       </div>
     );

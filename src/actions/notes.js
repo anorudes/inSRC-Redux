@@ -7,7 +7,7 @@ export function openNote(id) {
 
 export function closeNote() {
   return {
-    type: 'OPEN_NOTE',
+    type: 'CLOSE_NOTE',
   };
 }
 

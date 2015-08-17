@@ -1,3 +1,16 @@
+export function openNote(id) {
+  return {
+    type: 'OPEN_NOTE',
+    id
+  };
+}
+
+export function closeNote() {
+  return {
+    type: 'OPEN_NOTE',
+  };
+}
+
 export function getNotes(data) {
   return {
     type: 'GET_NOTES',

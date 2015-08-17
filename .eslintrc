@@ -6,8 +6,7 @@
   },
   "globals": {
       "If": true,
-      "For": true,
-      "connect": true
+      "For": true
   },
   "rules": {
     "react/jsx-uses-react": 2,

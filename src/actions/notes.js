@@ -1,11 +1,27 @@
-export function addNote(text) {
+export function getNotes(data) {
+  return {
+    type: 'GET_NOTES',
+    data
+  };
+}
+
+export function addNote(id) {
   return {
     type: 'ADD_NOTE',
     id,
   };
 }
 
-export function deleteNote(text) {
+export function fetchNotes() {
+  return dispatch => {
+    fetch('/db/data.json')
+      .then(res =>
+        res.json().then(data => dispatch(getNotes(data)))
+      );
+  }
+}
+
+export function deleteNote(id) {
   return {
     type: 'DELETE_NOTE',
     id,

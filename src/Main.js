@@ -7,7 +7,7 @@ import 'bootstrap-webpack';
 import 'style!./styles/main.scss';
 
 // Application components
-import { Header, Typography, Footer } from 'components';
+import { Header, Footer } from 'components';
 
 export default class Main extends Component {
   static propTypes = {
@@ -18,11 +18,7 @@ export default class Main extends Component {
     return (
       <section>
         <Header />
-        <div className="container">
-          <div className="row">
-              { this.props.children }
-            </div>
-          </div>
+          { this.props.children }
         <Footer />
       </section>
     );

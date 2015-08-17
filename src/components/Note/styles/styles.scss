@@ -1,0 +1,21 @@
+:local(.styles) {
+  position: relative;
+  padding: 10px 30px;
+  border-bottom: 1px solid #e0e0e0;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  &:hover {
+    padding-left: 37px;
+  }
+  .title {
+    font-size: 2rem;
+    display: block;
+    color: black;
+    padding-bottom: 5px;
+  }
+  .keywords {
+    display: block;
+    color: #BCBCBC;
+    font-size: 1.5rem;
+  }
+}

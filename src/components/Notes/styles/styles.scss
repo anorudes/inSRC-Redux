@@ -1,37 +1,7 @@
 :local(.styles) {
-  background: #ee6e73;
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
-  .wrapper {
-    display: flex;
-    height: 50px;
-    align-items: center;
-  }
-  .title {
-    font-size: 2rem;
-    color: white;
-    display: block;
-    font-weight: 500;
-    width: 100%;
-  }
-  .menu {
-    font-size: 1.5rem;
-    font-weight: 400;
-    color: white;
-    align-items: center;
-    list-style: none;
-    display: flex;
-    margin: 0;
-    flex-shrink: 0;
-    align-self: center;
-    li {
-      display: flex;
-      margin-left: 25px;
-      cursor: pointer;
-      align-items: center;
-    }
-  }
+  position: relative;
+  display: flex;
+  padding-top: 50px;
+  padding: 50px 0px 20px;
+  flex-direction: column;
 }

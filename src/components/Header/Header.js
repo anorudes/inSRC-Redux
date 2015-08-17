@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 // Component styles
 import styles from './styles.js';
@@ -10,12 +11,16 @@ export default class Header extends Component {
           <span className="title">inSRC</span>
           <ul className="menu">
             <li>
-              <i className="icon fa fa-list"></i>
-              List
+              <Link to={`/list/`}>
+                <i className="icon fa fa-list"></i>
+                List
+              </Link>
             </li>
             <li>
-              <i className="icon fa fa-list"></i>
-              Add
+              <Link to={`/add/`}>
+                <i className="icon fa fa-list"></i>
+                Add
+              </Link>
             </li>
           </ul>
         </div>

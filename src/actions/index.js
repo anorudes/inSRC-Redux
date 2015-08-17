@@ -1,2 +1,2 @@
-export { addNote, deleteNote } from './notes.js';
+export { addNote, deleteNote, getNotes, fetchNotes } from './notes.js';
 

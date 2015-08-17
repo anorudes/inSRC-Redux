@@ -1,0 +1,18 @@
+@import 'fonts/roboto';
+@import 'fonts/font-awesome';
+@import 'typography';
+
+:global(body) {
+  position: relative;
+  font-size: 10px;
+  font-family: "Roboto";
+}
+
+:global(.wrapper) {
+  padding: 0px 30px;
+}
+
+:global(.icon) {
+  display: inline-block;
+  margin-right: 6px;
+}

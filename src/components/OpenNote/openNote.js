@@ -5,6 +5,8 @@ import classNames from 'classnames';
 import styles from './OpenNote.styles.js';
 import { closeNote } from 'actions';
 
+import { Link } from 'react-router';
+
 export default class OpenNote extends Component {
   constructor(props) {
     super(props);
@@ -17,6 +19,10 @@ export default class OpenNote extends Component {
     setTimeout(() => {
       dispatch(closeNote());
     }, 500);
+  }
+
+  _deleteNote() {
+
   }
 
   render() {
@@ -32,6 +38,13 @@ export default class OpenNote extends Component {
           </Highlight>
         </div>
         <span className="keywords">{note.keywords}</span>
+        <span className="date">{note.date}</span>
+        <div className="buttons">
+          <Link to={`/edit/`}>
+            <i className="icon fa fa-edit"></i>
+          </Link>
+          <i className="icon fa fa-trash-o" onClick={ () => _deleteNote() }></i>
+        </div>
       </div>
     );
   }

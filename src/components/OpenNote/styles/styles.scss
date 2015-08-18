@@ -20,6 +20,10 @@
     right: 30px;
     opacity: .8;
     color: black;
+    transition: all 0.3s ease;
+    &:hover {
+      opacity: 1;
+    }
   }
 
   .title {
@@ -32,9 +36,16 @@
 
   .keywords {
     position: absolute;
-    bottom: 20px;
+    bottom: 45px;
     font-size: 1.5rem;
     color: rgba(0,0,0,.8);
+  }
+
+  .date {
+    position: absolute;
+    bottom: 20px;
+    font-size: 1.4rem;
+    color: rgba(0,0,0,.5);
   }
 
   .code pre {
@@ -53,6 +64,23 @@
     }
   }
 
+  .buttons {
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+    .icon {
+      font-size: 2.5rem;
+      margin-left: 10px;
+      cursor: pointer;
+      color: black;
+      opacity: .8;
+      transition: all 0.3s ease;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+  
   animation: .5s openNote ease-in-out forwards;
 
   &.closeAnimate {

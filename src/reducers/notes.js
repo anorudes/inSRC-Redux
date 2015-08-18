@@ -1,6 +1,6 @@
 const initialState = {
   notes: [],
-  activeNote: -1,
+  activeNote: {},
 };
 
 export function notes(state = initialState, action) {
@@ -12,11 +12,11 @@ export function notes(state = initialState, action) {
     return newState;
 
   case 'OPEN_NOTE':
-    newState.activeNote = action.id;
+    newState.activeNote = action.note;
     return newState;
 
   case 'CLOSE_NOTE':
-    newState.activeNote = -1;
+    newState.activeNote = {};
     return newState;
 
   case 'ADD_NOTE':

@@ -6,6 +6,8 @@
   position: relative;
   font-size: 16px;
   font-family: "Roboto";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 :global(.wrapper) {

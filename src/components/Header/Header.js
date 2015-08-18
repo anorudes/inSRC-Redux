@@ -18,7 +18,7 @@ export default class Header extends Component {
             </li>
             <li>
               <Link to={`/add/`}>
-                <i className="icon fa fa-list"></i>
+                <i className="icon fa fa-edit"></i>
                 Add
               </Link>
             </li>

@@ -1,7 +1,7 @@
-export function openNote(id) {
+export function openNote(note) {
   return {
     type: 'OPEN_NOTE',
-    id
+    note,
   };
 }
 

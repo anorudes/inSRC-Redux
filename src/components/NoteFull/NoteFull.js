@@ -12,7 +12,6 @@ export default class NoteFull extends Component {
     super(props);
     this.state = { closeAnimate: false, editable: false, updatedNote: {} };
   }
-
   _close() {
     const { dispatch } = this.props;
     this.setState({closeAnimate: true})
@@ -20,11 +19,9 @@ export default class NoteFull extends Component {
       dispatch(closeNote());
     }, 500);
   }
-
   _openEdit(note) {
     this.setState({ editable: true, updatedNote: {...note} });
   }
-
   _updateInput(ref) {
     let input = event.target;
     this.setState({
@@ -34,7 +31,6 @@ export default class NoteFull extends Component {
       }
     });
   }
-
   _saveNote() {
     const { dispatch } = this.props;
     dispatch(saveNote(this.state.updatedNote));
@@ -47,9 +43,9 @@ export default class NoteFull extends Component {
 
     let classes = classNames(styles, { closeAnimate: this.state.closeAnimate });
     return (
-      <div className={ classes } >
-        <div className="close fa fa-times" onClick={ () => this._close() }></div>
-        { /* show note code */ }
+      <div className={classes} >
+        <div className="close fa fa-times" onClick={() => this._close()}></div>
+        { /* show note code */}
         { !editable &&
           <div>
             <span className="title">{note.title}</span>
@@ -61,13 +57,13 @@ export default class NoteFull extends Component {
             <span className="keywords">{note.keywords}</span>
             <span className="date">{note.date}</span>
             <div className="buttons">
-              <i className="icon fa fa-edit" onClick={ () => this._openEdit(note) }></i>
-              <i className="icon fa fa-trash-o" onClick={ () => dispatch(deleteNote(note.id)) }></i>
+              <i className="icon fa fa-edit" onClick={() => this._openEdit(note)}></i>
+              <i className="icon fa fa-trash-o" onClick={() => dispatch(deleteNote(note.id))}></i>
             </div>
           </div>
         }
 
-        { /* edit note code */ }
+        {/* edit note code */}
         { editable &&
           <div>
             <div className="form">
@@ -90,8 +86,6 @@ export default class NoteFull extends Component {
             </div>
           </div>
         }
-
-
       </div>
     );
   }

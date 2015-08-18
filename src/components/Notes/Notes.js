@@ -11,7 +11,6 @@ export default class Notes extends Component {
   constructor(props) {
     super(props);
   }
-
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(fetchNotes());
@@ -19,16 +18,15 @@ export default class Notes extends Component {
 
   render() {
     const { notes, openNote, dispatch } = this.props;
+
     return (
-      <div className={ styles } >
+      <div className={styles} >
         <SearchNotes />
-        { openNote.id && <NoteFull note={openNote} dispatch={dispatch} /> }
-        {
-          notes.map(note => <Note key={note.id}
+        {openNote.id && <NoteFull note={openNote} dispatch={dispatch} />}
+        {notes.map(note => <Note key={note.id}
                                   active={note === openNote}
                                   note={note}
-                                  dispatch={dispatch} />)
-        }
+                                  dispatch={dispatch} />)}
       </div>
     );
   }

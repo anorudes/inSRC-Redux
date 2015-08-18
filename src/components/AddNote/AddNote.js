@@ -9,6 +9,7 @@ import { addNote } from 'actions';
 export default class AddNote extends Component {
   render() {
     const { dispatch, data } = this.props;
+    
     return (
       <div className={styles} >
         <h2>

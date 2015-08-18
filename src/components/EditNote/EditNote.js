@@ -9,6 +9,7 @@ import { saveNote } from 'actions';
 export default class EditNote extends Component {
   render() {
     const { dispatch, data } = this.props;
+    
     return (
       <div className={styles} >
         <h2>

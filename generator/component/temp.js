@@ -9,13 +9,9 @@ import { example } from 'actions';
 
 @connect(state => state.<%= name %>)
 export default class <%= name %> extends Component {
-  static propTypes = {
-    dispatch: React.PropTypes.func.isRequired,
-    data: React.PropTypes.React.PropTypes.string,
-  };
-
   render() {
     const { dispatch, data } = this.props;
+    
     return (
       <div className={styles} >
         <h2>

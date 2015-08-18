@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import Highlight from 'react-highlight';
 import classNames from 'classnames';
-
 // Component styles
 import styles from './OpenNote.styles.js';
 import { closeNote } from 'actions';
@@ -27,7 +27,9 @@ export default class OpenNote extends Component {
         <div className="close fa fa-times" onClick={ () => this._close() }></div>
         <span className="title">{note.title}</span>
         <div className="code">
-          {note.code}
+          <Highlight className="language-js">
+            {note.text}
+          </Highlight>
         </div>
         <span className="keywords">{note.keywords}</span>
       </div>

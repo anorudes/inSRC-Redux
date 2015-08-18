@@ -13,7 +13,7 @@
   backface-visibility: hidden;
 
   &:hover {
-    width: 70vw;
+    //width: 70vw;
   }
   .close {
     position: absolute;
@@ -35,6 +35,21 @@
     bottom: 20px;
     font-size: 1.5rem;
     color: rgba(0,0,0,.8);
+  }
+
+  .code pre {
+    background: transparent;
+    border: none;
+    padding: 5px 0px;
+    > code {
+      white-space: pre;
+      word-wrap: normal;
+      overflow: auto;
+      margin: 0;
+      border: none;
+      padding: 10px 0px;
+      max-height: 55vh;
+    }
   }
 
   animation: .5s openNote ease-in-out forwards;

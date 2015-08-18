@@ -5,5 +5,8 @@
   "authors": [
     "anorudes <anorudes@gmail.com>"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "highlightjs": "~8.7.0"
+  }
 }

@@ -1,0 +1,23 @@
+.buttons {
+  transform: translateZ(0);
+}
+
+button {
+  background: #ccc;
+  border: none;
+  padding: 7px 20px;
+  display: inline-block;
+  margin: 10px 5px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  color: white;
+  &:hover {
+    filter: brightness(1.1);
+  }
+  &.btn--save {
+    background: #c46066;
+  }
+  &.btn--cancel {
+    background: #a9a4a4;
+  }
+}

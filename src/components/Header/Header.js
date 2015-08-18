@@ -22,6 +22,12 @@ export default class Header extends Component {
                 Add
               </Link>
             </li>
+            <li>
+              <Link to={`/options/`}>
+                <i className="icon fa fa-cog"></i>
+                Options
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

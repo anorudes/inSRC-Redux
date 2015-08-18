@@ -5,8 +5,9 @@ import { connect } from 'react-redux';
 import styles from './<%= name %>.styles.js';
 
 // Actions
-import { example } from '../../actions';
+import { example } from 'actions';
 
+@connect(state => state.<%= name %>)
 export default class <%= name %> extends Component {
   static propTypes = {
     dispatch: React.PropTypes.func.isRequired,
@@ -28,10 +29,3 @@ export default class <%= name %> extends Component {
   }
 }
 
-function select(state) {
-  return {
-    data: state.<%= name %>,
-  };
-}
-
-export default connect(select)(<%= name %>);

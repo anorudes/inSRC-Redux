@@ -1,6 +1,6 @@
 const initialState = {
   notes: [],
-  activeNote: {},
+  activeNote: {}
 };
 
 export function notes(state = initialState, action) {

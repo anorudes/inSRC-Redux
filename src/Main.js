@@ -5,6 +5,7 @@ import 'bootstrap-webpack';
 
 // Global styles
 import 'style!./styles/main.scss';
+import 'style!./styles/buttons.scss';
 
 // Application components
 import { Header, Footer } from 'components';
@@ -24,3 +25,4 @@ export default class Main extends Component {
     );
   }
 }
+

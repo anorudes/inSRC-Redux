@@ -7,3 +7,5 @@ export { default as Notes } from './Notes/Notes.js';
 export { default as Note } from './Note/Note.js';
 export { default as OpenNote } from './OpenNote/OpenNote.js';
 export { default as SearchNotes } from './SearchNotes/SearchNotes.js';
+export { default as EditNote } from './EditNote/EditNote.js';
+export { default as AddNote } from './AddNote/AddNote.js';

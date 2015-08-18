@@ -10,7 +10,7 @@ import { Link } from 'react-router';
 export default class OpenNote extends Component {
   constructor(props) {
     super(props);
-    this.state = { closeAnimate: false }
+    this.state = { closeAnimate: false, editable: false }
   }
 
   _close() {
@@ -27,24 +27,41 @@ export default class OpenNote extends Component {
 
   render() {
     const { note, dispatch } = this.props;
+    const { editable } = this.state;
+
     let classes = classNames(styles, { closeAnimate: this.state.closeAnimate });
     return (
       <div className={ classes } >
         <div className="close fa fa-times" onClick={ () => this._close() }></div>
         <span className="title">{note.title}</span>
-        <div className="code">
-          <Highlight className="language-js">
-            {note.text}
-          </Highlight>
-        </div>
-        <span className="keywords">{note.keywords}</span>
-        <span className="date">{note.date}</span>
-        <div className="buttons">
-          <Link to={`/edit/`}>
-            <i className="icon fa fa-edit"></i>
-          </Link>
-          <i className="icon fa fa-trash-o" onClick={ () => _deleteNote() }></i>
-        </div>
+        { /* show note code */ }
+        { !editable &&
+          <div>
+            <div className="code">
+              <Highlight className="language-js">
+                {note.text}
+              </Highlight>
+            </div>
+            <span className="keywords">{note.keywords}</span>
+            <span className="date">{note.date}</span>
+            <div className="buttons">
+              <i className="icon fa fa-edit" onClick={ () => this.setState({ editable: true }) }></i>
+              <i className="icon fa fa-trash-o" onClick={ () => dispatch(deleteNote(note.id)) }></i>
+            </div>
+          </div>
+        }
+
+        { /* edit note code */ }
+        { editable &&
+          <div>
+            <div className="buttons">
+              <button className="btn--save">save</button>
+              <button className="btn--cancel">cancel</button>
+            </div>
+          </div>
+        }
+
+
       </div>
     );
   }

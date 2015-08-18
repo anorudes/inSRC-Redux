@@ -1,3 +1,11 @@
+export function openEditNote(id) {
+  return {
+    type: 'OPEN_EDIT_NOTE',
+    id,
+  };
+}
+
+
 export function openNote(note) {
   return {
     type: 'OPEN_NOTE',
@@ -15,6 +23,14 @@ export function getNotes(data) {
   return {
     type: 'GET_NOTES',
     data,
+  };
+}
+
+export function saveNote(id ,note) {
+  return {
+    type: 'ADD_NOTE',
+    id,
+    note,
   };
 }
 

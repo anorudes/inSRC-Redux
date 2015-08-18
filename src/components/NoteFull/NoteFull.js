@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import Highlight from 'react-highlight';
 import classNames from 'classnames';
 // Component styles
-import styles from './OpenNote.styles.js';
+import styles from './NoteFull.styles.js';
 import { saveNote, closeNote } from 'actions';
 
 import { Link } from 'react-router';
 
-export default class OpenNote extends Component {
+export default class NoteFull extends Component {
   constructor(props) {
     super(props);
     this.state = { closeAnimate: false, editable: false, updatedNote: {} };

@@ -2,7 +2,7 @@ import u from 'updeep';
 
 const initialState = {
   notes: [],
-  activeNote: {}
+  openNote: {}
 };
 
 export function notes(state = initialState, action) {
@@ -16,20 +16,20 @@ export function notes(state = initialState, action) {
   case 'OPEN_NOTE':
     return {
       ...state,
-      activeNote: action.note,
+      openNote: action.note,
     }
 
   case 'CLOSE_NOTE':
     return {
       ...state,
-      activeNote: {}
+      openNote: {}
     }
 
   case 'SAVE_NOTE':
     let index = state.notes.map(x => x.id).indexOf(action.note.id);
     return u({
       notes: { [index]: action.note },
-      activeNote: action.note,
+      openNote: action.note,
     }, state);
 
   case 'ADD_NOTE':

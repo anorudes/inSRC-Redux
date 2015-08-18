@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 // Component styles
 import styles from './styles.js';
-import { Note, OpenNote, SearchNotes } from 'components';
+import { Note, NoteFull, SearchNotes } from 'components';
 import { fetchNotes } from 'actions';
 
 @connect(state => state.notes)
@@ -18,14 +18,14 @@ export default class Notes extends Component {
   }
 
   render() {
-    const { notes, activeNote, dispatch } = this.props;
+    const { notes, openNote, dispatch } = this.props;
     return (
       <div className={ styles } >
         <SearchNotes />
-        { activeNote.id && <OpenNote note={activeNote} dispatch={dispatch} /> }
+        { openNote.id && <NoteFull note={openNote} dispatch={dispatch} /> }
         {
           notes.map(note => <Note key={note.id}
-                                  active={note === activeNote}
+                                  active={note === openNote}
                                   note={note}
                                   dispatch={dispatch} />)
         }

@@ -28,7 +28,7 @@
 
   .title {
     display: block;
-    padding-bottom: 13px;
+    padding-bottom: 10px;
     font-size: 1.8rem;
     color: black;
     border-bottom: 1px solid rgba(0,0,0,.5);
@@ -74,13 +74,67 @@
       cursor: pointer;
       color: black;
       opacity: .8;
+      vertical-align: middle;
+      display: inline-block;
       transition: all 0.3s ease;
+      &.fa-trash-o {
+        margin-top: -2px;
+      }
       &:hover {
         opacity: 1;
       }
     }
   }
-  
+
+  .form {
+    .field {
+      width: 100%;
+      &.title, &.keywords, &.date {
+        padding-right: 35px;
+        border: none;
+        input {
+          border: none;
+          border-bottom: 1px solid rgba(0, 0, 0, .2);
+          width: 100%;
+          padding-bottom: 6px;
+          outline: none;
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+
+      &.title {
+        padding-right: 0px;
+        margin-top: -1px;
+        input {
+          padding-bottom: 10px;
+        }
+      }
+
+      &.keywords {
+        width: calc(100% - 140px);
+        margin-bottom: 10px;
+      }
+
+      &.date {
+        width: 130px;
+      }
+
+      &.text textarea {
+        width: 100%;
+        display: block;
+        max-height: calc(100% - 130px);
+        height: 60vh;
+        margin-top: 5px;
+        &:focus {
+          outline: none;
+        }
+      }
+
+    }
+  }
+
   animation: .5s openNote ease-in-out forwards;
 
   &.closeAnimate {

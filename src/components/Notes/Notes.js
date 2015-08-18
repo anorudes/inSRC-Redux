@@ -11,6 +11,7 @@ export default class Notes extends Component {
   constructor(props) {
     super(props);
   }
+
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(fetchNotes());

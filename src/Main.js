@@ -6,6 +6,7 @@ import 'bootstrap-webpack';
 // Global styles
 import 'style!./styles/main.scss';
 import 'style!./styles/buttons.scss';
+import 'style!./styles/forms.scss';
 
 // Application components
 import { Header, Footer } from 'components';

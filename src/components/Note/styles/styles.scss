@@ -5,8 +5,8 @@
   cursor: pointer;
   transition: all 0.4s ease;
   transform: translateZ(0);
-  &:hover, &.active {
-    padding-left: 37px;
+  &.active {
+    padding-left: 40px;
   }
   .title {
     font-size: 2rem;

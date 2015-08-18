@@ -14,14 +14,14 @@ export function closeNote() {
 export function getNotes(data) {
   return {
     type: 'GET_NOTES',
-    data
+    data,
   };
 }
 
-export function addNote(id) {
+export function addNote(note) {
   return {
     type: 'ADD_NOTE',
-    id,
+    note,
   };
 }
 
@@ -34,9 +34,9 @@ export function fetchNotes() {
   }
 }
 
-export function deleteNote(id) {
+export function deleteNote(note) {
   return {
     type: 'DELETE_NOTE',
-    id,
+    note,
   };
 }

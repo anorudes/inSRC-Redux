@@ -6,3 +6,4 @@ export { default as Footer } from './Footer/Footer.js';
 export { default as Notes } from './Notes/Notes.js';
 export { default as Note } from './Note/Note.js';
 export { default as OpenNote } from './OpenNote/OpenNote.js';
+export { default as SearchNotes } from './SearchNotes/SearchNotes.js';

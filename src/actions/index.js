@@ -1,3 +1,11 @@
+export function searchNotes(text) {
+  return {
+    type: 'SEARCH_NOTES',
+    text,
+  };
+}
+
+
 export function saveScroll() {
   return {
     type: 'SAVE_SCROLL',

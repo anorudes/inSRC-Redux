@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { dispatch } from 'App';
 
 // Component styles
 import styles from './EditNote.styles.js';
@@ -8,7 +9,7 @@ import { saveNote } from 'actions';
 
 export default class EditNote extends Component {
   render() {
-    const { dispatch, data } = this.props;
+    const { data } = this.props;
     
     return (
       <div className={styles} >

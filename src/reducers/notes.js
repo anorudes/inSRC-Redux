@@ -4,10 +4,17 @@ const initialState = {
   notes: [],
   openNote: {},
   scrollY: 0,
+  searchText: "",
 };
 
 export function notes(state = initialState, action) {
   switch (action.type) {
+  case 'SEARCH_NOTES':
+    return {
+      ...state,
+      searchText: action.text,
+    }
+
   case 'GET_NOTES':
     return {
       ...state,

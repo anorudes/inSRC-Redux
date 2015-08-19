@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { dispatch } from 'App';
 // Component styles
 import styles from './AddNote.styles.js';
 
@@ -8,7 +8,7 @@ import { addNote } from 'actions';
 
 export default class AddNote extends Component {
   render() {
-    const { dispatch, data } = this.props;
+    const { data } = this.props;
     
     return (
       <div className={styles} >

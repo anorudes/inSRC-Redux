@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Highlight from 'react-highlight';
+import { dispatch } from 'App';
 import classNames from 'classnames';
 // Component styles
 import styles from './NoteFull.styles.js';
@@ -13,7 +14,6 @@ export default class NoteFull extends Component {
     this.state = { closeAnimate: false, editable: false, updatedNote: {} };
   }
   _close() {
-    const { dispatch } = this.props;
     this.setState({closeAnimate: true});
     setTimeout(() => {
       dispatch(closeNote());
@@ -32,13 +32,12 @@ export default class NoteFull extends Component {
     });
   }
   _saveNote() {
-    const { dispatch } = this.props;
     dispatch(saveNote(this.state.updatedNote));
     this.setState({ editable: false, updatedNote: {}});
   }
 
   render() {
-    const { note, dispatch } = this.props;
+    const { note } = this.props;
     const { editable, updatedNote } = this.state;
 
     const classes = classNames(styles, { closeAnimate: this.state.closeAnimate });

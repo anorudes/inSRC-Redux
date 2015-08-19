@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { dispatch } from 'App';
 import classNames from 'classnames';
 // Component styles
 import styles from './Note.styles.js';
@@ -8,7 +9,7 @@ import { openNote } from 'actions';
 
 export default class Note extends Component {
   render() {
-    const { note, active, dispatch } = this.props;
+    const { note, active } = this.props;
     let classes = classNames(styles, { active: active });
 
     return (

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
-import {  Provider } from 'react-redux';
+import { Provider } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
 import Main from './Main';
 import * as reducers from './reducers';
@@ -15,7 +15,9 @@ const reducersApp = combineReducers(reducers);
 const createStoreWithMiddleware = applyMiddleware(logger, thunkMiddleware)(createStore);
 const store = createStoreWithMiddleware(reducersApp);
 
-export default class App extends Component {
+export default store;
+
+export class App extends Component {
   render() {
     return (
         <Provider store={ store }>

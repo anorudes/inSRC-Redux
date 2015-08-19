@@ -2,7 +2,8 @@ import u from 'updeep';
 
 const initialState = {
   notes: [],
-  openNote: {}
+  openNote: {},
+  scrollY: 0,
 };
 
 export function notes(state = initialState, action) {
@@ -38,6 +39,11 @@ export function notes(state = initialState, action) {
   case 'DELETE_NOTE':
     return state;
 
+  case 'SAVE_SCROLL':
+    return {
+      ...state,
+      scrollY: window.scrollY
+    }
   default:
     return state;
   }

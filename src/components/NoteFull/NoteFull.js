@@ -14,7 +14,7 @@ export default class NoteFull extends Component {
   }
   _close() {
     const { dispatch } = this.props;
-    this.setState({closeAnimate: true})
+    this.setState({closeAnimate: true});
     setTimeout(() => {
       dispatch(closeNote());
     }, 500);
@@ -23,12 +23,12 @@ export default class NoteFull extends Component {
     this.setState({ editable: true, updatedNote: {...note} });
   }
   _updateInput(ref) {
-    let input = event.target;
+    const input = event.target;
     this.setState({
       updatedNote: {
         ...this.state.updatedNote,
         [ref]: input.value,
-      }
+      },
     });
   }
   _saveNote() {
@@ -41,7 +41,7 @@ export default class NoteFull extends Component {
     const { note, dispatch } = this.props;
     const { editable, updatedNote } = this.state;
 
-    let classes = classNames(styles, { closeAnimate: this.state.closeAnimate });
+    const classes = classNames(styles, { closeAnimate: this.state.closeAnimate });
     return (
       <div className={classes} >
         <div className="close fa fa-times" onClick={() => this._close()}></div>

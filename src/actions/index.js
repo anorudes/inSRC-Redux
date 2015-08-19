@@ -1,3 +1,15 @@
+import store from '../App.js';
+
+export function action(type, object) {
+  store.dispatch({type: type, ...object});
+}
+
+export function saveScoll() {
+  return {
+    type: 'SAVE_SCROLL',
+  };
+}
+
 
 export function openNote(note) {
   return {

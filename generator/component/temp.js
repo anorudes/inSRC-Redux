@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
 // Component styles
 import styles from './<%= name %>.styles.js';
 
 // Actions
-import * as actionCreators from 'actions/notes';
+import * as actionCreators from 'actions/<%= name %>';
 
 @connect(state => state.<%= name %>)
 export default class <%= name %> extends Component {
@@ -13,11 +14,12 @@ export default class <%= name %> extends Component {
     super(props);
     this.actions = bindActionCreators(actionCreators, this.props.dispatch);
   }
+  
   render() {
     const { data } = this.props;
-    
+
     return (
-      <div className={styles} >
+      <div className={styles}>
         <h2>
           <%= name %>
         </h2>
@@ -28,4 +30,3 @@ export default class <%= name %> extends Component {
     );
   }
 }
-

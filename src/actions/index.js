@@ -1,10 +1,4 @@
-import store from '../App.js';
-
-export function action(type, object) {
-  store.dispatch({type: type, ...object});
-}
-
-export function saveScoll() {
+export function saveScroll() {
   return {
     type: 'SAVE_SCROLL',
   };

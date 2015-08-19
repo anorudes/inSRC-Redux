@@ -15,9 +15,7 @@ const reducersApp = combineReducers(reducers);
 const createStoreWithMiddleware = applyMiddleware(logger, thunkMiddleware)(createStore);
 const store = createStoreWithMiddleware(reducersApp);
 
-export default store;
-
-export class App extends Component {
+export default class App extends Component {
   render() {
     return (
         <Provider store={ store }>

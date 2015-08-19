@@ -1,5 +1,5 @@
 import React from 'react';
-import { App } from './App.js';
+import App from './App.js';
 import { Config } from './config/config';
 
 Config.load().then(() => {

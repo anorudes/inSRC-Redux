@@ -25,9 +25,15 @@ export default class Notes extends Component {
   }
 
   render() {
-    const { openNote, searchText } = this.props;
+    let { openNote, searchText } = this.props;
+    searchText = searchText.toLowerCase();
+    let searchInCode = false;
+    if (searchText.indexOf('@@') >= 0) {
+      searchText = searchText.split('@@').join('');
+      searchInCode = true;
+    }
     const notes = this.props.notes.filter(note => {
-      return filters.searchByTitle(note, searchText) && filters.searchByKeywords(note, searchText)
+      return filters.search(note, searchText.split(' '), searchInCode);
     });
     return (
       <div className={styles} >

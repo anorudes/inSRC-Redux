@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { dispatch } from 'App';
+import { bindActionCreators } from 'redux';
 // Component styles
 import styles from './styles.js';
 import { Note, NoteFull, SearchNotes } from 'components';
-import { fetchNotes, saveScroll } from 'actions';
+import * as actionCreators from 'actions/notes';
 import * as filters from './filters';
 
 @connect(state => state.notes)
 export default class Notes extends Component {
   constructor(props) {
     super(props);
+    this.actions = bindActionCreators(actionCreators, this.props.dispatch);
   }
   componentWillUnmount() {
-    dispatch(saveScroll());
+    this.actions.saveScroll();
   }
 
   componentDidMount() {
@@ -21,7 +22,8 @@ export default class Notes extends Component {
     setTimeout(() => {
       window.scrollTo(0, scrollY);
     }, 1);
-    dispatch(fetchNotes());
+
+    this.actions.fetchNotes();
   }
 
   render() {
@@ -37,11 +39,12 @@ export default class Notes extends Component {
     });
     return (
       <div className={styles} >
-        <SearchNotes />
-        {openNote.id && <NoteFull note={openNote} />}
+        <SearchNotes actions={this.actions} />
+        {openNote.id && <NoteFull note={openNote} actions={this.actions} />}
         {notes.map(note => <Note key={note.id}
                                   active={note === openNote}
-                                  note={note} />)}
+                                  note={note}
+                                  actions={this.actions}/>)}
       </div>
     );
   }

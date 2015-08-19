@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import Highlight from 'react-highlight';
-import { dispatch } from 'App';
 import classNames from 'classnames';
 // Component styles
 import styles from './NoteFull.styles.js';
-import { saveNote, closeNote } from 'actions';
+import { saveNote, closeNote } from 'actions/notes';
 
 import { Link } from 'react-router';
 
@@ -16,7 +15,7 @@ export default class NoteFull extends Component {
   _close() {
     this.setState({closeAnimate: true});
     setTimeout(() => {
-      dispatch(closeNote());
+      this.props.actions.closeNote();
     }, 500);
   }
   _openEdit(note) {
@@ -32,12 +31,12 @@ export default class NoteFull extends Component {
     });
   }
   _saveNote() {
-    dispatch(saveNote(this.state.updatedNote));
+    this.props.actions.saveNote(this.state.updatedNote);
     this.setState({ editable: false, updatedNote: {}});
   }
 
   render() {
-    const { note } = this.props;
+    const { note, actions } = this.props;
     const { editable, updatedNote } = this.state;
 
     const classes = classNames(styles, { closeAnimate: this.state.closeAnimate });
@@ -57,7 +56,7 @@ export default class NoteFull extends Component {
             <span className="date">{note.date}</span>
             <div className="buttons">
               <i className="icon fa fa-edit" onClick={() => this._openEdit(note)}></i>
-              <i className="icon fa fa-trash-o" onClick={() => dispatch(deleteNote(note.id))}></i>
+              <i className="icon fa fa-trash-o" onClick={() => actions.deleteNote(note.id)}></i>
             </div>
           </div>
         }

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { dispatch } from 'App';
 // Component styles
 import styles from './AddNote.styles.js';
 
 // Actions
-import { addNote } from 'actions';
+import { addNote } from 'actions/notes';
 
 export default class AddNote extends Component {
   render() {

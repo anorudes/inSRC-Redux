@@ -3,8 +3,7 @@ import debounce from 'lodash.debounce';
 
 // Component styles
 import styles from './SearchNotes.styles.js';
-import { dispatch } from 'App';
-import { searchNotes } from 'actions';
+import { searchNotes } from 'actions/notes';
 
 export default class SearchNotes extends Component {
   constructor(props) {
@@ -20,7 +19,7 @@ export default class SearchNotes extends Component {
   _changeSearch() {
     const input = event.target;
     this.setState({ search: input.value});
-    debounce(() => dispatch(searchNotes(input.value)), 100)();
+    debounce(() => this.props.actions.searchNotes(input.value), 100)();
   }
 
   render() {

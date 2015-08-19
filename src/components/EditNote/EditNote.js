@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { dispatch } from 'App';
 
 // Component styles
 import styles from './EditNote.styles.js';
 
 // Actions
-import { saveNote } from 'actions';
+import { saveNote } from 'actions/notes';
 
 export default class EditNote extends Component {
   render() {

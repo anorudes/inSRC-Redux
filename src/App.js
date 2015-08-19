@@ -14,7 +14,6 @@ import { Notes, EditNote, AddNote, Options } from './components/';
 const reducersApp = combineReducers(reducers);
 const createStoreWithMiddleware = applyMiddleware(logger, thunkMiddleware)(createStore);
 const store = createStoreWithMiddleware(reducersApp);
-export let dispatch = store.dispatch;
 
 export default class App extends Component {
   render() {

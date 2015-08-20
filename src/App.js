@@ -15,6 +15,9 @@ const reducersApp = combineReducers(reducers);
 const createStoreWithMiddleware = applyMiddleware(logger, thunkMiddleware)(createStore);
 const store = createStoreWithMiddleware(reducersApp);
 
+import { fetchConfig } from 'actions/config';
+store.dispatch(fetchConfig());
+
 export default class App extends Component {
   render() {
     return (

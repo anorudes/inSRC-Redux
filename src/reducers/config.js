@@ -1,4 +1,5 @@
-import u from 'updeep';
+import Hotkeys from '../config/hotkeys';
+import Tray from '../config/tray';
 
 const initialState = {
   config: {}

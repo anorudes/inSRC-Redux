@@ -47,11 +47,13 @@ export function addNote(note) {
   };
 }
 
-export function fetchNotes() {
+export function fetchNotes(callback) {
   return dispatch => {
     fetch('/db/data.json')
       .then(res =>
-        res.json().then(data => dispatch(getNotes(data)))
+        res.json().then(data => {
+          dispatch(getNotes(data));
+        })
       );
   }
 }

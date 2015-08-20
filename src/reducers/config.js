@@ -1,6 +1,3 @@
-import Hotkeys from '../config/hotkeys';
-import Tray from '../config/tray';
-
 const initialState = {
   config: {}
 };
@@ -8,11 +5,9 @@ const initialState = {
 export function config(state = initialState, action) {
   switch (action.type) {
   case 'GET_CONFIG':
-    nw && Hotkeys.init();
-    nw && Tray.init();
     return {
       ...state,
-      config: action.data
+      config: action.data,
     }
   default:
     return state;

@@ -9,8 +9,8 @@ export function fetchConfig() {
   return dispatch => {
     fetch('/config.json')
       .then(res =>
-        res.json().then(data => this.data = data).then((data) => {
-          dispatch(getConfig(data));
-        }));
+        res.json().then(data =>
+          dispatch(getConfig(data))
+        ));
   }
 }

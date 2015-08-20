@@ -3,9 +3,20 @@ var gulp = require('gulp'),
   rename = require('gulp-rename'),
   template = require('gulp-template'),
   fs = require('fs'),
-  yargs = require('yargs').argv;
+  yargs = require('yargs').argv,
+  runSequence = require('run-sequence'),
+  shell = require('gulp-shell'),
+  notify = require("gulp-notify"),
+  NwBuilder = require('node-webkit-builder'),
+  gutil = require('gulp-util'),
+  merge = require('merge-stream'),
+  clean = require('gulp-clean');
 
 var root = './';
+
+// ***************************************************************************
+// Generator
+// ***************************************************************************
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -84,6 +95,69 @@ var help = function() {
   console.log('\n\tusage: gulp [simple-component] --name <name>\n' +
     '\tusage: gulp [component] --name <name>\n');
 };
+
+// ***************************************************************************
+// End generator
+// ***************************************************************************
+
+// ***************************************************************************
+// Build App
+// ***************************************************************************
+
+gulp.task('buld-clean-temp', function () {
+    return gulp.src(['build-temp/app', 'build-temp/bower_components', 'dist/'], {read: false})
+        .pipe(clean());
+});
+
+gulp.task('copy-config', function () {
+  var config = gulp.src('config.json').pipe(gulp.dest('binary/inSRC/win64/'))
+  var db = gulp.src('db/**/*').pipe(gulp.dest('binary/inSRC/win64/db/'))
+  return merge(config, db);
+});
+
+gulp.task('build-app', function () {
+    var nw = new NwBuilder({
+        version: '0.11.0',
+        files: './build-temp/**',
+        buildDir: './binary',
+        platforms: ['win64']
+    });
+    
+    nw.on('log', function (msg) {
+        gutil.log('node-webkit-builder', msg);
+    });
+    
+    return nw.build().catch(function (err) {
+        gutil.log('node-webkit-builder', err);
+    });
+});
+
+gulp.task('build-copy', function() {
+  let js = gulp.src(['app/**/*']).pipe(gulp.dest('build-temp/app/'));
+  let bower = gulp.src(['bower_components/**/*']).pipe(gulp.dest('build-temp/bower_components/'));
+  return merge(js, bower);
+});
+
+gulp.task('build-js', shell.task([
+  'webpack -p'
+]));
+
+gulp.task('build-clean', function () {
+    return gulp.src(['build-temp/app'], {read: false})
+        .pipe(clean());
+});
+
+// ***************************************************************************
+// End Build
+// ***************************************************************************
+
+gulp.task('nw', shell.task([
+  'nw .'
+]));
+
+gulp.task('build', function() {
+  runSequence('build-clean', 'build-js', 'build-copy', 'build-app', 'buld-clean-temp', 'copy-config');
+});
 
 gulp.task('default', function() {
   help();

@@ -8,6 +8,8 @@ const initialState = {
 export function config(state = initialState, action) {
   switch (action.type) {
   case 'GET_CONFIG':
+    nw && Hotkeys.init();
+    nw && Tray.init();
     return {
       ...state,
       config: action.data

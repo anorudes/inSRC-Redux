@@ -11,19 +11,14 @@ import { history } from 'react-router/lib/HashHistory';
 
 import { Notes, EditNote, AddNote, Options } from './components/';
 
-import Hotkeys from './config/hotkeys';
-import Tray from './config/tray';
+import { configInit } from './config';
 
 const reducersApp = combineReducers(reducers);
 const createStoreWithMiddleware = applyMiddleware(logger, thunkMiddleware)(createStore);
 const store = createStoreWithMiddleware(reducersApp);
 
 /* config */
-import { fetchConfig } from './actions/config';
-store.dispatch(fetchConfig(() => {
-  nw && Hotkeys.init();
-  nw && Tray.init();
-}));
+configInit(store.dispatch);
 
 export default class App extends Component {
   render() {

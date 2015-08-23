@@ -22,8 +22,6 @@ export default class Notes extends Component {
     setTimeout(() => {
       window.scrollTo(0, scrollY);
     }, 1);
-
-    this.actions.fetchNotes();
   }
 
   render() {
@@ -37,6 +35,7 @@ export default class Notes extends Component {
     const notes = this.props.notes.filter(note => {
       return filters.search(note, searchText.split(' '), searchInCode);
     });
+
     return (
       <div className={styles} >
         <SearchNotes actions={this.actions} />

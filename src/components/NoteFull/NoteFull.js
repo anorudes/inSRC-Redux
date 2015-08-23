@@ -69,7 +69,7 @@ export default class NoteFull extends Component {
                 <input type="text" ref="title" value={updatedNote.title} onChange={() => this._updateInput('title')} />
               </div>
               <div className="field text">
-                <textarea ref="text" onChange={() => this._updateInput('text')}>{note.text}</textarea>
+                <textarea ref="text" onChange={() => this._updateInput('text')}>{updatedNote.text}</textarea>
               </div>
               <div className="field keywords">
                 <input type="text" ref="keywords" value={updatedNote.keywords}  onChange={() => this._updateInput('keywords')} />
@@ -78,8 +78,8 @@ export default class NoteFull extends Component {
                 <input type="text" ref="date" value={updatedNote.date}  onChange={() => this._updateInput('date')} />
               </div>
               <div className="buttons">
-                <i className="icon fa fa-floppy-o" onClick={() => this._saveNote()}></i>
-                <i className="icon fa fa-ban" onClick={() => this.setState({ editable: false })}></i>
+                <button className="icon fa fa-floppy-o" onClick={() => this._saveNote()}></button>
+                <button className="icon fa fa-ban" onClick={() => this.setState({ editable: false })}></button>
               </div>
             </div>
           </div>

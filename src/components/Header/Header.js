@@ -8,7 +8,9 @@ export default class Header extends Component {
     return (
       <div className={`${ styles }`} >
         <div className="wrapper">
-          <span className="title">inSRC</span>
+            <span className="title">
+              <Link to={`/list/`}>inSRC</Link>
+            </span>
           <ul className="menu">
             <li>
               <Link to={`/list/`}>

@@ -41,7 +41,19 @@ export function notes(state = initialState, action) {
     }, state);
 
   case 'ADD_NOTE':
-    return state;
+    let getMaxId = () => {
+      return Math.max.apply(Math, state.notes.map(el => el.id));
+    };
+    let id = getMaxId() + 1;
+    return {
+      ...state,
+      notes: [{
+        id: id,
+        title: action.note.title,
+        keywords: action.note.keywords,
+        text: action.note.text,
+      }, ...state.notes]
+    }
 
   case 'DELETE_NOTE':
     return state;

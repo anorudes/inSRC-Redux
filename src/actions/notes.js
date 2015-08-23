@@ -51,10 +51,12 @@ export function addNote(note) {
 
 export function fetchNotes(callback) {
   // for nw.js
-  console.log(nw);
   if (nw) {
     return dispatch => {
       let data = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
+      data = data.sort(function(a, b) {
+        return b.id - a.id;
+      });
       dispatch(getNotes(data));
     }
   } else { // for site
@@ -62,6 +64,9 @@ export function fetchNotes(callback) {
       fetch(dbPath)
         .then(res =>
           res.json().then(data => {
+            data = data.sort(function(a, b) {
+              return b.id - a.id;
+            });
             dispatch(getNotes(data));
           })
       );

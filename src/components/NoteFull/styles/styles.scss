@@ -67,7 +67,7 @@
   .buttons {
     position: absolute;
     right: 30px;
-    bottom: 30px;
+    bottom: 33px;
     .icon {
       font-size: 2.5rem;
       margin-left: 10px;
@@ -83,6 +83,12 @@
       &:hover {
         opacity: 1;
       }
+    }
+    button {
+      background: none;
+      border: none;
+      padding: 0;
+      margin-left: 10px;
     }
   }
 
@@ -126,6 +132,7 @@
         display: block;
         max-height: calc(100% - 130px);
         height: 60vh;
+        padding: 5px;
         margin-top: 5px;
         &:focus {
           outline: none;

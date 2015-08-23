@@ -1,6 +1,89 @@
-/* 
-  Header styles 
-*/
 :local(.styles) {
-  position: relative;
+  padding: 50px 30px 55px 30px;
+  .form {
+    max-width: 1200px;
+    position: relative;
+    margin: 0 auto;
+    .field {
+      width: 100%;
+      &.title, &.keywords, &.date {
+        padding-right: 35px;
+        border: none;
+        input {
+          border: none;
+          border-bottom: 1px solid rgba(0, 0, 0, .2);
+          width: 100%;
+          padding-bottom: 6px;
+          outline: none;
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+
+      &.title {
+        padding-right: 0px;
+        margin-top: -1px;
+        margin-bottom: 15px;
+        input {
+          padding-bottom: 10px;
+        }
+      }
+
+      &.keywords {
+        width: calc(100% - 140px);
+        margin-bottom: 10px;
+        margin-top: 10px;
+      }
+
+      &.date {
+        width: 130px;
+      }
+      input[disabled] {
+        background: transparent;
+        opacity: .5;
+      }
+
+      &.text textarea {
+        width: 100%;
+        display: block;
+        max-height: calc(100% - 130px);
+        height: 60vh;
+        margin-top: 5px;
+        padding: 5px;
+        white-space: pre;
+        word-wrap: normal;
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+  .buttons {
+    position: absolute;
+    right: 30px;
+    bottom: 17px;
+    .icon {
+      font-size: 2.5rem;
+      margin-left: 10px;
+      cursor: pointer;
+      color: black;
+      opacity: .8;
+      vertical-align: middle;
+      display: inline-block;
+      transition: all 0.3s ease;
+      &.fa-trash-o {
+        margin-top: -2px;
+      }
+      &:hover {
+        opacity: 1;
+      }
+    }
+    button {
+      background: none;
+      border: none;
+      padding: 0;
+      margin-left: 10px;
+    }
+  }
 }

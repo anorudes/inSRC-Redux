@@ -10,8 +10,8 @@ export default class Tray {
       }
     });
 
-    win.on('minimize', function() {
-      this.hide();
+    let min = () => {
+      win.hide();
       let tray = new gui.Tray({ icon: 'icon.png' });
       let menu = new gui.Menu();
       let showWindow = () => {
@@ -20,17 +20,14 @@ export default class Tray {
         tray = null;
       };
       menu.append(new gui.MenuItem({ type: 'checkbox', label: 'List', click: function() {
-        $state.transitionTo('list');
+        location.hash = "#/list/";
         showWindow();
       }}));
       menu.append(new gui.MenuItem({ type: 'checkbox', label: 'Add', click: function() {
-        $state.transitionTo('add');
+        location.hash = "#/add/";
         showWindow();
       }}));
-      menu.append(new gui.MenuItem({ type: 'checkbox', label: 'Options', click: function() {
-        $state.transitionTo('options');
-        showWindow();
-      }}));
+
       menu.append(new gui.MenuItem({ type: 'checkbox', label: 'Exit', click: function() {
         enableClose = true;
         win.close();
@@ -39,6 +36,12 @@ export default class Tray {
       tray.on('click', function() {
         showWindow();
       });
+    }
+
+    win.on('minimize', function() {
+      min();
     });
+
+    min();
   };
 }

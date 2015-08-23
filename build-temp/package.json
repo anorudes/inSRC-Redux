@@ -88,8 +88,8 @@
     "java": false
   },
   "window": {
-    "toolbar": true,
-    "show": false,
+    "toolbar": false,
+    "show": true,
     "width": 1200,
     "height": 800,
     "resizable": true,

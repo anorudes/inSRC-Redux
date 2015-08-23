@@ -49,6 +49,12 @@ export function addNote(note) {
   };
 }
 
+export function saveNotes(notes) {
+  if (nw) {
+    fs.writeFile(execPath + dbPath, JSON.stringify(notes));
+  }
+}
+
 export function fetchNotes(callback) {
   // for nw.js
   if (nw) {
@@ -74,9 +80,9 @@ export function fetchNotes(callback) {
   }
 }
 
-export function deleteNote(note) {
+export function deleteNote(id) {
   return {
     type: 'DELETE_NOTE',
-    note,
+    id,
   };
 }

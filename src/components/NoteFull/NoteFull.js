@@ -45,7 +45,9 @@ export default class NoteFull extends Component {
     this._linkAndBold();
   }
   componentDidUpdate() {
-    this._linkAndBold();
+    if (!this.state.editable) {
+      this._linkAndBold();
+    }
   }
 
   _linkAndBold() {

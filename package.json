@@ -89,7 +89,7 @@
   },
   "window": {
     "toolbar": true,
-    "show": false,
+    "show": true,
     "width": 1200,
     "height": 800,
     "resizable": true,

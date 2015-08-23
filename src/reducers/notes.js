@@ -1,5 +1,5 @@
 import u from 'updeep';
-
+import { saveNotes } from 'actions/notes';
 const initialState = {
   notes: [],
   openNote: {},
@@ -8,6 +8,8 @@ const initialState = {
 };
 
 export function notes(state = initialState, action) {
+  let res;
+
   switch (action.type) {
   case 'SEARCH_NOTES':
     return {
@@ -35,17 +37,19 @@ export function notes(state = initialState, action) {
 
   case 'SAVE_NOTE':
     let index = state.notes.map(x => x.id).indexOf(action.note.id);
-    return u({
+    res = u({
       notes: { [index]: action.note },
       openNote: action.note,
     }, state);
+    saveNotes(res.notes);
+    return res;
 
   case 'ADD_NOTE':
     let getMaxId = () => {
       return Math.max.apply(Math, state.notes.map(el => el.id));
     };
     let id = getMaxId() + 1;
-    return {
+    res = {
       ...state,
       notes: [{
         id: id,
@@ -53,16 +57,33 @@ export function notes(state = initialState, action) {
         keywords: action.note.keywords,
         text: action.note.text,
       }, ...state.notes]
-    }
+    };
+    saveNotes(res.notes);
+    return res;
 
   case 'DELETE_NOTE':
-    return state;
+    var index = state.notes.map(x => x.id).indexOf(action.id);
+    console.log(index);
+    res = {
+      openNote: {},
+      scrollY: state.scrollY,
+      searchText: state.searchText,
+      notes: [
+        ...state.notes.slice(0, index),
+        ...state.notes.slice(index + 1)
+      ],
+    };
+    saveNotes(res.notes);
+    return res;
 
   case 'SAVE_SCROLL':
-    return {
+    res = {
       ...state,
-      scrollY: window.scrollY
+      scrollY: window.scrollY,
     }
+    saveNotes(res.notes);
+    return res;
+
   default:
     return state;
   }

@@ -6,18 +6,16 @@ export default class Tray {
       if (enableClose) {
         gui.App.quit();
       } else {
+        win.hide();
         win.minimize();
       }
     });
 
     let min = () => {
-      win.hide();
       let tray = new gui.Tray({ icon: 'icon.png' });
       let menu = new gui.Menu();
       let showWindow = () => {
         win.show();
-        tray.remove();
-        tray = null;
       };
       menu.append(new gui.MenuItem({ type: 'checkbox', label: 'List', click: function() {
         location.hash = "#/list/";
@@ -39,9 +37,11 @@ export default class Tray {
     }
 
     win.on('minimize', function() {
-      min();
+      win.hide();
     });
 
     min();
+
+    location.hash = "list";
   };
 }

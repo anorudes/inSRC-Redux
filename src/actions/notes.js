@@ -1,3 +1,5 @@
+let dbPath = execPath + 'db/data.json';
+
 export function searchNotes(text) {
   return {
     type: 'SEARCH_NOTES',
@@ -48,13 +50,22 @@ export function addNote(note) {
 }
 
 export function fetchNotes(callback) {
-  return dispatch => {
-    fetch('/db/data.json')
-      .then(res =>
-        res.json().then(data => {
-          dispatch(getNotes(data));
-        })
+  // for nw.js
+  console.log(nw);
+  if (nw) {
+    return dispatch => {
+      let data = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
+      dispatch(getNotes(data));
+    }
+  } else { // for site
+    return dispatch => {
+      fetch(dbPath)
+        .then(res =>
+          res.json().then(data => {
+            dispatch(getNotes(data));
+          })
       );
+    }
   }
 }
 

@@ -25,6 +25,9 @@ module.exports = {
     new webpack.NoErrorsPlugin(),
     new webpack.ProvidePlugin({
       jQuery: "jquery"
+    }),
+    new webpack.ProvidePlugin({
+      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
     })
   ],
 

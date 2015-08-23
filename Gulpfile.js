@@ -133,8 +133,8 @@ gulp.task('build-app', function () {
 });
 
 gulp.task('build-copy', function() {
-  let js = gulp.src(['app/**/*']).pipe(gulp.dest('build-temp/app/'));
-  let bower = gulp.src(['bower_components/**/*']).pipe(gulp.dest('build-temp/bower_components/'));
+  var js = gulp.src(['app/**/*']).pipe(gulp.dest('build-temp/app/'));
+  var bower = gulp.src(['bower_components/**/*']).pipe(gulp.dest('build-temp/bower_components/'));
   return merge(js, bower);
 });
 

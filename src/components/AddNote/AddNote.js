@@ -7,9 +7,6 @@ import moment from 'moment';
 import styles from './AddNote.styles.js';
 import * as actionCreators from 'actions/notes';
 
-// Actions
-import { addNote } from 'actions/notes';
-
 @connect(state => state.notes)
 export default class AddNote extends Component {
   constructor(props) {

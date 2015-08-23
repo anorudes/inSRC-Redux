@@ -1,3 +1,4 @@
+import { bindActionCreators } from 'redux';
 import React, { Component } from 'react';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
@@ -10,17 +11,17 @@ import { Router, Route } from 'react-router';
 import { history } from 'react-router/lib/HashHistory';
 
 import { Notes, AddNote, Options } from './components/';
-
+import * as actionCreators from 'actions/notes';
 import { configInit } from './config';
-import { fetchNotes } from 'actions/notes';
 
 const reducersApp = combineReducers(reducers);
 const createStoreWithMiddleware = applyMiddleware(logger, thunkMiddleware)(createStore);
 const store = createStoreWithMiddleware(reducersApp);
+const actions = bindActionCreators(actionCreators, store.dispatch);
 
 /* config */
 configInit(store.dispatch);
-store.dispatch(fetchNotes());
+actions.fetchNotes();
 
 export default class App extends Component {
   render() {

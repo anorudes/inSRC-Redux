@@ -63,7 +63,6 @@ export function notes(state = initialState, action) {
 
   case 'DELETE_NOTE':
     var index = state.notes.map(x => x.id).indexOf(action.id);
-    console.log(index);
     res = {
       openNote: {},
       scrollY: state.scrollY,

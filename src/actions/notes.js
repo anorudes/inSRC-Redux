@@ -51,7 +51,7 @@ export function addNote(note) {
 
 export function saveNotes(notes) {
   if (nw) {
-    fs.writeFile(execPath + dbPath, JSON.stringify(notes));
+    fs.writeFileSync(dbPath, JSON.stringify(notes));
   }
 }
 
@@ -60,9 +60,6 @@ export function fetchNotes(callback) {
   if (nw) {
     return dispatch => {
       let data = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
-      data = data.sort(function(a, b) {
-        return b.id - a.id;
-      });
       dispatch(getNotes(data));
     }
   } else { // for site

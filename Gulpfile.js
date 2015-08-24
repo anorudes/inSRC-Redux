@@ -105,13 +105,13 @@ var help = function() {
 // ***************************************************************************
 
 gulp.task('buld-clean-temp', function () {
-    return gulp.src(['build-temp/app', 'build-temp/bower_components', 'dist/'], {read: false})
+    return gulp.src(['build-temp/dist', 'build-temp/bower_components', 'dist/'], {read: false})
         .pipe(clean());
 });
 
 gulp.task('copy-config', function () {
-  var config = gulp.src('config.json').pipe(gulp.dest('binary/inSRC/win64/'))
-  var db = gulp.src('db/**/*').pipe(gulp.dest('binary/inSRC/win64/db/'))
+  var config = gulp.src('config.json').pipe(gulp.dest('binary/inSRC-redux/win64/'))
+  var db = gulp.src('db/**/*').pipe(gulp.dest('binary/inSRC-redux/win64/db/'))
   return merge(config, db);
 });
 
@@ -133,9 +133,9 @@ gulp.task('build-app', function () {
 });
 
 gulp.task('build-copy', function() {
-  var js = gulp.src(['app/**/*']).pipe(gulp.dest('build-temp/app/'));
+  var dist = gulp.src(['dist/**/*']).pipe(gulp.dest('build-temp/dist/'));
   var bower = gulp.src(['bower_components/**/*']).pipe(gulp.dest('build-temp/bower_components/'));
-  return merge(js, bower);
+  return merge(dist, bower);
 });
 
 gulp.task('build-js', shell.task([
@@ -143,7 +143,7 @@ gulp.task('build-js', shell.task([
 ]));
 
 gulp.task('build-clean', function () {
-    return gulp.src(['build-temp/app'], {read: false})
+    return gulp.src(['build-temp/dist'], {read: false})
         .pipe(clean());
 });
 

@@ -2,7 +2,7 @@
   "name": "inSRC-redux",
   "version": "0.0.2",
   "description": "",
-  "main": "index-nw.html",
+  "main": "index.html",
   "scripts": {
     "start": "node server.js",
     "lint": "eslint src"
@@ -89,7 +89,7 @@
   },
   "window": {
     "toolbar": false,
-    "show": true,
+    "show": false,
     "width": 1200,
     "height": 800,
     "resizable": true,

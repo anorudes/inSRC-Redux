@@ -7,6 +7,8 @@ import { saveNote, closeNote } from 'actions/notes';
 
 import { Link } from 'react-router';
 
+
+
 let linkAndBold = (text) => {
   let replacedText, replacePattern1, replacePattern2;
   replacePattern1 = /(\b(https?):\/\/[-A-Z0-9+&amp;@#\/%?=~_|!:,.;]*[-A-Z0-9+&amp;@#\/%=~_|])/ig;
@@ -32,6 +34,14 @@ export default class NoteFull extends Component {
     super(props);
     this.state = { closeAnimate: false, editable: false, updatedNote: {} };
   }
+  componentDidMount() {
+    this._linkAndBold();
+  }
+  componentDidUpdate() {
+    if (!this.state.editable) {
+      this._linkAndBold();
+    }
+  }
   _close() {
     this.setState({closeAnimate: true});
     setTimeout(() => {
@@ -41,15 +51,12 @@ export default class NoteFull extends Component {
   _openEdit(note) {
     this.setState({ editable: true, updatedNote: {...note} });
   }
-  componentDidMount() {
-    this._linkAndBold();
-  }
-  componentDidUpdate() {
-    if (!this.state.editable) {
-      this._linkAndBold();
+  _delete(note) {
+    if (window.confirm("Do you really want to delete?")) {
+      this.props.actions.deleteNote(note.id);
+      nw && win.focus();
     }
   }
-
   _linkAndBold() {
     let element = React.findDOMNode(this.refs.code);
     let code = element.innerHTML;
@@ -57,7 +64,6 @@ export default class NoteFull extends Component {
     code = code.split('http:<span class="hljs-comment">').join('http:');
     element.innerHTML = linkAndBold(code);
   }
-
   _updateInput(ref) {
     const input = event.target;
     this.setState({
@@ -93,7 +99,7 @@ export default class NoteFull extends Component {
             <span className="date">{note.date}</span>
             <div className="buttons">
               <i className="icon fa fa-edit" onClick={() => this._openEdit(note)}></i>
-              <i className="icon fa fa-trash-o" onClick={() => actions.deleteNote(note.id)}></i>
+              <i className="icon fa fa-trash-o" onClick={() => this._delete(note) }></i>
             </div>
           </div>
         }

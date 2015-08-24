@@ -35,15 +35,15 @@ export default class Notes extends Component {
     const notes = this.props.notes.filter(note => {
       return filters.search(note, searchText.split(' '), searchInCode);
     });
-
+    openNote = notes.length === 1 ? notes[0] : openNote;
     return (
       <div className={styles} >
         <SearchNotes actions={this.actions} />
-        {openNote.id && <NoteFull note={openNote} actions={this.actions} />}
         {notes.map(note => <Note key={note.id}
                                   active={note === openNote}
                                   note={note}
                                   actions={this.actions}/>)}
+        {openNote.id && <NoteFull note={openNote} actions={this.actions} />}
       </div>
     );
   }

@@ -14,6 +14,7 @@ export function notes(state = initialState, action) {
   case 'SEARCH_NOTES':
     return {
       ...state,
+      opeNote: {},
       searchText: action.text,
     }
 

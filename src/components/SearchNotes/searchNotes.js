@@ -15,6 +15,7 @@ export default class SearchNotes extends Component {
   componentDidMount() {
     React.findDOMNode(this.refs.search).focus();
     this.props.actions.searchNotes('');
+    this.setState({search: ''});
   }
 
   _changeSearch() {

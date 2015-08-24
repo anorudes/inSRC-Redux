@@ -135,7 +135,8 @@ gulp.task('build-app', function () {
 gulp.task('build-copy', function() {
   var dist = gulp.src(['dist/**/*']).pipe(gulp.dest('build-temp/dist/'));
   var bower = gulp.src(['bower_components/**/*']).pipe(gulp.dest('build-temp/bower_components/'));
-  return merge(dist, bower);
+  var db = gulp.src(['binary/inSRC-redux/win64/db/*.*']).pipe(gulp.dest('db/'));
+  return merge(dist, bower, db);
 });
 
 gulp.task('build-js', shell.task([

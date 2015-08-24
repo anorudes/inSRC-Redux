@@ -39,7 +39,7 @@ export default class AddNote extends Component {
     this.setState({
       note: {
         ...this.state.note,
-      [ref]: input.value,
+        [ref]: input.value,
       },
     });
   }

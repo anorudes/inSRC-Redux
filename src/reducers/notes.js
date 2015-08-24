@@ -57,6 +57,7 @@ export function notes(state = initialState, action) {
         title: action.note.title,
         keywords: action.note.keywords,
         text: action.note.text,
+        date: action.note.date,
       }, ...state.notes]
     };
     saveNotes(res.notes);

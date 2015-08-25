@@ -83,7 +83,6 @@ export default class NoteFull extends Component {
     const { editable, updatedNote } = this.state;
 
     const classes = classNames(styles, { closeAnimate: this.state.closeAnimate });
-    let codes = note.text.split('---');
     return (
       <div className={classes} id="noteFull">
         <div className="close fa fa-times" onClick={() => this._close()}></div>
@@ -93,7 +92,7 @@ export default class NoteFull extends Component {
             <span className="title">{note.title}</span>
             <div className="code" ref="code">
               {
-                codes.map((code) => {
+                note.text.split('---').map((code) => {
                     return (<Highlight className="language-js">{code}</Highlight>)
                 })
               }

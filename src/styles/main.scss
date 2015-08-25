@@ -2,7 +2,7 @@
 @import 'fonts/font-awesome';
 @import 'typography';
 
-:global(body) {
+body {
   position: relative;
   font-size: 16px;
   font-family: "Roboto";
@@ -10,11 +10,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-:global(.wrapper) {
+.wrapper {
   padding: 0px 30px;
 }
 
-:global(.icon) {
+.icon {
   display: inline-block;
   margin-right: 6px;
+}
+
+.coffeescript .javascript, .javascript .xml, .tex .hljs-formula, .xml .javascript, .xml .vbscript, .xml .css, .xml .hljs-cdata {
+  opacity: 1;
 }

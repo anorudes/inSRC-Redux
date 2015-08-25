@@ -3,8 +3,8 @@ export default class Hotkeys {
     let shortcutList = new gui.Shortcut({ key : data.hotkeyList, active : function() {
       location.hash = "list";
       win.focus();
-      win.focus();
       win.show();
+      document.getElementById('search').focus();
     }});
 
     let shortcutAdd = new gui.Shortcut({ key : data.hotkeyAdd, active : function() {

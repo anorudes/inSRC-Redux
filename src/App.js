@@ -18,7 +18,6 @@ const reducersApp = combineReducers(reducers);
 const createStoreWithMiddleware = applyMiddleware(logger, thunkMiddleware)(createStore);
 const store = createStoreWithMiddleware(reducersApp);
 const actions = bindActionCreators(actionCreators, store.dispatch);
-
 /* config */
 configInit(store.dispatch);
 actions.fetchNotes();

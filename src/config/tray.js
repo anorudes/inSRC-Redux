@@ -6,7 +6,6 @@ export default class Tray {
       if (enableClose) {
         gui.App.quit();
       } else {
-        win.hide();
         win.minimize();
       }
     });
@@ -32,6 +31,7 @@ export default class Tray {
       }}));
       tray.menu = menu;
       tray.on('click', function() {
+        location.hash = "#/list/";
         showWindow();
       });
     }

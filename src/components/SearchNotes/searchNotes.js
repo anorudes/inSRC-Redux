@@ -17,6 +17,10 @@ export default class SearchNotes extends Component {
     this.props.actions.searchNotes('');
     this.setState({search: ''});
   }
+  componentWillUnmount() {
+    this.props.actions.searchNotes('');
+    this.setState({search: ''});
+  }
 
   _changeSearch() {
     const input = event.target;
@@ -27,8 +31,7 @@ export default class SearchNotes extends Component {
   render() {
     return (
       <div className={styles}>
-        <input type="text" ref="search" value={this.state.search} onChange={() => this._changeSearch()} placeholder="search" />
-
+        <input type="text" id="search" ref="search" value={this.state.search} onChange={() => this._changeSearch()} placeholder="search" />
       </div>
     );
   }

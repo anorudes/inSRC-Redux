@@ -83,17 +83,20 @@ export default class NoteFull extends Component {
     const { editable, updatedNote } = this.state;
 
     const classes = classNames(styles, { closeAnimate: this.state.closeAnimate });
+    let codes = note.text.split('---');
     return (
-      <div className={classes} >
+      <div className={classes} id="noteFull">
         <div className="close fa fa-times" onClick={() => this._close()}></div>
         { /* show note code */}
         { !editable &&
           <div>
             <span className="title">{note.title}</span>
             <div className="code" ref="code">
-              <Highlight className="language-js">
-                {note.text}
-              </Highlight>
+              {
+                codes.map((code) => {
+                    return (<Highlight className="language-js">{code}</Highlight>)
+                })
+              }
             </div>
             <span className="keywords">{note.keywords}</span>
             <span className="date">{note.date}</span>

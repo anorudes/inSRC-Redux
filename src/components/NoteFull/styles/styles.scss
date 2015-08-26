@@ -47,19 +47,21 @@
     font-size: 1.4rem;
     color: rgba(0,0,0,.5);
   }
-
   .code {
     background: transparent;
     border: none;
     padding: 10px 0px;
     white-space: pre;
     word-wrap: normal;
+    height: calc(100% - 100px);
     overflow: auto;
-    max-height: calc(100% - 100px);
     code {
       padding: 0;
+      display: inline-block;
+      white-space: pre;
     }
     pre {
+      display: inline-block;
       background: transparent;
       margin: 0;
       padding: 0;
@@ -137,6 +139,8 @@
         max-height: calc(100% - 130px);
         height: 60vh;
         padding: 5px;
+        white-space: pre;
+        word-wrap: normal;
         margin-top: 5px;
         &:focus {
           outline: none;

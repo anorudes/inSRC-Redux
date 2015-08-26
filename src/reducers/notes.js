@@ -61,6 +61,7 @@ export function notes(state = initialState, action) {
       }, ...state.notes]
     };
     saveNotes(res.notes);
+    win.hide();
     return res;
 
   case 'DELETE_NOTE':

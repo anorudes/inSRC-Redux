@@ -32,7 +32,7 @@ let linkAndBold = (text) => {
 export default class NoteFull extends Component {
   constructor(props) {
     super(props);
-    this.state = { closeAnimate: false, editable: false, updatedNote: {} };
+    this.state = { styling: false, closeAnimate: false, editable: false, updatedNote: {} };
   }
   componentDidMount() {
     this._linkAndBold();
@@ -58,6 +58,8 @@ export default class NoteFull extends Component {
     }
   }
   _linkAndBold() {
+    if (this.state.styling) { return true; }
+    this.setState({styling: true});
     let element = React.findDOMNode(this.refs.code);
     let code = element.innerHTML;
     code = code.split('https:<span class="hljs-comment">').join('https:');
@@ -93,7 +95,7 @@ export default class NoteFull extends Component {
             <div className="code" ref="code">
               {
                 note.text.split('---').map((code) => {
-                    return (<Highlight className="language-js">{code}</Highlight>)
+                    return (<span><Highlight className="language-js">{code}</Highlight><br /></span>)
                 })
               }
             </div>

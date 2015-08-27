@@ -1,4 +1,4 @@
-import { store } from 'App';
+import { store } from '../store';
 import { searchNotes } from 'actions/notes';
 
 export default class Hotkeys {

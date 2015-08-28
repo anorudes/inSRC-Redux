@@ -26,12 +26,12 @@ export default class Notes extends Component {
 
   render() {
     let { openNote, searchText } = this.props;
-    searchText = searchText.toLowerCase();
     let searchInCode = false;
     if (searchText.indexOf('@') >= 0) {
       searchText = searchText.split('@').join('');
       searchInCode = true;
     }
+    searchText = searchText.toLowerCase();
     const notes = this.props.notes.filter(note => {
       return filters.search(note, searchText.split(' '), searchInCode);
     });

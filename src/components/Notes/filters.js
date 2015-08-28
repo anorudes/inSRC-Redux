@@ -1,10 +1,10 @@
 
 export let search = (item, input, all) => {
-  let noteTitle = item.title.toLowerCase().split(' ');
-  let noteKeywords = item.keywords.toLowerCase().split(',');
-  let noteText = item.text.toLowerCase();
+  let noteTitle = item.titleL.split(' ');
+  let noteKeywords = item.keywordsL.split(' ');
+  let noteText = item.textL;
   let searchTitle = input;
-
+  console.log(noteKeywords);
   let found = 0;
   for (let searchT of searchTitle) {
     let foundB = false;
@@ -37,17 +37,3 @@ export let search = (item, input, all) => {
   return found === searchTitle.length;
 };
 
-export let searchAll = (item, input) => {
-  let noteKeywords = item.keywords.toLowerCase().split(',');
-  let searchKeywords = input.split(' ');
-  let found = 0;
-  for (let searchKeyword of searchKeywords) {
-    for (let noteKeyword of noteKeywords) {
-      if (noteKeyword.indexOf(searchKeyword) >= 0) {
-        found += 1;
-        break;
-      }
-    }
-  }
-  return found === searchKeywords.length;
-};

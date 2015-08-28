@@ -38,6 +38,9 @@ export function notes(state = initialState, action) {
 
   case 'SAVE_NOTE':
     let index = state.notes.map(x => x.id).indexOf(action.note.id);
+    action.note.keywordsL = action.note.keywords.toLowerCase();
+    action.note.titleL = action.note.title.toLowerCase();
+    action.note.textL = action.note.text.toLowerCase();
     res = u({
       notes: { [index]: action.note },
       openNote: action.note,
@@ -55,8 +58,11 @@ export function notes(state = initialState, action) {
       notes: [{
         id: id,
         title: action.note.title,
+        titleL: action.note.title.toLowerCase(),
         keywords: action.note.keywords,
+        keywordsL: action.note.keywords.toLowerCase(),
         text: action.note.text,
+        textL: action.note.text.toLowerCase(),
         date: action.note.date,
       }, ...state.notes]
     };

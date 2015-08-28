@@ -51,15 +51,34 @@ export function addNote(note) {
 
 export function saveNotes(notes) {
   if (nw) {
-    fs.writeFileSync(dbPath, JSON.stringify(notes));
+    let res = [];
+    for (let note of notes) {
+      res.push({
+        id: note.id,
+        title: note.title,
+        keywords: note.keywords,
+        text: note.text,
+        date: note.date,
+      });
+    }
+    fs.writeFileSync(dbPath, JSON.stringify(res));
   }
 }
 
 export function fetchNotes(callback) {
   // for nw.js
+  let _toLower = (data) => {
+    for (let item of data) {
+      item.keywordsL = item.keywords.toLowerCase();
+      item.titleL = item.title.toLowerCase();
+      item.textL = item.text.toLowerCase();
+    }
+    return data;
+  }
   if (nw) {
     return dispatch => {
       let data = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
+      data = _toLower(data);
       dispatch(getNotes(data));
     }
   } else { // for site
@@ -67,9 +86,7 @@ export function fetchNotes(callback) {
       fetch(dbPath)
         .then(res =>
           res.json().then(data => {
-            data = data.sort(function(a, b) {
-              return b.id - a.id;
-            });
+            data = _toLower(data);
             dispatch(getNotes(data));
           })
       );

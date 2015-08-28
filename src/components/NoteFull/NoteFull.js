@@ -32,14 +32,18 @@ let linkAndBold = (text) => {
 export default class NoteFull extends Component {
   constructor(props) {
     super(props);
-    this.state = { closeAnimate: false, editable: false, updatedNote: {} };
+    this.state = { noteId: -1, closeAnimate: false, editable: false, updatedNote: {} };
   }
   componentDidMount() {
     this._linkAndBold();
+    this.setState({noteId: this.props.note.id});
   }
   componentDidUpdate() {
-    if (!this.state.editable) {
-      this._linkAndBold();
+    if (this.state.noteId != this.props.note.id) {
+      if (!this.state.editable) {
+        this._linkAndBold();
+      }
+      this.setState({noteId: this.props.note.id});
     }
   }
   _close() {
@@ -75,7 +79,7 @@ export default class NoteFull extends Component {
   }
   _saveNote() {
     this.props.actions.saveNote(this.state.updatedNote);
-    this.setState({ editable: false, updatedNote: {}});
+    this.setState({ editable: false, updatedNote: {}, noteStyled: false});
   }
 
   render() {

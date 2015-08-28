@@ -4,7 +4,6 @@ export let search = (item, input, all) => {
   let noteKeywords = item.keywordsL.split(' ');
   let noteText = item.textL;
   let searchTitle = input;
-  console.log(noteKeywords);
   let found = 0;
   for (let searchT of searchTitle) {
     let foundB = false;

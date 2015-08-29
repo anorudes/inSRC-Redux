@@ -88,8 +88,7 @@ export default class NoteFull extends Component {
   render() {
     const { note, actions } = this.props;
     const { editable, updatedNote } = this.state;
-    let text = note.text;
-    text = trim(text);
+    let noteText = trim(note.text);
     const classes = classNames(styles, { closeAnimate: this.state.closeAnimate });
     return (
       <div className={classes} id="noteFull">
@@ -100,7 +99,7 @@ export default class NoteFull extends Component {
             <span className="title">{note.title}</span>
             <div className="code" ref="code">
               {
-                text.split('---').map((code) => {
+                noteText.split('---').map((code) => {
                     return (<span><Highlight className="language-js">{code}</Highlight><br /></span>)
                 })
               }

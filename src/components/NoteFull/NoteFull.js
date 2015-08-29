@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Highlight from 'react-highlight';
 import classNames from 'classnames';
+import { trim } from 'tools';
 // Component styles
 import styles from './NoteFull.styles.js';
 import { saveNote, closeNote } from 'actions/notes';
@@ -53,7 +54,9 @@ export default class NoteFull extends Component {
     }, 500);
   }
   _openEdit(note) {
-    this.setState({ editable: true, updatedNote: {...note} });
+    this.setState({ editable: true, updatedNote: {
+      ...note,
+      text: trim(note.text)}});
   }
   _delete(note) {
     if (window.confirm("Do you really want to delete?")) {
@@ -85,7 +88,8 @@ export default class NoteFull extends Component {
   render() {
     const { note, actions } = this.props;
     const { editable, updatedNote } = this.state;
-
+    let text = note.text;
+    text = trim(text);
     const classes = classNames(styles, { closeAnimate: this.state.closeAnimate });
     return (
       <div className={classes} id="noteFull">
@@ -96,7 +100,7 @@ export default class NoteFull extends Component {
             <span className="title">{note.title}</span>
             <div className="code" ref="code">
               {
-                note.text.split('---').map((code) => {
+                text.split('---').map((code) => {
                     return (<span><Highlight className="language-js">{code}</Highlight><br /></span>)
                 })
               }

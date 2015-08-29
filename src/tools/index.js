@@ -1,3 +1,22 @@
+export let trim = (text) => {
+  let arr = text.split('---\n');
+  let index = -1;
+  for (let item of arr) {
+    index++;
+    let regexp = '^';
+    for (let symbol of item) {
+      if (symbol === '\t') {
+        regexp += '\\t';
+      } else if (symbol === ' ') {
+        regexp += ' ';
+      } else break;
+    }
+    let regexpPattern = new RegExp(regexp, 'g');
+    text = regexp !== '^' ? text.replace(regexpPattern, '') : text;
+    arr[index] = arr[index].replace(regexpPattern, '');
+  }
+  return arr.join('---\n');
+}
 
 export let search = (item, input, all) => {
   let noteTitle = item.titleL.split(' ');

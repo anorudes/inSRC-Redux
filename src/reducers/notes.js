@@ -1,5 +1,7 @@
 import u from 'updeep';
 import { saveNotes } from 'actions/notes';
+import { trim } from 'tools';
+
 const initialState = {
   notes: [],
   openNote: {},
@@ -38,6 +40,7 @@ export function notes(state = initialState, action) {
 
   case 'SAVE_NOTE':
     let index = state.notes.map(x => x.id).indexOf(action.note.id);
+    action.note.text = trim(action.note.text);
     action.note.keywordsL = action.note.keywords.toLowerCase();
     action.note.titleL = action.note.title.toLowerCase();
     action.note.textL = action.note.text.toLowerCase();
@@ -61,7 +64,7 @@ export function notes(state = initialState, action) {
         titleL: action.note.title.toLowerCase(),
         keywords: action.note.keywords,
         keywordsL: action.note.keywords.toLowerCase(),
-        text: action.note.text,
+        text: trim(action.note.text),
         textL: action.note.text.toLowerCase(),
         date: action.note.date,
       }, ...state.notes]

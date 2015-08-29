@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import styles from './styles.js';
 import { Note, NoteFull, SearchNotes } from 'components';
 import * as actionCreators from 'actions/notes';
-import * as filters from './filters';
+import { search } from 'tools';
 
 @connect(state => state.notes)
 export default class Notes extends Component {
@@ -33,7 +33,7 @@ export default class Notes extends Component {
     }
     searchText = searchText.toLowerCase();
     const notes = this.props.notes.filter(note => {
-      return filters.search(note, searchText.split(' '), searchInCode);
+      return search(note, searchText.split(' '), searchInCode);
     });
     openNote = notes.length === 1 ? notes[0] : openNote;
     return (

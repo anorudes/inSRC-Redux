@@ -1,9 +1,7 @@
 export let trim = (text) => {
   let arr = text.split('---\n');
-  let index = -1;
-  for (let item of arr) {
-    index++;
-    let regexp = '^';
+  arr.forEach(function (item, index) {
+    let regexp = '';
     for (let symbol of item) {
       if (symbol === '\t') {
         regexp += '\\t';
@@ -11,10 +9,8 @@ export let trim = (text) => {
         regexp += ' ';
       } else break;
     }
-    let regexpPattern = new RegExp(regexp, 'g');
-    text = regexp !== '^' ? text.replace(regexpPattern, '') : text;
-    arr[index] = arr[index].replace(regexpPattern, '');
-  }
+    arr[index] = regexp !== '' ? arr[index].replace(new RegExp('^' + regexp, 'gm'), '') : arr[index];
+  });
   return arr.join('---\n');
 }
 

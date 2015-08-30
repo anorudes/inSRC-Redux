@@ -33,13 +33,14 @@ let linkAndBold = (text) => {
 export default class NoteFull extends Component {
   constructor(props) {
     super(props);
-    this.state = { noteId: -1, closeAnimate: false, editable: false, updatedNote: {} };
+    this.state = { noteId: -1, noteText: trim(this.props.note.text), closeAnimate: false, editable: false, updatedNote: {} };
   }
   componentDidMount() {
     this._linkAndBold();
     this.setState({noteId: this.props.note.id});
   }
   componentDidUpdate() {
+    console.log('2');
     if (this.state.noteId != this.props.note.id) {
       if (!this.state.editable) {
         this._linkAndBold();
@@ -82,14 +83,14 @@ export default class NoteFull extends Component {
   }
   _saveNote() {
     this.props.actions.saveNote(this.state.updatedNote);
-    this.setState({ editable: false, updatedNote: {}, noteStyled: false});
+    this.setState({ editable: false, updatedNote: {}, noteText: trim(this.state.updatedNote.text), noteStyled: false});
   }
 
   render() {
     const { note, actions } = this.props;
     const { editable, updatedNote } = this.state;
-    let noteText = trim(note.text);
     const classes = classNames(styles, { closeAnimate: this.state.closeAnimate });
+    let noteText = this.state.noteText;
     return (
       <div className={classes} id="noteFull">
         <div className="close fa fa-times" onClick={() => this._close()}></div>
@@ -100,7 +101,19 @@ export default class NoteFull extends Component {
             <div className="code" ref="code">
               {
                 noteText.split('---').map((code) => {
-                    return (<span><Highlight className="language-js">{code}</Highlight><br /></span>)
+                  if (code.length) {
+                    let lang = (code.match(/(^|js|html|css|auto|a)\n/m) || ['', 'js'])[1];
+                    if (lang !== 'js' && lang !== 'html' && lang !== 'css' && lang !== 'auto' && lang !== 'a') {
+                      lang = 'js';
+                    }
+                    code = code.replace(new RegExp('(^|js|html|css|auto|a)\n'), '');
+                    if (lang === 'auto' || lang === 'a') {
+                      return (<span><Highlight>{code}</Highlight><br /></span>)
+                    }
+                    else {
+                      return (<span><Highlight className={'language-'+lang}>{code}</Highlight><br /></span>)
+                    }
+                  }
                 })
               }
             </div>

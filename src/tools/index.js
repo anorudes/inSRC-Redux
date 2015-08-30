@@ -1,18 +1,14 @@
 export let trim = (text) => {
-  let arr = text.split('---\n');
+  let arr = text.split('---');
   arr.forEach(function (item, index) {
-    let regexp = '';
-    for (let symbol of item) {
-      if (symbol === '\t') {
-        regexp += '\\t';
-      } else if (symbol === ' ') {
-        regexp += ' ';
-      } else break;
+    let spaces = item.match(/^(\s*)/m);
+    if (spaces[1] !== undefined && spaces[1] !== '' && spaces[1] !== '\n') {
+      spaces[1] = spaces[1].split('\n').join('');
+      arr[index] = arr[index].replace(new RegExp('^' + spaces[1], 'gm'), '');
     }
-    arr[index] = regexp !== '' ? arr[index].replace(new RegExp('^' + regexp, 'gm'), '') : arr[index];
   });
-  return arr.join('---\n');
-}
+  return arr.join('---');
+};
 
 export let search = (item, input, all) => {
   let noteTitle = item.titleL.split(' ');
@@ -51,3 +47,7 @@ export let search = (item, input, all) => {
   return found === searchTitle.length;
 };
 
+export let dbBackup = (res) => {
+  let dbPath = execPath + 'backup/' + Math.floor(new Date() / 1000) + '.json';
+  fs.writeFileSync(dbPath, res);
+};

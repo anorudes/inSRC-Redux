@@ -40,12 +40,11 @@ export default class NoteFull extends Component {
     this.setState({noteId: this.props.note.id});
   }
   componentDidUpdate() {
-    console.log('2');
     if (this.state.noteId != this.props.note.id) {
       if (!this.state.editable) {
         this._linkAndBold();
       }
-      this.setState({noteId: this.props.note.id});
+      this.setState({noteId: this.props.note.id, noteText: trim(this.props.note.text)});
     }
   }
   _close() {

@@ -1,6 +1,7 @@
 export let trim = (text) => {
   let arr = text.split('---');
   arr.forEach(function (item, index) {
+    item = item.replace(new RegExp('(js|html|css|auto|a)', 'gm'), '');
     let spaces = item.match(/^(\s*)/m);
     if (spaces[1] !== undefined && spaces[1] !== '' && spaces[1] !== '\n') {
       spaces[1] = spaces[1].split('\n').join('');
@@ -45,9 +46,4 @@ export let search = (item, input, all) => {
     }
   }
   return found === searchTitle.length;
-};
-
-export let dbBackup = (res) => {
-  let dbPath = execPath + 'backup/' + Math.floor(new Date() / 1000) + '.json';
-  fs.writeFileSync(dbPath, res);
 };

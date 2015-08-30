@@ -15,7 +15,6 @@
     var path = require('path');
     var nwPath = process.execPath;
     var execPath = path.dirname(nwPath).replace(/\\/g,"/") + '/';
-    var backup = false;
     if (!fs.existsSync(execPath + 'config.json')) {
       execPath = "";
     }

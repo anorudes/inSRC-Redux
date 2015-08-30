@@ -1,4 +1,3 @@
-import { dbBackup } from 'tools';
 let dbPath = execPath + 'db/data.json';
 
 export function searchNotes(text) {
@@ -63,7 +62,6 @@ export function saveNotes(notes) {
       });
     }
     fs.writeFileSync(dbPath, JSON.stringify(res));
-    backup && dbBackup(JSON.stringify(res));
   }
 }
 

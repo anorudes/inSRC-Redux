@@ -90,7 +90,7 @@
   "window": {
     "toolbar": false,
     "show": false,
-    "width": 1500,
+    "width": 1600,
     "height": 900,
     "resizable": true,
     "icon": "./icon.png"

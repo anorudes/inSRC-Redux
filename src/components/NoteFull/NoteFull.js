@@ -36,8 +36,8 @@ export default class NoteFull extends Component {
     this.state = { noteId: -1, noteText: trim(this.props.note.text), closeAnimate: false, editable: false, updatedNote: {} };
   }
   componentDidMount() {
-    this._linkAndBold();
     this.setState({noteId: this.props.note.id});
+    this._linkAndBold();
   }
   componentDidUpdate() {
     if (this.state.noteId != this.props.note.id) {
@@ -68,8 +68,7 @@ export default class NoteFull extends Component {
     setTimeout(() => {
       let element = React.findDOMNode(this.refs.code);
       let code = element.innerHTML;
-      code = code.split('https:<span class="hljs-comment">').join('https:');
-      code = code.split('http:<span class="hljs-comment">').join('http:');
+      code = code.replace(/http(s?):(<span class="hljs-comment">)+/g, 'http:');
       element.innerHTML = linkAndBold(code);
     }, 10);
   }

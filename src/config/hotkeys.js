@@ -20,7 +20,11 @@ export default class Hotkeys {
       win.focus();
       win.show();
     }});
-
+    document.onkeydown = (e) => {
+      if (e.keyCode === 27) {
+        win.minimize();
+      }
+    };
     gui.App.registerGlobalHotKey(shortcutList);
     gui.App.registerGlobalHotKey(shortcutAdd);
   };

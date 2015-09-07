@@ -1,7 +1,7 @@
 export let trim = (text) => {
   let arr = text.split('---');
   arr.forEach(function (item, index) {
-    item = item.replace(new RegExp('(js|html|css|php|auto|a)', 'gm'), '');
+    item = item.replace(new RegExp('^(js|html|css|php|auto|a)', 'gm'), '');
     let spaces = item.match(/^(\s*)/m);
     if (spaces[1] !== undefined && spaces[1] !== '' && spaces[1] !== '\n') {
       spaces[1] = spaces[1].split('\n').join('');

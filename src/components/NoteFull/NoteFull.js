@@ -102,11 +102,11 @@ export default class NoteFull extends Component {
               {
                 noteText.split('---').map((code) => {
                   if (code.length) {
-                    let lang = (code.match(/(^|js|html|css|php|auto|a)\n/m) || ['', 'js'])[1];
+                    let lang = (code.match(/^(js|html|css|php|auto|a)\n/m) || ['', 'js'])[1];
                     if (lang !== 'js' && lang !== 'html' && lang !== 'css' && lang !== 'php' && lang !== 'auto' && lang !== 'a') {
                       lang = 'js';
                     }
-                    code = code.replace(new RegExp('(^|js|html|css|php|auto|a)\n'), '');
+                    code = code.replace(new RegExp('^(js|html|css|php|auto|a)\n'), '');
                     if (lang === 'auto' || lang === 'a') {
                       return (<span><Highlight>{code}</Highlight><br /></span>)
                     }

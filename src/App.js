@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Main from './Main';
-import { Router, Route } from 'react-router';
-import { history } from 'react-router/lib/HashHistory';
+import { Router, Route, history } from 'react-router';
 import { Notes, AddNote, Options } from './components/';
 import * as actionCreators from 'actions/notes';
 import { configInit } from './config';
@@ -19,15 +18,13 @@ export default class App extends Component {
   render() {
     return (
         <Provider store={ store }>
-          { () =>
-            <Router history={history}>
-              <Route path="/" component={Main}>
-                <Route path="list" component={Notes}></Route>
-                <Route path="add" component={AddNote}></Route>
-                <Route path="options" component={Options}></Route>
-              </Route>
-            </Router>
-          }
+          <Router history={history}>
+            <Route path="/" component={Main}>
+              <Route path="list" component={Notes}></Route>
+              <Route path="add" component={AddNote}></Route>
+              <Route path="options" component={Options}></Route>
+            </Route>
+          </Router>
         </Provider>
     );
   }

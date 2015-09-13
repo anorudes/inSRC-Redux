@@ -66,10 +66,9 @@ export default class NoteFull extends Component {
   }
   _linkAndBold() {
     setTimeout(() => {
-      let element = React.findDOMNode(this.refs.code);
-      let code = element.innerHTML;
+      let code = this.refs.code.innerHTML;
       code = code.replace(/http(s?):(<span class="hljs-comment">)+/g, 'http:');
-      element.innerHTML = linkAndBold(code);
+      this.refs.code.innerHTML = linkAndBold(code);
     }, 10);
   }
   _updateInput(ref) {
@@ -134,7 +133,7 @@ export default class NoteFull extends Component {
                 <input type="text" ref="title" value={updatedNote.title} onChange={() => this._updateInput('title')} />
               </div>
               <div className="field text">
-                <textarea ref="text" onChange={() => this._updateInput('text')}>{updatedNote.text}</textarea>
+                <textarea ref="text" onChange={() => this._updateInput('text')} value={updatedNote.text} />
               </div>
               <div className="field keywords">
                 <input type="text" ref="keywords" value={updatedNote.keywords}  onChange={() => this._updateInput('keywords')} />

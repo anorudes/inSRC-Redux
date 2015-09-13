@@ -25,7 +25,7 @@ export default class AddNote extends Component {
   }
 
   componentDidMount() {
-    React.findDOMNode(this.refs.title).focus();
+    this.refs.title.focus();
   }
 
   _addNote() {
@@ -53,7 +53,7 @@ export default class AddNote extends Component {
             <input type="text" ref="title" value={note.title} onChange={() => this._updateInput('title')} />
           </div>
           <div className="field text">
-            <textarea ref="text" onChange={() => this._updateInput('text')}>{note.text}</textarea>
+            <textarea ref="text" onChange={() => this._updateInput('text')} value={note.text} />
           </div>
           <div className="field keywords">
             <input type="text" ref="keywords" value={note.keywords}  onChange={() => this._updateInput('keywords')} />

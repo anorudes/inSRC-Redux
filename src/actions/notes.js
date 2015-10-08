@@ -1,4 +1,4 @@
-let dbPath = execPath + 'db/data.json';
+let dbPath = window.execPath + 'db/data.json';
 
 export function searchNotes(text) {
   return {
@@ -50,7 +50,7 @@ export function addNote(note) {
 }
 
 export function saveNotes(notes) {
-  if (nw) {
+  if (window.nw) {
     let res = [];
     for (let note of notes) {
       res.push({
@@ -75,7 +75,7 @@ export function fetchNotes(callback) {
     }
     return data;
   }
-  if (nw) {
+  if (window.nw) {
     return dispatch => {
       let data = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
       data = _toLower(data);

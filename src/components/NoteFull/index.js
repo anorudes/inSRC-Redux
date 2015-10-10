@@ -68,8 +68,8 @@ export class NoteFull extends Component {
       this.refs.code.innerHTML = linkAndBold(code);
     }, 10);
   }
-  _updateInput(ref) {
-    const input = event.target;
+  _updateInput(e, ref) {
+    const input = e.target;
     this.setState({
       updatedNote: {
         ...this.state.updatedNote,
@@ -127,16 +127,16 @@ export class NoteFull extends Component {
           <div>
             <div className="form">
               <div className="field title">
-                <input type="text" ref="title" value={updatedNote.title} onChange={() => this._updateInput('title')} />
+                <input type="text" ref="title" value={updatedNote.title} onChange={(e) => this._updateInput(e, 'title')} />
               </div>
               <div className="field text">
-                <textarea ref="text" onChange={() => this._updateInput('text')} value={updatedNote.text} />
+                <textarea ref="text" onChange={(e) => this._updateInput(e, 'text')} value={updatedNote.text} />
               </div>
               <div className="field keywords">
-                <input type="text" ref="keywords" value={updatedNote.keywords} onChange={() => this._updateInput('keywords')} />
+                <input type="text" ref="keywords" value={updatedNote.keywords} onChange={(e) => this._updateInput(e, 'keywords')} />
               </div>
               <div className="field date">
-                <input type="text" ref="date" value={updatedNote.date}  nChange={() => this._updateInput('date')} />
+                <input type="text" ref="date" value={updatedNote.date}  nChange={(e) => this._updateInput(e, 'date')} />
               </div>
               <div className="buttons">
                 <button className="icon fa fa-floppy-o" onClick={() => this._saveNote()}></button>

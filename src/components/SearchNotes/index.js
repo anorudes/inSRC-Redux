@@ -19,18 +19,18 @@ export class SearchNotes extends Component {
   }
   componentDidMount() {
     this.refs.search.focus();
-    this.props.actions.searchNotes('');
+    this.actions.searchNotes('');
     this.setState({search: ''});
   }
   componentWillUnmount() {
-    this.props.actions.searchNotes('');
+    this.actions.searchNotes('');
     this.setState({search: ''});
   }
 
   _changeSearch() {
     const input = event.target;
     this.setState({ search: input.value});
-    debounce(() => this.props.actions.searchNotes(input.value), 100)();
+    debounce(() => this.actions.searchNotes(input.value), 100)();
   }
 
   render() {

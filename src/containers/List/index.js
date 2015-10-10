@@ -2,9 +2,9 @@ import React from 'react';
 
 import { Notes, SearchNotes } from 'components';
 
-export const List = () => (
+export const List = (props) => (
   <div>
-    <SearchNotes />
-    <Notes />
+    <SearchNotes {...props} />
+    <Notes {...props} />
   </div>
 );

@@ -70,7 +70,7 @@ export function notes(state = initialState, action) {
       }, ...state.notes]
     };
     saveNotes(res.notes);
-    win.hide();
+    window.globalConfig.nw && win.hide();
     return res;
 
   case 'DELETE_NOTE':

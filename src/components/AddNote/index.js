@@ -3,6 +3,8 @@ import { Router, Route, Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import moment from 'moment';
+import history from '../../history'
+
 // Component styles
 import styles from './styles';
 import * as actionCreators from 'actions/notes';
@@ -19,23 +21,19 @@ export class AddNote extends Component {
     }};
     this.actions = bindActionCreators(actionCreators, this.props.dispatch);
   }
-
-  static contextTypes = {
-    router: PropTypes.object.isRequired,
-  }
-
+  
   componentDidMount() {
     this.refs.title.focus();
   }
 
   _addNote() {
-    const { router } = this.context;
+    console.log(this.state.note);
     this.actions.addNote(this.state.note);
-    router.transitionTo('list');
+    history.replaceState(null, 'list')
   }
 
-  _updateInput(ref) {
-    const input = event.target;
+  _updateInput(e, ref) {
+    const input = e.currentTarget;
     this.setState({
       note: {
         ...this.state.note,
@@ -50,16 +48,16 @@ export class AddNote extends Component {
         <div className="form">
           <h2>Add note</h2>
           <div className="field title">
-            <input type="text" ref="title" value={note.title} onChange={() => this._updateInput('title')} />
+            <input type="text" ref="title" value={note.title} onChange={(e) => this._updateInput(e, 'title')} />
           </div>
           <div className="field text">
-            <textarea ref="text" onChange={() => this._updateInput('text')} value={note.text} />
+            <textarea ref="text" onChange={(e) => this._updateInput(e, 'text')} value={note.text} />
           </div>
           <div className="field keywords">
-            <input type="text" ref="keywords" value={note.keywords} onChange={() => this._updateInput('keywords')} />
+            <input type="text" ref="keywords" value={note.keywords} onChange={(e) => this._updateInput(e, 'keywords')} />
           </div>
           <div className="field date">
-            <input type="text" ref="date" value={note.date} onChange={() => this._updateInput('date')} disabled="true" />
+            <input type="text" ref="date" value={note.date} onChange={(e) => this._updateInput(e, 'date')} disabled="true" />
           </div>
           <div className="buttons">
             <button className="icon fa fa-floppy-o" onClick={() => this._addNote()}></button>

@@ -20,9 +20,9 @@ export default class App extends Component {
         <Provider store={ store }>
           <Router history={history}>
             <Route path="/" component={Main}>
-              <Route path="list" component={Notes}></Route>
-              <Route path="add" component={AddNote}></Route>
-              <Route path="options" component={Options}></Route>
+              <Route path="list" component={Notes} />
+              <Route path="add" component={AddNote} />
+              <Route path="options" component={Options} />
             </Route>
           </Router>
         </Provider>

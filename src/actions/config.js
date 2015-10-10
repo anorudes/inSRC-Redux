@@ -26,9 +26,4 @@ export function fetchConfig(callback) {
         .catch((error) => console.log(error))
     }
   }
-
-
-
-
-
 }

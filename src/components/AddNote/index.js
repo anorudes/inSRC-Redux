@@ -56,10 +56,10 @@ export default class AddNote extends Component {
             <textarea ref="text" onChange={() => this._updateInput('text')} value={note.text} />
           </div>
           <div className="field keywords">
-            <input type="text" ref="keywords" value={note.keywords}  onChange={() => this._updateInput('keywords')} />
+            <input type="text" ref="keywords" value={note.keywords} onChange={() => this._updateInput('keywords')} />
           </div>
           <div className="field date">
-            <input type="text" ref="date" value={note.date}  onChange={() => this._updateInput('date')} disabled="true" />
+            <input type="text" ref="date" value={note.date} onChange={() => this._updateInput('date')} disabled="true" />
           </div>
           <div className="buttons">
             <button className="icon fa fa-floppy-o" onClick={() => this._addNote()}></button>

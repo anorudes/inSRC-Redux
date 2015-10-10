@@ -19,6 +19,10 @@ body {
   margin-right: 6px;
 }
 
+.buttons {
+  transform: translateZ(0);
+}
+
 .coffeescript .javascript, .javascript .xml, .tex .hljs-formula, .xml .javascript, .xml .vbscript, .xml .css, .xml .hljs-cdata {
   opacity: 1;
 }

@@ -13,10 +13,12 @@
     var fs = require('fs');
     var path = require('path');
     var nwPath = process.execPath;
-    window.nw = true;
-    window.execPath = path.dirname(nwPath).replace(/\\/g,"/") + '/';
-    if (!fs.existsSync(execPath + 'config.json')) {
-      execPath = "";
+    window.globalConfig = {
+      nw: true,
+      execPath: path.dirname(nwPath).replace(/\\/g,"/") + '/',
+    };
+    if (!fs.existsSync(window.globalConfig.execPath + 'config.json')) {
+      window.globalConfig.execPath = "";
     }
   </script>
 </head>

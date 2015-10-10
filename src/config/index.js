@@ -10,7 +10,7 @@ export let configInit = (dispatch) => {
     hljs.configure({
       tabReplace: '  ',
     });
-    window.nw && Hotkeys.init(data);
-    window.nw && Tray.init(data);
+    window.globalConfig.nw && Hotkeys.init(data);
+    window.globalConfig.nw && Tray.init(data);
   }));
 }

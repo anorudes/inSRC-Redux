@@ -1,4 +1,4 @@
-let configPath = window.execPath + 'config.json';
+let configPath = window.globalConfig.execPath + 'config.json';
 
 export function getConfig(data) {
   return {
@@ -8,7 +8,7 @@ export function getConfig(data) {
 }
 
 export function fetchConfig(callback) {
-  if (window.nw) { // for nw.js
+  if (window.globalConfig.nw) { // for nw.js
     return dispatch => {
       let data = JSON.parse(fs.readFileSync(configPath, 'utf8'));
       dispatch(getConfig(data));

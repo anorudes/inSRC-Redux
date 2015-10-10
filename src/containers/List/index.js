@@ -1,7 +1,10 @@
 import React from 'react';
 
-import { Notes } from 'components';
+import { Notes, SearchNotes } from 'components';
 
 export const List = () => (
-  <Notes />
+  <div>
+    <SearchNotes />
+    <Notes />
+  </div>
 );

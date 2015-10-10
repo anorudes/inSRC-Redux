@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import classNames from 'classnames';
 // Component styles
 import styles from './styles';
-
-import { openNote } from 'actions/notes';
 
 export class Note extends Component {
   render() {

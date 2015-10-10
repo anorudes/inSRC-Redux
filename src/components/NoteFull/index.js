@@ -4,9 +4,6 @@ import classNames from 'classnames';
 import { trim } from 'tools';
 // Component styles
 import styles from './styles';
-import { saveNote, closeNote } from 'actions/notes';
-
-import { Link } from 'react-router';
 
 let linkAndBold = (text) => {
   let replacedText, replacePattern1, replacePattern2;

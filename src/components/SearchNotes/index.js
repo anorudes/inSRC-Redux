@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import debounce from 'lodash.debounce';
+
+import * as actionCreators from 'actions/notes';
 
 // Component styles
 import styles from './styles';
-import { searchNotes } from 'actions/notes';
 
+@connect(state => state.notes)
 export class SearchNotes extends Component {
   constructor(props) {
     super(props);
+    this.actions = bindActionCreators(actionCreators, this.props.dispatch);
     this.state = {
-      search: "",
+      search: '',
     };
   }
   componentDidMount() {

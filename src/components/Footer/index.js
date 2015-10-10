@@ -1,12 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 // Component styles
 import styles from './styles';
 
-export class Footer extends Component {
-  render() {
-    return (
-      <div className={`${ styles }`}></div>
-    );
-  }
-}
+export const Footer = () => (
+  <div className={`${ styles }`}></div>
+);

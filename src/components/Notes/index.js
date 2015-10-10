@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // Component styles
 import styles from './styles';
-import { Note, NoteFull, SearchNotes } from 'components';
+import { Note, NoteFull } from 'components';
 import * as actionCreators from 'actions/notes';
 import { search } from 'tools';
 
@@ -37,8 +37,7 @@ export class Notes extends Component {
     });
     openNote = notes.length === 1 ? notes[0] : openNote;
     return (
-      <div className={styles} >
-        <SearchNotes actions={this.actions} />
+      <div className={styles}>
         {notes.map(note => <Note key={note.id}
                                   active={note === openNote}
                                   note={note}

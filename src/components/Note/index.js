@@ -6,7 +6,7 @@ import styles from './styles';
 
 import { openNote } from 'actions/notes';
 
-export default class Note extends Component {
+export class Note extends Component {
   render() {
     const { note, active, actions } = this.props;
     let classes = classNames(styles, { active: active });

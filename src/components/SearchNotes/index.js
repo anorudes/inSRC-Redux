@@ -5,7 +5,7 @@ import debounce from 'lodash.debounce';
 import styles from './styles';
 import { searchNotes } from 'actions/notes';
 
-export default class SearchNotes extends Component {
+export class SearchNotes extends Component {
   constructor(props) {
     super(props);
     this.state = {

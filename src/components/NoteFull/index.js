@@ -28,7 +28,7 @@ let linkAndBold = (text) => {
   return replacedText;
 }
 
-export default class NoteFull extends Component {
+export class NoteFull extends Component {
   constructor(props) {
     super(props);
     this.state = { noteId: -1, noteText: trim(this.props.note.text), closeAnimate: false, editable: false, updatedNote: {} };

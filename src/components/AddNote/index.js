@@ -8,7 +8,7 @@ import styles from './styles';
 import * as actionCreators from 'actions/notes';
 
 @connect(state => state.notes)
-export default class AddNote extends Component {
+export class AddNote extends Component {
   constructor(props) {
     super(props);
     this.state = { closeAnimate: false, editable: false, note: {

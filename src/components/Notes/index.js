@@ -8,7 +8,7 @@ import * as actionCreators from 'actions/notes';
 import { search } from 'tools';
 
 @connect(state => state.notes)
-export default class Notes extends Component {
+export class Notes extends Component {
   constructor(props) {
     super(props);
     this.actions = bindActionCreators(actionCreators, this.props.dispatch);

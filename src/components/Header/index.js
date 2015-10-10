@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 // Component styles
 import styles from './styles';
-export default class Header extends Component {
+export class Header extends Component {
   render() {
     return (
       <div className={`${ styles }`} >

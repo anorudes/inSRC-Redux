@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import Highlight from 'react-highlight';
+//TODO: import Highlight from 'react-highlight';
+import Highlight from './highlight-empty.js';
 import classNames from 'classnames';
 import { trim } from 'tools';
+
 // Component styles
 import styles from './styles';
 

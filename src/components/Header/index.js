@@ -1,4 +1,8 @@
 import React from 'react';
+
+// Component styles
+import styles from './styles';
+
 import { Link } from 'react-router';
 
 export const Header = () => (

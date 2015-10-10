@@ -48,16 +48,16 @@ export class AddNote extends Component {
         <div className="form">
           <h2>Add note</h2>
           <div className="field title">
-            <input type="text" ref="title" value={note.title} onChange={(e) => this._updateInput(e, 'title')} />
+            <input type="text" ref="title" defaultValue={note.title} onChange={(e) => this._updateInput(e, 'title')} />
           </div>
           <div className="field text">
-            <textarea ref="text" onChange={(e) => this._updateInput(e, 'text')} value={note.text} />
+            <textarea ref="text" onChange={(e) => this._updateInput(e, 'text')} defaultValue={note.text} />
           </div>
           <div className="field keywords">
-            <input type="text" ref="keywords" value={note.keywords} onChange={(e) => this._updateInput(e, 'keywords')} />
+            <input type="text" ref="keywords" defaultValue={note.keywords} onChange={(e) => this._updateInput(e, 'keywords')} />
           </div>
           <div className="field date">
-            <input type="text" ref="date" value={note.date} onChange={(e) => this._updateInput(e, 'date')} disabled="true" />
+            <input type="text" ref="date" defaultValue={note.date} onChange={(e) => this._updateInput(e, 'date')} disabled="true" />
           </div>
           <div className="buttons">
             <button className="icon fa fa-floppy-o" onClick={() => this._addNote()}></button>

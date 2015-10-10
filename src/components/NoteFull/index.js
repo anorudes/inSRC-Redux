@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 //TODO: import Highlight from 'react-highlight';
-import Highlight from './highlight-empty.js';
+import { Highlight } from './highlight-empty';
 import classNames from 'classnames';
 import { trim } from 'tools';
 
@@ -96,7 +96,7 @@ export class NoteFull extends Component {
             <span className="title">{note.title}</span>
             <div className="code" ref="code">
               {
-                noteText.split('---').map((code) => {
+                noteText.split('---').map((code, i) => {
                   if (code.length) {
                     let lang = (code.match(/^(js|html|css|php|auto|a)\n/m) || ['', 'js'])[1];
                     if (lang !== 'js' && lang !== 'html' && lang !== 'css' && lang !== 'php' && lang !== 'auto' && lang !== 'a') {
@@ -104,10 +104,10 @@ export class NoteFull extends Component {
                     }
                     code = code.replace(new RegExp('^(js|html|css|php|auto|a)\n'), '');
                     if (lang === 'auto' || lang === 'a') {
-                      return (<span><Highlight>{code}</Highlight><br /></span>)
+                      return (<span key={i}><Highlight>{code}</Highlight><br /></span>)
                     }
                     else {
-                      return (<span><Highlight className={'language-'+lang}>{code}</Highlight><br /></span>)
+                      return (<span key={i}><Highlight className={'language-'+lang}>{code}</Highlight><br /></span>)
                     }
                   }
                 })
@@ -127,16 +127,16 @@ export class NoteFull extends Component {
           <div>
             <div className="form">
               <div className="field title">
-                <input type="text" ref="title" value={updatedNote.title} onChange={(e) => this._updateInput(e, 'title')} />
+                <input type="text" ref="title" defaultValue={updatedNote.title} onChange={(e) => this._updateInput(e, 'title')} />
               </div>
               <div className="field text">
-                <textarea ref="text" onChange={(e) => this._updateInput(e, 'text')} value={updatedNote.text} />
+                <textarea ref="text" onChange={(e) => this._updateInput(e, 'text')} defaultValue={updatedNote.text} />
               </div>
               <div className="field keywords">
-                <input type="text" ref="keywords" value={updatedNote.keywords} onChange={(e) => this._updateInput(e, 'keywords')} />
+                <input type="text" ref="keywords" defaultValue={updatedNote.keywords} onChange={(e) => this._updateInput(e, 'keywords')} />
               </div>
               <div className="field date">
-                <input type="text" ref="date" value={updatedNote.date}  nChange={(e) => this._updateInput(e, 'date')} />
+                <input type="text" ref="date" defaultValue={updatedNote.date}  nChange={(e) => this._updateInput(e, 'date')} />
               </div>
               <div className="buttons">
                 <button className="icon fa fa-floppy-o" onClick={() => this._saveNote()}></button>

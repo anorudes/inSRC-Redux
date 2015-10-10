@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import moment from 'moment';
 // Component styles
-import styles from './AddNote.styles.js';
+import styles from './styles';
 import * as actionCreators from 'actions/notes';
 
 @connect(state => state.notes)

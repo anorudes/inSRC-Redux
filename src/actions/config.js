@@ -1,4 +1,4 @@
-let configPath = window.globalConfig.execPath + 'config.json';
+const configPath = window.globalConfig.execPath + 'config.json';
 
 export function getConfig(data) {
   return {
@@ -10,20 +10,19 @@ export function getConfig(data) {
 export function fetchConfig(callback) {
   if (window.globalConfig.nw) { // for nw.js
     return dispatch => {
-      let data = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+      const data = JSON.parse(fs.readFileSync(configPath, 'utf8'));
       dispatch(getConfig(data));
       callback(data);
-    }
-  } else { // for site
+    };
+  } else {
     return dispatch => {
       fetch(configPath)
         .then(res =>
           res.json().then((data) => {
-              dispatch(getConfig(data));
-              callback(data);
-            }
-          ))
-        .catch((error) => console.log(error))
-    }
+            dispatch(getConfig(data));
+            callback(data);
+          }))
+          .catch((error) => console.log(error));
+    };
   }
 }

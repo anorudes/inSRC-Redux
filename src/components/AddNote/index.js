@@ -1,9 +1,9 @@
-import React, { PropTypes, Component } from 'react';
-import { Router, Route, Link } from 'react-router';
+import React, { Component } from 'react';
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import moment from 'moment';
-import history from '../../history'
+import history from '../../history';
 
 // Component styles
 import styles from './styles';
@@ -11,12 +11,16 @@ import * as actionCreators from 'actions/notes';
 
 @connect(state => state.notes)
 export class AddNote extends Component {
+  static propTypes = {
+    dispatch: React.PropTypes.func,
+  }
+
   constructor(props) {
     super(props);
     this.state = { closeAnimate: false, editable: false, note: {
-      title: "",
-      keywords: "",
-      text: "",
+      title: '',
+      keywords: '',
+      text: '',
       date: moment().format('DD/MM/YYYY'),
     }};
     this.actions = bindActionCreators(actionCreators, this.props.dispatch);
@@ -27,9 +31,8 @@ export class AddNote extends Component {
   }
 
   _addNote() {
-    console.log(this.state.note);
     this.actions.addNote(this.state.note);
-    history.replaceState(null, 'list')
+    history.replaceState(null, '/list');
   }
 
   _updateInput(e, ref) {

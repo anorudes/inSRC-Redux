@@ -9,19 +9,28 @@ import { search } from 'tools';
 
 @connect(state => state.notes)
 export class Notes extends Component {
+  static propTypes = {
+    openNote: React.PropTypes.object,
+    searchText: React.PropTypes.string,
+    scrollY: React.PropTypes.number,
+    notes: React.PropTypes.array,
+    dispatch: React.PropTypes.func,
+  }
+
   constructor(props) {
     super(props);
     this.actions = bindActionCreators(actionCreators, this.props.dispatch);
   }
-  componentWillUnmount() {
-    this.actions.saveScroll();
-  }
-
+  
   componentDidMount() {
     const { scrollY } = this.props;
     setTimeout(() => {
       window.scrollTo(0, scrollY);
     }, 1);
+  }
+
+  componentWillUnmount() {
+    this.actions.saveScroll();
   }
 
   render() {

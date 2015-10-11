@@ -1,2 +1,11 @@
-export { notes } from './notes.js';
-export { config } from './config.js';
+import { combineReducers } from 'redux';
+
+import { notes } from './notes';
+import { config } from './config';
+
+const rootReducer = combineReducers({
+  notes,
+  config,
+});
+
+export default rootReducer;

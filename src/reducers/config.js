@@ -1,5 +1,5 @@
 const initialState = {
-  config: {}
+  config: {},
 };
 
 export function config(state = initialState, action) {
@@ -8,7 +8,7 @@ export function config(state = initialState, action) {
     return {
       ...state,
       config: action.data,
-    }
+    };
   default:
     return state;
   }

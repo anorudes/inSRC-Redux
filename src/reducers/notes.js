@@ -6,11 +6,11 @@ const initialState = {
   notes: [],
   openNote: {},
   scrollY: 0,
-  searchText: "",
+  searchText: '',
 };
 
 export function notes(state = initialState, action) {
-  let res;
+  let res, index;
 
   switch (action.type) {
   case 'SEARCH_NOTES':
@@ -18,28 +18,28 @@ export function notes(state = initialState, action) {
       ...state,
       openNote: {},
       searchText: action.text,
-    }
+    };
 
   case 'GET_NOTES':
     return {
       ...state,
-      notes: action.data
-    }
+      notes: action.data,
+    };
 
   case 'OPEN_NOTE':
     return {
       ...state,
       openNote: action.note,
-    }
+    };
 
   case 'CLOSE_NOTE':
     return {
       ...state,
-      openNote: {}
-    }
+      openNote: {},
+    };
 
   case 'SAVE_NOTE':
-    let index = state.notes.map(x => x.id).indexOf(action.note.id);
+    index = state.notes.map(note => note.id).indexOf(action.note.id);
     action.note.text = trim(action.note.text);
     action.note.keywordsL = action.note.keywords.toLowerCase();
     action.note.titleL = action.note.title.toLowerCase();
@@ -52,10 +52,10 @@ export function notes(state = initialState, action) {
     return res;
 
   case 'ADD_NOTE':
-    let getMaxId = () => {
+    const getMaxId = () => {
       return Math.max.apply(Math, state.notes.map(el => el.id));
     };
-    let id = getMaxId() + 1;
+    const id = getMaxId() + 1;
     res = {
       ...state,
       notes: [{
@@ -67,21 +67,21 @@ export function notes(state = initialState, action) {
         text: trim(action.note.text),
         textL: action.note.text.toLowerCase(),
         date: action.note.date,
-      }, ...state.notes]
+      }, ...state.notes],
     };
     saveNotes(res.notes);
     window.globalConfig.nw && win.hide();
     return res;
 
   case 'DELETE_NOTE':
-    var index = state.notes.map(x => x.id).indexOf(action.id);
+    index = state.notes.map(note => note.id).indexOf(action.id);
     res = {
       openNote: {},
       scrollY: state.scrollY,
       searchText: state.searchText,
       notes: [
         ...state.notes.slice(0, index),
-        ...state.notes.slice(index + 1)
+        ...state.notes.slice(index + 1),
       ],
     };
     saveNotes(res.notes);
@@ -91,7 +91,7 @@ export function notes(state = initialState, action) {
     res = {
       ...state,
       scrollY: window.scrollY,
-    }
+    };
     saveNotes(res.notes);
     return res;
 

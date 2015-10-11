@@ -17,11 +17,13 @@ export class SearchNotes extends Component {
       search: '',
     };
   }
+  
   componentDidMount() {
     this.refs.search.focus();
     this.actions.searchNotes('');
     this.setState({search: ''});
   }
+
   componentWillUnmount() {
     this.actions.searchNotes('');
     this.setState({search: ''});

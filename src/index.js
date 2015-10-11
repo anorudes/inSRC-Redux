@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { Router } from 'react-router';
 import { configInit } from './config';
 import { Provider } from 'react-redux';
-import { store } from './store.js';
+import { store } from './store';
 import { fetchNotes } from 'actions/notes';
 import history from './history';
 import routes from './routes';
@@ -16,5 +16,6 @@ store.dispatch(fetchNotes());
 ReactDOM.render(
   <Provider store={ store }>
     <Router history={history} children={routes} />
-  </Provider>
-, document.getElementById('App'));
+  </Provider>,
+  document.getElementById('App')
+);

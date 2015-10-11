@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
+
 // Component styles
 import styles from './styles';
 
 export class Note extends Component {
+  static propTypes = {
+    note: React.PropTypes.object,
+    active: React.PropTypes.any,
+    actions: React.PropTypes.object,
+  }
+
   render() {
     const { note, active, actions } = this.props;
-    let classes = classNames(styles, { active: active });
+    const classes = classNames(styles, { active: active });
 
     return (
       <div className={classes} onClick={() => actions.openNote(note)}>

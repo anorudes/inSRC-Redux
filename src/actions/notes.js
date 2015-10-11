@@ -1,4 +1,4 @@
-let dbPath = window.globalConfig.execPath + 'db/data.json';
+const dbPath = window.globalConfig.execPath + 'db/data.json';
 
 export function searchNotes(text) {
   return {
@@ -7,13 +7,11 @@ export function searchNotes(text) {
   };
 }
 
-
 export function saveScroll() {
   return {
     type: 'SAVE_SCROLL',
   };
 }
-
 
 export function openNote(note) {
   return {
@@ -52,7 +50,7 @@ export function addNote(note) {
 export function saveNotes(notes) {
   if (window.globalConfig.nw) {
     let res = [];
-    for (let note of notes) {
+    for (const note of notes) {
       res.push({
         id: note.id,
         title: note.title,
@@ -65,22 +63,22 @@ export function saveNotes(notes) {
   }
 }
 
-export function fetchNotes(callback) {
+export function fetchNotes() {
   // for nw.js
-  let _toLower = (data) => {
-    for (let item of data) {
+  const _toLower = (data) => {
+    for (const item of data) {
       item.keywordsL = item.keywords.toLowerCase();
       item.titleL = item.title.toLowerCase();
       item.textL = item.text.toLowerCase();
     }
     return data;
-  }
+  };
   if (window.globalConfig.nw) {
     return dispatch => {
       let data = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
       data = _toLower(data);
       dispatch(getNotes(data));
-    }
+    };
   } else { // for site
     return dispatch => {
       fetch(dbPath)
@@ -90,7 +88,7 @@ export function fetchNotes(callback) {
             dispatch(getNotes(data));
           })
       );
-    }
+    };
   }
 }
 

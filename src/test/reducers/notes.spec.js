@@ -5,7 +5,7 @@ const initialState = {
   notes: [],
   openNote: {},
   scrollY: 0,
-  searchText: "",
+  searchText: '',
 };
 
 const stateAfterAdd = {
@@ -21,10 +21,10 @@ const stateAfterAdd = {
   }],
   openNote: {},
   scrollY: 0,
-  searchText: "",
+  searchText: '',
 };
 
-describe("Notes reducer:", () => {
+describe('Notes reducer:', () => {
   it('should return the initial state', () => {
     expect(
       reducer(undefined, {})
@@ -69,7 +69,7 @@ describe("Notes reducer:", () => {
       }],
       openNote: {},
       scrollY: 0,
-      searchText: "",
+      searchText: '',
     });
   });
 

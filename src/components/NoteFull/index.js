@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//TODO: import Highlight from 'react-highlight';
+// TODO: import Highlight from 'react-highlight';
 import { Highlight } from './highlight-empty';
 import classNames from 'classnames';
 import { trim } from 'tools';
@@ -7,60 +7,53 @@ import { trim } from 'tools';
 // Component styles
 import styles from './styles';
 
-let linkAndBold = (text) => {
-  let replacedText, replacePattern1, replacePattern2;
-  replacePattern1 = /(\b(https?):\/\/[-A-Z0-9+&amp;@#\/%?=~_|!:,.;]*[-A-Z0-9+&amp;@#\/%=~_|])/ig;
-  if (window.globalConfig.nw) {
-    replacedText = text.replace(replacePattern1, '<a class="colored-link-1" title="$1" href="javascript: gui.Shell.openExternal(\'$1\')">$1</a>');
-  } else {
-    replacedText = text.replace(replacePattern1, '<a class="colored-link-1" title="$1" href="$1" target="_blank">$1</a>');
-  }
-
-  replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
-  if (window.globalConfig.nw) {
-    replacedText = replacedText.replace(replacePattern2, '$1<a class="colored-link-1" href="javascript: gui.Shell.openExternal(\'http://$2\')">$2</a>');
-  } else {
-    replacedText = replacedText.replace(replacePattern2, '$1<a class="colored-link-1" href="http://$2" target="_blank">$2</a>');
-  }
-
-  replacedText = replacedText.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
-  return replacedText;
-}
+import { linkAndBold } from './_linkAndBold.js';
 
 export class NoteFull extends Component {
+  static propTypes = {
+    note: React.PropTypes.object,
+    actions: React.PropTypes.object,
+  }
+
   constructor(props) {
     super(props);
     this.state = { noteId: -1, noteText: trim(this.props.note.text), closeAnimate: false, editable: false, updatedNote: {} };
   }
+
   componentDidMount() {
     this.setState({noteId: this.props.note.id});
     this._linkAndBold();
   }
+
   componentDidUpdate() {
-    if (this.state.noteId != this.props.note.id) {
+    if (this.state.noteId !== this.props.note.id) {
       if (!this.state.editable) {
         this._linkAndBold();
       }
       this.setState({noteId: this.props.note.id, noteText: trim(this.props.note.text)});
     }
   }
+
   _close() {
     this.setState({closeAnimate: true});
     setTimeout(() => {
       this.props.actions.closeNote();
     }, 500);
   }
+
   _openEdit(note) {
     this.setState({ editable: true, updatedNote: {
       ...note,
       text: trim(note.text)}});
   }
+
   _delete(note) {
-    if (window.confirm("Do you really want to delete?")) {
+    if (window.confirm('Do you really want to delete?')) {
       this.props.actions.deleteNote(note.id);
       window.globalConfig.nw && win.focus();
     }
   }
+
   _linkAndBold() {
     setTimeout(() => {
       let code = this.refs.code.innerHTML;
@@ -68,6 +61,7 @@ export class NoteFull extends Component {
       this.refs.code.innerHTML = linkAndBold(code);
     }, 10);
   }
+
   _updateInput(e, ref) {
     const input = e.target;
     this.setState({
@@ -77,16 +71,17 @@ export class NoteFull extends Component {
       },
     });
   }
+
   _saveNote() {
     this.props.actions.saveNote(this.state.updatedNote);
     this.setState({ editable: false, updatedNote: {}, noteText: trim(this.state.updatedNote.text), noteStyled: false});
   }
 
   render() {
-    const { note, actions } = this.props;
+    const { note } = this.props;
     const { editable, updatedNote } = this.state;
     const classes = classNames(styles, { closeAnimate: this.state.closeAnimate });
-    let noteText = this.state.noteText;
+    const noteText = this.state.noteText;
     return (
       <div className={classes} id="noteFull">
         <div className="close fa fa-times" onClick={() => this._close()}></div>
@@ -104,10 +99,9 @@ export class NoteFull extends Component {
                     }
                     code = code.replace(new RegExp('^(js|html|css|php|auto|a)\n'), '');
                     if (lang === 'auto' || lang === 'a') {
-                      return (<span key={i}><Highlight>{code}</Highlight><br /></span>)
-                    }
-                    else {
-                      return (<span key={i}><Highlight className={'language-'+lang}>{code}</Highlight><br /></span>)
+                      return (<span key={i}><Highlight>{code}</Highlight><br /></span>);
+                    } else {
+                      return (<span key={i}><Highlight className={'language-' + lang}>{code}</Highlight><br /></span>);
                     }
                   }
                 })
@@ -136,7 +130,7 @@ export class NoteFull extends Component {
                 <input type="text" ref="keywords" defaultValue={updatedNote.keywords} onChange={(e) => this._updateInput(e, 'keywords')} />
               </div>
               <div className="field date">
-                <input type="text" ref="date" defaultValue={updatedNote.date}  nChange={(e) => this._updateInput(e, 'date')} />
+                <input type="text" ref="date" defaultValue={updatedNote.date} onChange={(e) => this._updateInput(e, 'date')} />
               </div>
               <div className="buttons">
                 <button className="icon fa fa-floppy-o" onClick={() => this._saveNote()}></button>

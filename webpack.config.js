@@ -5,7 +5,7 @@ var autoprefixer = require('autoprefixer');
 var csswring = require('csswring');
 
 module.exports = {
-
+  devtool: 'source-map',
   entry: [
     'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/only-dev-server',
@@ -17,7 +17,22 @@ module.exports = {
     path: path.join(__dirname, '/dist/'),
     publicPath: '/dist/'
   },
+  babel: {
+    plugins: [
+      // in case you are using React, this plugin should be applied
+      // before babel-plugin-source-wrapper
+      // otherwise component names will not to be shown propertly
+      require('babel-plugin-react-display-name'),
+      require('babel-plugin-source-wrapper').configure({
+        // webpack sends absolute paths to plugins
+        // but we need paths relative to project root
+        basePath: 'C:\\xamppN\htdocs\\inSRC-redux\\',
 
+        // inject runtime in instrumented sources
+        runtime: true
+      })
+    ]
+  },
   plugins: [
     new ExtractTextPlugin('bundle.css'),
     new webpack.HotModuleReplacementPlugin(),
@@ -57,7 +72,7 @@ module.exports = {
       loader: "url?limit=10000&minetype=image/svg+xml"
     }, {
       test: /\.js$/,
-      loaders: ['react-hot', 'babel-loader?optional[]=runtime&stage=0'],
+      loaders: ['react-hot', 'babel'],
       exclude: /node_modules/
     }, {
       test: /\.scss$/,

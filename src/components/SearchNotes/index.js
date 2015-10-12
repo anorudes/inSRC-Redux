@@ -38,7 +38,7 @@ export class SearchNotes extends Component {
   render() {
     return (
       <div className={styles}>
-        <input type="text" id="search" ref="search" value={this.state.search} onChange={(e) => this._changeSearch(e)} placeholder="search" />
+        <input type="text" id="search" ref="search" value={this.state.search} onChange={::this._changeSearch} placeholder="search" />
       </div>
     );
   }

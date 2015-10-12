@@ -35,15 +35,17 @@ export class AddNote extends Component {
     history.replaceState(null, '/list');
   }
 
-  _updateInput(e, ref) {
+  _updateInput(e) {
     const input = e.currentTarget;
+    const name = input.getAttributeNode('name').value;
     this.setState({
       note: {
         ...this.state.note,
-        [ref]: input.value,
+        [name]: input.value,
       },
     });
   }
+
   render() {
     const { note } = this.state;
     return (
@@ -51,19 +53,19 @@ export class AddNote extends Component {
         <div className="form">
           <h2>Add note</h2>
           <div className="field title">
-            <input type="text" ref="title" defaultValue={note.title} onChange={(e) => this._updateInput(e, 'title')} />
+            <input type="text" ref="title" name="title" defaultValue={note.title} onChange={::this._updateInput} />
           </div>
           <div className="field text">
-            <textarea ref="text" onChange={(e) => this._updateInput(e, 'text')} defaultValue={note.text} />
+            <textarea name="text" onChange={::this._updateInput} defaultValue={note.text} />
           </div>
           <div className="field keywords">
-            <input type="text" ref="keywords" defaultValue={note.keywords} onChange={(e) => this._updateInput(e, 'keywords')} />
+            <input type="text" namr="keywords" defaultValue={note.keywords} onChange={::this._updateInput} />
           </div>
           <div className="field date">
-            <input type="text" ref="date" defaultValue={note.date} onChange={(e) => this._updateInput(e, 'date')} disabled="true" />
+            <input type="text" name="date" defaultValue={note.date} onChange={::this._updateInput} disabled="true" />
           </div>
           <div className="buttons">
-            <button className="icon fa fa-floppy-o" onClick={() => this._addNote()}></button>
+            <button className="icon fa fa-floppy-o" onClick={::this._addNote}></button>
             <Link to={`/list/`}>
               <button className="icon fa fa-ban"></button>
             </Link>

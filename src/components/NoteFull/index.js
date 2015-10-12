@@ -64,10 +64,11 @@ export class NoteFull extends Component {
 
   _updateInput(e, ref) {
     const input = e.target;
+    const name = input.getAttributeNode('name').value;
     this.setState({
       updatedNote: {
         ...this.state.updatedNote,
-        [ref]: input.value,
+        [name]: input.value,
       },
     });
   }
@@ -121,19 +122,19 @@ export class NoteFull extends Component {
           <div>
             <div className="form">
               <div className="field title">
-                <input type="text" ref="title" defaultValue={updatedNote.title} onChange={(e) => this._updateInput(e, 'title')} />
+                <input type="text" name="title" defaultValue={updatedNote.title} onChange={::this._updateInput} />
               </div>
               <div className="field text">
-                <textarea ref="text" onChange={(e) => this._updateInput(e, 'text')} defaultValue={updatedNote.text} />
+                <textarea name="text" onChange={::this._updateInput} defaultValue={updatedNote.text} />
               </div>
               <div className="field keywords">
-                <input type="text" ref="keywords" defaultValue={updatedNote.keywords} onChange={(e) => this._updateInput(e, 'keywords')} />
+                <input type="text" name="keywords" defaultValue={updatedNote.keywords} onChange={::this._updateInput} />
               </div>
               <div className="field date">
-                <input type="text" ref="date" defaultValue={updatedNote.date} onChange={(e) => this._updateInput(e, 'date')} />
+                <input type="text" name="date" defaultValue={updatedNote.date} onChange={::this._updateInput} />
               </div>
               <div className="buttons">
-                <button className="icon fa fa-floppy-o" onClick={() => this._saveNote()}></button>
+                <button className="icon fa fa-floppy-o" onClick={::this._saveNote}></button>
                 <button className="icon fa fa-ban" onClick={() => this.setState({ editable: false })}></button>
               </div>
             </div>

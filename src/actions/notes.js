@@ -79,7 +79,7 @@ export function fetchNotes() {
       data = _toLower(data);
       dispatch(getNotes(data));
     };
-  } else { // for site
+  } else {
     return dispatch => {
       fetch(dbPath)
         .then(res =>

@@ -36,14 +36,20 @@ export class Notes extends Component {
   render() {
     let { openNote, searchText } = this.props;
     let searchInCode = false;
+    
+    /* find in code */
     if (searchText.indexOf('@') >= 0) {
       searchText = searchText.split('@').join('');
       searchInCode = true;
     }
     searchText = searchText.toLowerCase();
+
+    /* generate array words from text */
     const notes = this.props.notes.filter(note => {
       return search(note, searchText.split(' '), searchInCode);
     });
+
+    /* open efault first note in list */
     openNote = notes.length === 1 ? notes[0] : openNote;
     return (
       <div className={styles}>

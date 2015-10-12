@@ -19,12 +19,14 @@ export class SearchNotes extends Component {
   }
   
   componentDidMount() {
+    /* focus on search input */
     this.refs.search.focus();
     this.actions.searchNotes('');
     this.setState({search: ''});
   }
 
   componentWillUnmount() {
+    /* reset search */
     this.actions.searchNotes('');
     this.setState({search: ''});
   }

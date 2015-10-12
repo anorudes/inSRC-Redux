@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 // TODO: import Highlight from 'react-highlight';
-import { Highlight } from './highlight-empty';
+
 import classNames from 'classnames';
 import { trim } from 'tools';
 
 // Component styles
 import styles from './styles';
 
-import { linkAndBold } from './_linkAndBold.js';
+import { linkAndBold } from './_linkAndBold';
+import { Code } from './_code';
 
 export class NoteFull extends Component {
   static propTypes = {
@@ -17,11 +18,10 @@ export class NoteFull extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { noteId: -1, noteText: trim(this.props.note.text), closeAnimate: false, editable: false, updatedNote: {} };
+    this.state = { noteId: this.props.note.id, noteText: trim(this.props.note.text), closeAnimate: false, editable: false, updatedNote: {} };
   }
 
   componentDidMount() {
-    this.setState({noteId: this.props.note.id});
     this._linkAndBold();
   }
 
@@ -48,6 +48,7 @@ export class NoteFull extends Component {
   }
 
   _delete(note) {
+    /* delete note */
     if (window.confirm('Do you really want to delete?')) {
       this.props.actions.deleteNote(note.id);
       window.globalConfig.nw && win.focus();
@@ -55,6 +56,7 @@ export class NoteFull extends Component {
   }
 
   _linkAndBold() {
+    /* find and make link, bold text */
     setTimeout(() => {
       let code = this.refs.code.innerHTML;
       code = code.replace(/http(s?):(<span class="hljs-comment">)+/g, 'http:');
@@ -62,7 +64,7 @@ export class NoteFull extends Component {
     }, 10);
   }
 
-  _updateInput(e, ref) {
+  _updateInput(e) {
     const input = e.target;
     const name = input.getAttributeNode('name').value;
     this.setState({
@@ -82,7 +84,6 @@ export class NoteFull extends Component {
     const { note } = this.props;
     const { editable, updatedNote } = this.state;
     const classes = classNames(styles, { closeAnimate: this.state.closeAnimate });
-    const noteText = this.state.noteText;
     return (
       <div className={classes} id="noteFull">
         <div className="close fa fa-times" onClick={() => this._close()}></div>
@@ -91,22 +92,7 @@ export class NoteFull extends Component {
           <div>
             <span className="title">{note.title}</span>
             <div className="code" ref="code">
-              {
-                noteText.split('---').map((code, i) => {
-                  if (code.length) {
-                    let lang = (code.match(/^(js|html|css|php|auto|a)\n/m) || ['', 'js'])[1];
-                    if (lang !== 'js' && lang !== 'html' && lang !== 'css' && lang !== 'php' && lang !== 'auto' && lang !== 'a') {
-                      lang = 'js';
-                    }
-                    code = code.replace(new RegExp('^(js|html|css|php|auto|a)\n'), '');
-                    if (lang === 'auto' || lang === 'a') {
-                      return (<span key={i}><Highlight>{code}</Highlight><br /></span>);
-                    } else {
-                      return (<span key={i}><Highlight className={'language-' + lang}>{code}</Highlight><br /></span>);
-                    }
-                  }
-                })
-              }
+              <Code noteText={this.state.noteText} />
             </div>
             <span className="keywords">{note.keywords}</span>
             <span className="date">{note.date}</span>

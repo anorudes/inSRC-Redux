@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Highlight } from './_highlight-empty';
+import Highlight from 'react-highlight';
 
 export const Code = ({noteText}) => (
   <div>

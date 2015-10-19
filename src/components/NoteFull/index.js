@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// TODO: import Highlight from 'react-highlight';
 
 import classNames from 'classnames';
 import { trim } from 'tools';

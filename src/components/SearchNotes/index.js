@@ -31,7 +31,7 @@ export class SearchNotes extends Component {
     this.setState({search: ''});
   }
 
-  _changeSearch(e) {
+  onChangeSearch(e) {
     const input = e.target;
     this.setState({ search: input.value});
     debounce(() => this.actions.searchNotes(input.value), 100)();
@@ -40,7 +40,7 @@ export class SearchNotes extends Component {
   render() {
     return (
       <div className={styles}>
-        <input type="text" id="search" ref="search" value={this.state.search} onChange={::this._changeSearch} placeholder="search" />
+        <input type="text" id="search" ref="search" value={this.state.search} onChange={::this.onChangeSearch} placeholder="search" />
       </div>
     );
   }

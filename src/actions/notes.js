@@ -63,6 +63,13 @@ export function saveNotes(notes) {
   }
 }
 
+export function deleteNote(id) {
+  return {
+    type: 'DELETE_NOTE',
+    id,
+  };
+}
+
 export function fetchNotes() {
   // for nw.js
   const _toLower = (data) => {
@@ -90,11 +97,4 @@ export function fetchNotes() {
       );
     };
   }
-}
-
-export function deleteNote(id) {
-  return {
-    type: 'DELETE_NOTE',
-    id,
-  };
 }

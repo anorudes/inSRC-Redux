@@ -11,12 +11,16 @@ export class Note extends Component {
     actions: React.PropTypes.object,
   }
 
+  onClick() {
+    this.props.actions.openNote(this.props.note);
+  }
+
   render() {
-    const { note, active, actions } = this.props;
+    const { note, active } = this.props;
     const classes = classNames(styles, { active: active });
 
     return (
-      <div className={classes} onClick={() => actions.openNote(note)}>
+      <div className={classes} onClick={() => this.onClick()}>
         <span className="title">{note.title}</span>
         <span className="keywords">{note.keywords}</span>
       </div>

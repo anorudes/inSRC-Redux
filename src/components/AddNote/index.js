@@ -17,25 +17,25 @@ export class AddNote extends Component {
 
   constructor(props) {
     super(props);
+    this.actions = bindActionCreators(actionCreators, this.props.dispatch);
     this.state = { closeAnimate: false, editable: false, note: {
       title: '',
       keywords: '',
       text: '',
       date: moment().format('DD/MM/YYYY'),
     }};
-    this.actions = bindActionCreators(actionCreators, this.props.dispatch);
   }
   
   componentDidMount() {
     this.refs.title.focus();
   }
 
-  _addNote() {
+  onClickAdd() {
     this.actions.addNote(this.state.note);
     history.replaceState(null, '/list');
   }
 
-  _updateInput(e) {
+  onChangeInput(e) {
     const input = e.currentTarget;
     const name = input.getAttributeNode('name').value;
     this.setState({
@@ -53,19 +53,19 @@ export class AddNote extends Component {
         <div className="form">
           <h2>Add note</h2>
           <div className="field title">
-            <input type="text" ref="title" name="title" defaultValue={note.title} onChange={::this._updateInput} />
+            <input type="text" ref="title" name="title" defaultValue={note.title} onChange={::this.onChangeInput} />
           </div>
           <div className="field text">
-            <textarea name="text" onChange={::this._updateInput} defaultValue={note.text} />
+            <textarea name="text" onChange={::this.onChangeInput} defaultValue={note.text} />
           </div>
           <div className="field keywords">
-            <input type="text" namr="keywords" defaultValue={note.keywords} onChange={::this._updateInput} />
+            <input type="text" namr="keywords" defaultValue={note.keywords} onChange={::this.onChangeInput} />
           </div>
           <div className="field date">
-            <input type="text" name="date" defaultValue={note.date} onChange={::this._updateInput} disabled="true" />
+            <input type="text" name="date" defaultValue={note.date} onChange={::this.onChangeInput} disabled="true" />
           </div>
           <div className="buttons">
-            <button className="icon fa fa-floppy-o" onClick={::this._addNote}></button>
+            <button className="icon fa fa-floppy-o" onClick={::this.onClickAdd}></button>
             <Link to={`/list/`}>
               <button className="icon fa fa-ban"></button>
             </Link>

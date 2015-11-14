@@ -10,7 +10,8 @@ const initialState = {
 };
 
 export function notes(state = initialState, action) {
-  let res, index;
+  let res;
+  let index;
 
   switch (action.type) {
   case 'SEARCH_NOTES':

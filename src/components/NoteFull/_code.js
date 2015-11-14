@@ -11,11 +11,11 @@ export const Code = ({noteText}) => (
           if (lang !== 'js' && lang !== 'html' && lang !== 'css' && lang !== 'php' && lang !== 'auto' && lang !== 'a') {
             lang = 'js';
           }
-          code = code.replace(new RegExp('^(js|html|css|php|auto|a)\n'), '');
+          const _code = code.replace(new RegExp('^(js|html|css|php|auto|a)\n'), '');
           if (lang === 'auto' || lang === 'a') {
-            return (<span key={i}><Highlight>{code}</Highlight><br /></span>);
+            return (<span key={i}><Highlight>{_code}</Highlight><br /></span>);
           } else {
-            return (<span key={i}><Highlight className={'language-' + lang}>{code}</Highlight><br /></span>);
+            return (<span key={i}><Highlight className={'language-' + lang}>{_code}</Highlight><br /></span>);
           }
         }
       })

@@ -1,8 +1,8 @@
 export const trim = (text) => {
   const arr = text.split('---');
   arr.forEach((item, index) => {
-    item = item.replace(new RegExp('^(js|html|css|php|auto|a)', 'gm'), '');
-    const spaces = item.match(/^(\s*)/m);
+    const _item = item.replace(new RegExp('^(js|html|css|php|auto|a)', 'gm'), '');
+    const spaces = _item.match(/^(\s*)/m);
     if (spaces[1] !== undefined && spaces[1] !== '' && spaces[1] !== '\n') {
       spaces[1] = spaces[1].split('\n').join('');
       arr[index] = arr[index].replace(new RegExp('^' + spaces[1], 'gm'), '');

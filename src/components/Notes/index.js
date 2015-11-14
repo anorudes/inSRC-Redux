@@ -21,7 +21,7 @@ export class Notes extends Component {
     super(props);
     this.actions = bindActionCreators(actionCreators, this.props.dispatch);
   }
-  
+
   componentDidMount() {
     const { scrollY } = this.props;
     setTimeout(() => {
@@ -36,7 +36,6 @@ export class Notes extends Component {
   render() {
     let { openNote, searchText } = this.props;
     let searchInCode = false;
-    
     /* find in code */
     if (searchText.indexOf('@') >= 0) {
       searchText = searchText.split('@').join('');

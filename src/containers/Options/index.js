@@ -1,5 +1,5 @@
 import React from 'react';
 
-export const Options = (props) => (
+export const Options = () => (
   <div></div>
 );

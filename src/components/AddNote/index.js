@@ -25,7 +25,7 @@ export class AddNote extends Component {
       date: moment().format('DD/MM/YYYY'),
     }};
   }
-  
+
   componentDidMount() {
     this.refs.title.focus();
   }
@@ -35,8 +35,8 @@ export class AddNote extends Component {
     history.replaceState(null, '/list');
   }
 
-  onChangeInput(e) {
-    const input = e.currentTarget;
+  onChangeInput(event) {
+    const input = event.currentTarget;
     const name = input.getAttributeNode('name').value;
     this.setState({
       note: {

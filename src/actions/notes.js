@@ -1,55 +1,21 @@
+/* global fs */
+
+import{ createAction } from 'redux-actions';
+
 const dbPath = window.globalConfig.execPath + 'db/data.json';
 
-export function searchNotes(text) {
-  return {
-    type: 'SEARCH_NOTES',
-    text,
-  };
-}
-
-export function saveScroll() {
-  return {
-    type: 'SAVE_SCROLL',
-  };
-}
-
-export function openNote(note) {
-  return {
-    type: 'OPEN_NOTE',
-    note,
-  };
-}
-
-export function closeNote() {
-  return {
-    type: 'CLOSE_NOTE',
-  };
-}
-
-export function getNotes(data) {
-  return {
-    type: 'GET_NOTES',
-    data,
-  };
-}
-
-export function saveNote(note) {
-  return {
-    type: 'SAVE_NOTE',
-    note,
-  };
-}
-
-export function addNote(note) {
-  return {
-    type: 'ADD_NOTE',
-    note,
-  };
-}
+export const searchNotes = createAction('SEARCH_NOTES');
+export const saveScroll = createAction('SAVE_SCROLL');
+export const openNote = createAction('OPEN_NOTE');
+export const closeNote = createAction('CLOSE_NOTE');
+export const getNotes = createAction('GET_NOTES');
+export const saveNote = createAction('SAVE_NOTE');
+export const addNote = createAction('ADD_NOTE');
+export const deleteNote = createAction('DELETE_NOTE');
 
 export function saveNotes(notes) {
   if (window.globalConfig.nw) {
-    let res = [];
+    const res = [];
     for (const note of notes) {
       res.push({
         id: note.id,
@@ -62,14 +28,6 @@ export function saveNotes(notes) {
     fs.writeFileSync(dbPath, JSON.stringify(res));
   }
 }
-
-export function deleteNote(id) {
-  return {
-    type: 'DELETE_NOTE',
-    id,
-  };
-}
-
 export function fetchNotes() {
   // for nw.js
   const _toLower = (data) => {
@@ -87,14 +45,10 @@ export function fetchNotes() {
       dispatch(getNotes(data));
     };
   } else {
-    return dispatch => {
+    return dispatch =>
       fetch(dbPath)
-        .then(res =>
-          res.json().then(data => {
-            data = _toLower(data);
-            dispatch(getNotes(data));
-          })
+        .then(res => res.json()
+          .then(data => dispatch(getNotes(_toLower(data))))
       );
-    };
   }
 }

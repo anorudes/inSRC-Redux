@@ -1,3 +1,5 @@
+/* global win, gui */
+
 import { store } from '../store';
 import { searchNotes } from 'actions/notes';
 
@@ -20,8 +22,8 @@ export default class Hotkeys {
       win.focus();
       win.show();
     }});
-    document.onkeydown = (e) => {
-      if (e.keyCode === 27) {
+    document.onkeydown = (event) => {
+      if (event.keyCode === 27) {
         win.minimize();
       }
     };

@@ -10,6 +10,10 @@ import styles from './styles';
 
 @connect(state => state.notes)
 export class SearchNotes extends Component {
+  static propTypes = {
+    dispatch: React.PropTypes.func,
+  }
+
   constructor(props) {
     super(props);
     this.actions = bindActionCreators(actionCreators, this.props.dispatch);
@@ -17,7 +21,7 @@ export class SearchNotes extends Component {
       search: '',
     };
   }
-  
+
   componentDidMount() {
     /* focus on search input */
     this.refs.search.focus();

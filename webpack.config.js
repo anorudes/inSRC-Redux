@@ -33,6 +33,7 @@ module.exports = {
   },
 
   module: {
+    noParse: [/autoit.js/],
     loaders: [{
       test: /bootstrap\/js\//,
       loader: 'imports?jQuery=jquery',

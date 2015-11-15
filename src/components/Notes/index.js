@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+
 // Component styles
 import styles from './styles';
 import { Note, NoteFull } from 'components';
-import * as actionCreators from 'actions/notes';
 import { search } from 'tools';
 
-@connect(state => state.notes)
 export class Notes extends Component {
   static propTypes = {
     openNote: React.PropTypes.object,
@@ -19,7 +16,6 @@ export class Notes extends Component {
 
   constructor(props) {
     super(props);
-    this.actions = bindActionCreators(actionCreators, this.props.dispatch);
   }
 
   componentDidMount() {
@@ -30,7 +26,7 @@ export class Notes extends Component {
   }
 
   componentWillUnmount() {
-    this.actions.saveScroll();
+    this.props.actions.saveScroll();
   }
 
   render() {
@@ -56,7 +52,7 @@ export class Notes extends Component {
                                   active={note === openNote}
                                   note={note}
                                   actions={this.actions}/>)}
-        {openNote.id && <NoteFull note={openNote} actions={this.actions} />}
+        {openNote.id && <NoteFull note={openNote} actions={this.props.actions} />}
       </div>
     );
   }

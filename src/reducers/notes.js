@@ -18,19 +18,19 @@ export function notes(state = initialState, action) {
     return {
       ...state,
       openNote: {},
-      searchText: action.text,
+      searchText: action.payload,
     };
 
   case 'GET_NOTES':
     return {
       ...state,
-      notes: action.data,
+      notes: action.payload,
     };
 
   case 'OPEN_NOTE':
     return {
       ...state,
-      openNote: action.note,
+      openNote: action.payload,
     };
 
   case 'CLOSE_NOTE':
@@ -40,14 +40,17 @@ export function notes(state = initialState, action) {
     };
 
   case 'SAVE_NOTE':
-    index = state.notes.map(note => note.id).indexOf(action.note.id);
-    action.note.text = trim(action.note.text);
-    action.note.keywordsL = action.note.keywords.toLowerCase();
-    action.note.titleL = action.note.title.toLowerCase();
-    action.note.textL = action.note.text.toLowerCase();
+    index = state.notes.map(note => note.id).indexOf(action.payload.id);
+    action.payload = {
+      ...action.payload,
+      text: trim(action.payload.text),
+      keywordsL: action.payload.keywords.toLowerCase(),
+      titleL: action.payload.title.toLowerCase(),
+      textL: action.payload.text.toLowerCase()
+    }
     res = u({
-      notes: { [index]: action.note },
-      openNote: action.note,
+      notes: { [index]: action.payload },
+      openNote: action.payload,
     }, state);
     saveNotes(res.notes);
     return res;
@@ -61,13 +64,13 @@ export function notes(state = initialState, action) {
       ...state,
       notes: [{
         id: id,
-        title: action.note.title,
-        titleL: action.note.title.toLowerCase(),
-        keywords: action.note.keywords,
-        keywordsL: action.note.keywords.toLowerCase(),
-        text: trim(action.note.text),
-        textL: action.note.text.toLowerCase(),
-        date: action.note.date,
+        title: action.payload.title,
+        titleL: action.payload.title.toLowerCase(),
+        keywords: action.payload.keywords,
+        keywordsL: action.payload.keywords.toLowerCase(),
+        text: trim(action.payload.text),
+        textL: action.payload.text.toLowerCase(),
+        date: action.payload.date,
       }, ...state.notes],
     };
     saveNotes(res.notes);
@@ -93,7 +96,6 @@ export function notes(state = initialState, action) {
       ...state,
       scrollY: window.scrollY,
     };
-    saveNotes(res.notes);
     return res;
 
   default:

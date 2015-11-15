@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import debounce from 'lodash.debounce';
-
-import * as actionCreators from 'actions/notes';
 
 // Component styles
 import styles from './styles';
 
-@connect(state => state.notes)
 export class SearchNotes extends Component {
   static propTypes = {
     dispatch: React.PropTypes.func,
@@ -16,7 +11,6 @@ export class SearchNotes extends Component {
 
   constructor(props) {
     super(props);
-    this.actions = bindActionCreators(actionCreators, this.props.dispatch);
     this.state = {
       search: '',
     };
@@ -25,20 +19,20 @@ export class SearchNotes extends Component {
   componentDidMount() {
     /* focus on search input */
     this.refs.search.focus();
-    this.actions.searchNotes('');
+    this.props.actions.searchNotes('');
     this.setState({search: ''});
   }
 
   componentWillUnmount() {
     /* reset search */
-    this.actions.searchNotes('');
+    this.props.actions.searchNotes('');
     this.setState({search: ''});
   }
 
   onChangeSearch(e) {
     const input = e.target;
     this.setState({ search: input.value});
-    debounce(() => this.actions.searchNotes(input.value), 100)();
+    debounce(() => this.props.actions.searchNotes(input.value), 100)();
   }
 
   render() {

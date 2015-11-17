@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import classNames from 'classnames';
-import { trim } from 'tools';
+import { trim } from 'utils/notesUtils';
 
 // Component styles
 import styles from './styles';
@@ -13,6 +13,9 @@ export class NoteFull extends Component {
   static propTypes = {
     note: React.PropTypes.object,
     actions: React.PropTypes.object,
+    saveNote: React.PropTypes.object,
+    closeNote: React.PropTypes.object,
+    deleteNote: React.PropTypes.object,
   }
 
   constructor(props) {
@@ -36,7 +39,7 @@ export class NoteFull extends Component {
   onCloseClick() {
     this.setState({closeAnimate: true});
     setTimeout(() => {
-      this.props.actions.closeNote();
+      this.props.closeNote();
     }, 500);
   }
 
@@ -49,7 +52,7 @@ export class NoteFull extends Component {
   onDeleteClick(note) {
     /* delete note */
     if (window.confirm('Do you really want to delete?')) {
-      this.props.actions.deleteNote(note.id);
+      this.props.deleteNote(note.id);
       window.globalConfig.nw && win.focus();
     }
   }
@@ -66,7 +69,7 @@ export class NoteFull extends Component {
   }
 
   onSaveClick() {
-    this.props.actions.saveNote(this.state.updatedNote);
+    this.props.saveNote(this.state.updatedNote);
     this.setState({ editable: false, updatedNote: {}, noteText: trim(this.state.updatedNote.text), noteStyled: false});
   }
 

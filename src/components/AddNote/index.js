@@ -10,7 +10,7 @@ export class AddNote extends Component {
   static propTypes = {
     dispatch: React.PropTypes.func,
     notes: React.PropTypes.array,
-    actions: React.PropTypes.object,
+    addNote: React.PropTypes.func,
   }
 
   constructor(props) {
@@ -28,7 +28,7 @@ export class AddNote extends Component {
   }
 
   onClickAdd() {
-    this.props.actions.addNote(this.state.note);
+    this.props.addNote(this.state.note);
     history.replaceState(null, '/list');
   }
 

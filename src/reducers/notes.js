@@ -1,10 +1,10 @@
 import u from 'updeep';
 import { saveNotes } from 'actions/notes';
-import { trim } from 'tools';
+import { trim } from 'utils/notesUtils';
 
 const initialState = {
   notes: [],
-  openNote: {},
+  activeNote: {},
   scrollY: 0,
   searchText: '',
 };
@@ -17,7 +17,7 @@ export function notes(state = initialState, action) {
   case 'SEARCH_NOTES':
     return {
       ...state,
-      openNote: {},
+      activeNote: {},
       searchText: action.payload,
     };
 
@@ -30,13 +30,13 @@ export function notes(state = initialState, action) {
   case 'OPEN_NOTE':
     return {
       ...state,
-      openNote: action.payload,
+      activeNote: action.payload,
     };
 
   case 'CLOSE_NOTE':
     return {
       ...state,
-      openNote: {},
+      activeNote: {},
     };
 
   case 'SAVE_NOTE':
@@ -46,11 +46,11 @@ export function notes(state = initialState, action) {
       text: trim(action.payload.text),
       keywordsL: action.payload.keywords.toLowerCase(),
       titleL: action.payload.title.toLowerCase(),
-      textL: action.payload.text.toLowerCase()
-    }
+      textL: action.payload.text.toLowerCase(),
+    };
     res = u({
       notes: { [index]: action.payload },
-      openNote: action.payload,
+      activeNote: action.payload,
     }, state);
     saveNotes(res.notes);
     return res;
@@ -80,7 +80,7 @@ export function notes(state = initialState, action) {
   case 'DELETE_NOTE':
     index = state.notes.map(note => note.id).indexOf(action.id);
     res = {
-      openNote: {},
+      activeNote: {},
       scrollY: state.scrollY,
       searchText: state.searchText,
       notes: [

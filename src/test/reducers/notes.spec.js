@@ -3,7 +3,7 @@ import { notes as reducer } from 'reducers/notes';
 
 const initialState = {
   notes: [],
-  openNote: {},
+  activeNote: {},
   scrollY: 0,
   searchText: '',
 };
@@ -19,7 +19,7 @@ const stateAfterAdd = {
     textL: 'test',
     date: '01/01/2015',
   }],
-  openNote: {},
+  activeNote: {},
   scrollY: 0,
   searchText: '',
 };
@@ -67,7 +67,7 @@ describe('Notes reducer:', () => {
         textL: 'test',
         date: '01/01/2015',
       }],
-      openNote: {},
+      activeNote: {},
       scrollY: 0,
       searchText: '',
     });

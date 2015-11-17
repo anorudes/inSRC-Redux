@@ -1,8 +1,7 @@
 /* global fs */
 
 import{ createAction } from 'redux-actions';
-
-const dbPath = window.globalConfig.execPath + 'db/data.json';
+import { dbPath } from 'constants';
 
 export const searchNotes = createAction('SEARCH_NOTES');
 export const saveScroll = createAction('SAVE_SCROLL');

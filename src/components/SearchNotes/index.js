@@ -7,6 +7,7 @@ import styles from './styles';
 export class SearchNotes extends Component {
   static propTypes = {
     dispatch: React.PropTypes.func,
+    searchNotes: React.PropTypes.func,
   }
 
   constructor(props) {
@@ -19,20 +20,20 @@ export class SearchNotes extends Component {
   componentDidMount() {
     /* focus on search input */
     this.refs.search.focus();
-    this.props.actions.searchNotes('');
+    this.props.searchNotes('');
     this.setState({search: ''});
   }
 
   componentWillUnmount() {
     /* reset search */
-    this.props.actions.searchNotes('');
+    this.props.searchNotes('');
     this.setState({search: ''});
   }
 
   onChangeSearch(e) {
     const input = e.target;
     this.setState({ search: input.value});
-    debounce(() => this.props.actions.searchNotes(input.value), 100)();
+    debounce(() => this.props.searchNotes(input.value), 100)();
   }
 
   render() {

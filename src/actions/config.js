@@ -1,4 +1,4 @@
-const configPath = window.globalConfig.execPath + 'config.json';
+import { configPath } from 'constants';
 
 export function getConfig(data) {
   return {

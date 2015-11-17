@@ -8,11 +8,11 @@ export class Note extends Component {
   static propTypes = {
     note: React.PropTypes.object,
     active: React.PropTypes.any,
-    actions: React.PropTypes.object,
+    openNote: React.PropTypes.func,
   }
 
   onClick() {
-    this.props.actions.openNote(this.props.note);
+    this.props.openNote(this.props.note);
   }
 
   render() {

@@ -5,13 +5,11 @@ import { bindActionCreators } from 'redux';
 import * as actionCreators from 'actions/notes';
 import { AddNote } from 'components';
 
-@connect(state => state.notes)
+@connect(
+  state => state.notes,
+  dispatch => bindActionCreators(actionCreators, dispatch)
+)
 export class Add extends Component {
-  constructor(props) {
-    super(props);
-    this.actions = bindActionCreators(actionCreators, this.props.dispatch);
-  }
-
   static propTypes = {
     dispatch: React.PropTypes.func,
     notes: React.PropTypes.array,
@@ -19,7 +17,7 @@ export class Add extends Component {
 
   render() {
     return (
-      <AddNote actions={this.actions} notes={this.props.notes} dispatch={this.props.dispatch} />
+      <AddNote {...this.props} />
     );
   }
 }

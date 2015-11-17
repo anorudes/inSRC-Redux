@@ -11,7 +11,7 @@ import './styles';
 // Application components
 import { Header, Footer } from 'components';
 
-import { Hotkeys, Tray } from 'utils/nwUtils';
+import { Hotkeys, Tray } from 'utils/nw';
 import hljs from 'highlight.js/lib/highlight';
 import * as actionCreators from 'actions/config';
 

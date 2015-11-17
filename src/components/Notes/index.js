@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 // Component styles
 import styles from './styles';
 import { Note, NoteFull } from 'components';
-import { search } from 'utils/notesUtils';
+import { search } from 'utils/notes';
 
 export class Notes extends Component {
   static propTypes = {

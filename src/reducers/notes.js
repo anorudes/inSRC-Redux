@@ -1,6 +1,6 @@
 import u from 'updeep';
 import { saveNotes } from 'actions/notes';
-import { trim } from 'utils/notesUtils';
+import { trim } from 'utils/notes';
 
 const initialState = {
   notes: [],

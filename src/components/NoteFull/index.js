@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import classNames from 'classnames';
-import { trim } from 'utils/notesUtils';
+import { trim } from 'utils/notes';
 
 // Component styles
 import styles from './styles';

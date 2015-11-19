@@ -1,17 +1,20 @@
+/* global styles */
+
 @import 'fonts/roboto';
 @import 'fonts/font-awesome';
 @import 'typography';
 
 body {
-  position: relative;
+  font-family: 'Roboto';
   font-size: 16px;
-  font-family: "Roboto";
+  position: relative;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 .wrapper {
-  padding: 0px 30px;
+  padding: 0 30px;
 }
 
 .icon {

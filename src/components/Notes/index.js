@@ -49,11 +49,15 @@ export class Notes extends Component {
     activeNote = notes.length === 1 ? notes[0] : activeNote;
     return (
       <div className={styles}>
-        {notes.map(note => <Note key={note.id}
-                                  active={note === activeNote}
-                                  note={note}
-                                  openNote={this.props.openNote}/>)}
-        {activeNote.id && <NoteFull note={activeNote} />}
+        {notes.map(note =>
+          <Note key={note.id}
+                active={note === activeNote}
+                note={note}
+                openNote={this.props.openNote} />)}
+        {activeNote.id &&
+          <NoteFull note={activeNote}
+                    saveNote={this.props.saveNote}
+                    closeNote={this.props.closeNote} />}
       </div>
     );
   }

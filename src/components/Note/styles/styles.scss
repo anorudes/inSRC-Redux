@@ -1,22 +1,24 @@
 :local(.styles) {
   position: relative;
   padding: 10px 30px;
-  border-bottom: 1px solid #e0e0e0;
   cursor: pointer;
-  transition: all 0.4s ease;
+  transition: all .4s ease;
   transform: translateZ(0);
+  border-bottom: 1px solid #e0e0e0;
   &.active {
     padding-left: 40px;
   }
+
   .title {
     font-size: 2rem;
     display: block;
-    color: black;
     padding-bottom: 5px;
+    color: black;
   }
+  
   .keywords {
-    display: block;
-    color: #BCBCBC;
     font-size: 1.5rem;
+    display: block;
+    color: #bcbcbc;
   }
 }

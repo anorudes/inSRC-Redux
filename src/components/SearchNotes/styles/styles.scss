@@ -1,16 +1,17 @@
 :local(.styles) {
   position: fixed;
+  z-index: 1;
   top: 50px;
   width: 100%;
   background: white;
-  z-index: 1;
+  
   input {
-    border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, .2);
+    display: block;
     width: calc(100% - 60px);
     margin: 0 auto;
-    display: block;
-    padding: 10px 0px 7px 0px;
+    padding: 10px 0 7px 0;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
     outline: none;
     &:focus {
       outline: none;

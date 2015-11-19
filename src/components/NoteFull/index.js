@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { reduxForm } from 'redux-form';
 import classNames from 'classnames';
 import { trim } from 'utils/notes';
 
@@ -12,27 +12,24 @@ import { Code } from './_code';
 export class NoteFull extends Component {
   static propTypes = {
     note: React.PropTypes.object,
-    actions: React.PropTypes.object,
-    saveNote: React.PropTypes.object,
-    closeNote: React.PropTypes.object,
-    deleteNote: React.PropTypes.object,
+    saveNote: React.PropTypes.func,
+    closeNote: React.PropTypes.func,
+    deleteNote: React.PropTypes.func,
   }
 
   constructor(props) {
     super(props);
-    this.state = { noteId: this.props.note.id, noteText: trim(this.props.note.text), closeAnimate: false, editable: false, updatedNote: {} };
+    this.state = { noteId: this.props.note.id, closeAnimate: false, editable: false };
   }
 
   componentDidMount() {
+    const { note, initialize } = this.props;
     this._linkAndBold();
   }
 
   componentDidUpdate() {
-    if (this.state.noteId !== this.props.note.id) {
-      if (!this.state.editable) {
-        this._linkAndBold();
-      }
-      this.setState({noteId: this.props.note.id, noteText: trim(this.props.note.text)});
+    if (!this.state.editable) {
+      this._linkAndBold();
     }
   }
 
@@ -44,47 +41,38 @@ export class NoteFull extends Component {
   }
 
   onEditClick(note) {
-    this.setState({ editable: true, updatedNote: {
-      ...note,
-      text: trim(note.text)}});
+    this.setState({ editable: true });
   }
 
   onDeleteClick(note) {
     /* delete note */
     if (window.confirm('Do you really want to delete?')) {
       this.props.deleteNote(note.id);
-      window.globalConfig.nw && win.focus();
+      win.focus();
     }
   }
 
-  onChangeInput(e) {
-    const input = e.target;
-    const name = input.getAttributeNode('name').value;
-    this.setState({
-      updatedNote: {
-        ...this.state.updatedNote,
-        [name]: input.value,
-      },
-    });
-  }
-
   onSaveClick() {
-    this.props.saveNote(this.state.updatedNote);
-    this.setState({ editable: false, updatedNote: {}, noteText: trim(this.state.updatedNote.text), noteStyled: false});
+    const { fields, note: { id } } = this.props;
+    this.props.saveNote({
+      id: id,
+      title: fields.title.value,
+      text: fields.text.value,
+      keywords: fields.keywords.value,
+    });
+    this.setState({ editable: false });
   }
 
   _linkAndBold() {
     /* find and make link, bold text */
-    setTimeout(() => {
-      let code = this.refs.code.innerHTML;
-      code = code.replace(/http(s?):(<span class="hljs-comment">)+/g, 'http:');
-      this.refs.code.innerHTML = linkAndBold(code);
-    }, 10);
+    let code = this.refs.code.innerHTML;
+    code = code.replace(/http(s?):(<span class="hljs-comment">)+/g, 'http:');
+    this.refs.code.innerHTML = linkAndBold(code);
   }
 
   render() {
-    const { note } = this.props;
-    const { editable, updatedNote } = this.state;
+    const { note, fields } = this.props;
+    const { editable } = this.state;
     const classes = classNames(styles, { closeAnimate: this.state.closeAnimate });
     return (
       <div className={classes} id="noteFull">
@@ -94,7 +82,7 @@ export class NoteFull extends Component {
           <div>
             <span className="title">{note.title}</span>
             <div className="code" ref="code">
-              <Code noteText={this.state.noteText} />
+              <Code noteText={note.text} />
             </div>
             <span className="keywords">{note.keywords}</span>
             <span className="date">{note.date}</span>
@@ -110,16 +98,16 @@ export class NoteFull extends Component {
           <div>
             <div className="form">
               <div className="field title">
-                <input type="text" name="title" defaultValue={updatedNote.title} onChange={::this.onChangeInput} />
+                <input type="text" name="title" {...fields.title} />
               </div>
               <div className="field text">
-                <textarea name="text" onChange={::this.onChangeInput} defaultValue={updatedNote.text} />
+                <textarea name="text" {...fields.text} />
               </div>
               <div className="field keywords">
-                <input type="text" name="keywords" defaultValue={updatedNote.keywords} onChange={::this.onChangeInput} />
+                <input type="text" name="keywords" {...fields.keywords} />
               </div>
               <div className="field date">
-                <input type="text" name="date" defaultValue={updatedNote.date} onChange={::this.onChangeInput} />
+                <input type="text" name="date" defaultValue={note.date} />
               </div>
               <div className="buttons">
                 <button className="icon fa fa-floppy-o" onClick={::this.onSaveClick}></button>
@@ -132,3 +120,14 @@ export class NoteFull extends Component {
     );
   }
 }
+
+NoteFull = reduxForm({
+    form: 'noteEdit',
+    fields: ['title', 'text', 'keywords'],
+    destroyOnUnmount: false,
+  },
+  state => ({
+    initialValues: state.notes.activeNote,
+}))(NoteFull);
+
+export default NoteFull;

@@ -69,6 +69,7 @@
     "react-highlight": "^0.5.1",
     "react-hot-loader": "^1.2.7",
     "redux-actions": "^0.8.0",
+    "redux-form": "^3.0.10",
     "redux-logger": "2.0.3",
     "sass-loader": "^3.0.0",
     "style-loader": "^0.12.3",

@@ -11,7 +11,6 @@ export const Hotkeys = {
       win.show();
       setTimeout(() => {
         const search = document.getElementById('search');
-        store.dispatch(searchNotes(''));
         search.focus();
         search.value = '';
       }, 50);

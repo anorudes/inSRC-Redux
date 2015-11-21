@@ -1,2 +1,2 @@
-export const dbPath = window.globalConfig.execPath + 'db/data.json';
-export const configPath = window.globalConfig.execPath + 'config.json';
+export const DB_PATH = window.globalConfig.execPath + 'db/data.json';
+export const CONFIG_PATH = window.globalConfig.execPath + 'config.json';

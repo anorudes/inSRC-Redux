@@ -11,6 +11,11 @@ export class Note extends Component {
     openNote: React.PropTypes.func,
   }
 
+  constructor(props) {
+    super(props);
+    this.onClick = this.onClick.bind(this);
+  }
+
   onClick() {
     this.props.openNote(this.props.note);
   }
@@ -20,7 +25,7 @@ export class Note extends Component {
     const classes = classNames(styles, { active: active });
 
     return (
-      <div className={classes} onClick={() => this.onClick()}>
+      <div className={classes} onClick={this.onClick}>
         <span className="title">{note.title}</span>
         <span className="keywords">{note.keywords}</span>
       </div>

@@ -4,5 +4,5 @@ import React from 'react';
 import styles from './styles';
 
 export const Footer = () => (
-  <div className={styles}></div>
+  <footer className={styles}></footer>
 );

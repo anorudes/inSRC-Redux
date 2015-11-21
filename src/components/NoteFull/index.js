@@ -23,7 +23,6 @@ export class NoteFull extends Component {
   }
 
   componentDidMount() {
-    const { note, initialize } = this.props;
     this._linkAndBold();
   }
 

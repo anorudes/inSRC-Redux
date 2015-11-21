@@ -6,7 +6,7 @@ import styles from './styles';
 import { Link } from 'react-router';
 
 export const Header = () => (
-  <div className={styles}>
+  <header className={styles}>
     <div className="wrapper">
         <span className="title">
           <Link to="/list/">inSRC</Link>
@@ -26,5 +26,5 @@ export const Header = () => (
         </li>
       </ul>
     </div>
-  </div>
+  </header>
 );

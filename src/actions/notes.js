@@ -1,7 +1,7 @@
 /* global fs */
 
 import{ createAction } from 'redux-actions';
-import { dbPath } from 'constants';
+import { DB_PATH } from 'constants';
 
 export const searchNotes = createAction('SEARCH_NOTES');
 export const saveScroll = createAction('SAVE_SCROLL');
@@ -23,7 +23,7 @@ export function saveNotes(notes) {
       date: note.date,
     });
   }
-  fs.writeFileSync(dbPath, JSON.stringify(res));
+  fs.writeFileSync(DB_PATH, JSON.stringify(res));
 }
 export function fetchNotes() {
   // for nw.js
@@ -37,13 +37,13 @@ export function fetchNotes() {
   };
   if (window.globalConfig.nw) {
     return dispatch => {
-      let data = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
+      let data = JSON.parse(fs.readFileSync(DB_PATH, 'utf8'));
       data = toLower(data);
       dispatch(getNotes(data));
     };
   } else {
     return dispatch => {
-      fetch(dbPath)
+      fetch(DB_PATH)
         .then(res =>
           res.json().then(data =>
             dispatch(getNotes(toLower(data)))

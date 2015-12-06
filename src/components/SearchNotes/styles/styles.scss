@@ -1,10 +1,13 @@
+@import 'utils/sass/mixins.scss';
+@import 'utils/sass/vars.scss';
+
 :local(.styles) {
   position: fixed;
   z-index: 1;
   top: 50px;
   width: 100%;
   background: white;
-  
+
   input {
     display: block;
     width: calc(100% - 60px);

@@ -1,7 +1,10 @@
+@import 'utils/sass/mixins.scss';
+@import 'utils/sass/vars.scss';
+
 :local(.styles) {
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: 90px 0 20px;
-  padding-top: 50px;
+  margin-top: 45px;
+  padding: 50px 0px 20px;
 }

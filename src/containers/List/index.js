@@ -24,8 +24,10 @@ export class List extends Component {
 
   render() {
     return (
-      <SearchNotes {...this.props} />,
-      <Notes {...this.props} />
+      <div>
+        <SearchNotes {...this.props} />
+        <Notes {...this.props} />
+      </div>
     );
   }
 }

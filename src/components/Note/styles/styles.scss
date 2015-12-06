@@ -1,3 +1,6 @@
+@import 'utils/sass/mixins.scss';
+@import 'utils/sass/vars.scss';
+
 :local(.styles) {
   position: relative;
   padding: 10px 30px;
@@ -15,7 +18,7 @@
     padding-bottom: 5px;
     color: black;
   }
-  
+
   .keywords {
     font-size: 1.5rem;
     display: block;

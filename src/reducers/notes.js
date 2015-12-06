@@ -79,7 +79,7 @@ export function notes(state = initialState, action) {
     return res;
 
   case 'DELETE_NOTE':
-    index = state.notes.map(note => note.id).indexOf(action.id);
+    index = state.notes.map(note => note.id).indexOf(action.payload);
     res = {
       activeNote: {},
       scrollY: state.scrollY,

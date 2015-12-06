@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import classNames from 'classnames';
 
+import { win } from '../../nw.js';
+
 // Component styles
 import styles from './styles';
 

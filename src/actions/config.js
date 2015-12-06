@@ -1,5 +1,5 @@
 import { CONFIG_PATH } from '../constants';
-import { nw } from '../nw.js';
+import { nw, fs } from '../nw.js';
 
 export function getConfig(data) {
   return {

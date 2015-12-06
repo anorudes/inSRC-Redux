@@ -28,6 +28,7 @@ export class AddNote extends Component {
   }
 
   onClickAdd() {
+    console.log(this.state.note);
     this.props.addNote(this.state.note);
     history.replaceState(null, '/list');
   }
@@ -56,7 +57,7 @@ export class AddNote extends Component {
             <textarea name="text" onChange={::this.onChangeInput} defaultValue={note.text} />
           </div>
           <div className="field keywords">
-            <input type="text" namr="keywords" defaultValue={note.keywords} onChange={::this.onChangeInput} />
+            <input type="text" name="keywords" defaultValue={note.keywords} onChange={::this.onChangeInput} />
           </div>
           <div className="field date">
             <input type="text" name="date" defaultValue={note.date} onChange={::this.onChangeInput} disabled="true" />

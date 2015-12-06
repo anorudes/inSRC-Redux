@@ -10,11 +10,10 @@ export class Notes extends Component {
     searchText: React.PropTypes.string,
     scrollY: React.PropTypes.number,
     notes: React.PropTypes.array,
+    deleteNote: React.PropTypes.func,
     activeNote: React.PropTypes.object,
     openNote: React.PropTypes.func,
     saveScroll: React.PropTypes.func,
-    saveNote: React.propTypes.func,
-    closeNote: React.propTypes.func,
   }
 
   constructor(props) {
@@ -59,7 +58,8 @@ export class Notes extends Component {
         {activeNote.id &&
           <NoteFull note={activeNote}
                     saveNote={this.props.saveNote}
-                    closeNote={this.props.closeNote} />}
+                    closeNote={this.props.closeNote}
+                    deleteNote={this.props.deleteNote} />}
       </div>
     );
   }

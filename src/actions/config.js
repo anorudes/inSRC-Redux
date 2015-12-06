@@ -1,4 +1,5 @@
 import { CONFIG_PATH } from 'constants';
+import { nw } from '../nw.js';
 
 export function getConfig(data) {
   return {
@@ -8,7 +9,7 @@ export function getConfig(data) {
 }
 
 export function fetchConfig(callback) {
-  if (window.globalConfig.nw) { // for nw.js
+  if (nw) { // for nw.js
     return dispatch => {
       const data = JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf8'));
       dispatch(getConfig(data));

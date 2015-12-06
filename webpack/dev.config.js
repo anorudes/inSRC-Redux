@@ -11,6 +11,12 @@ module.exports = {
     './src/index',
   ],
 
+  node: {
+    gui: 'empty',
+    fs: 'empty',
+    path: 'empty',
+  },
+
   output: {
     filename: 'bundle.js',
     path: path.join(__dirname, '/dist/'),
@@ -18,6 +24,9 @@ module.exports = {
   },
 
   plugins: [
+    new webpack.DefinePlugin({
+      __NODE_WEBKIT__: false,
+    }),
     new ExtractTextPlugin('bundle.css'),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),

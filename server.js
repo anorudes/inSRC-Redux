@@ -6,7 +6,7 @@ app.use(require('morgan')('short'));
 
 (function initWebpack() {
   var webpack = require('webpack');
-  var webpackConfig = require('./webpack.config.js');
+  var webpackConfig = require('./webpack/dev.config.js');
   var compiler = webpack(webpackConfig);
 
   app.use(require('webpack-dev-middleware')(compiler, {

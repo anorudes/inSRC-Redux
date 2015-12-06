@@ -1,7 +1,6 @@
-/* global fs */
-
 import{ createAction } from 'redux-actions';
 import { DB_PATH } from 'constants';
+import { fs } from '../nw.js';
 
 export const searchNotes = createAction('SEARCH_NOTES');
 export const saveScroll = createAction('SAVE_SCROLL');
@@ -48,7 +47,7 @@ export function fetchNotes() {
           res.json().then(data =>
             dispatch(getNotes(toLower(data)))
           )
-        );
+        )
     };
   }
 }

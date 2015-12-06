@@ -140,7 +140,7 @@ gulp.task('build-copy', function() {
 });
 
 gulp.task('build-js', shell.task([
-  'webpack -p'
+  'webpack -p --config webpack/prod.config.js'
 ]));
 
 gulp.task('build-clean', function () {

@@ -1,7 +1,4 @@
-/* global win, gui */
-
-import { store } from '../store';
-import { searchNotes } from 'actions/notes';
+import { gui, win } from '../nw.js';
 
 export const Hotkeys = {
   init: (data) => {
@@ -77,4 +74,3 @@ export const Tray = {
     location.hash = 'list';
   },
 };
-

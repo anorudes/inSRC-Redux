@@ -47,7 +47,7 @@ export function fetchNotes() {
           res.json().then(data =>
             dispatch(getNotes(toLower(data)))
           )
-        )
+        );
     };
   }
 }

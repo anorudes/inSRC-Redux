@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import classNames from 'classnames';
-import { trim } from 'utils/notes';
 
 // Component styles
 import styles from './styles';
@@ -15,6 +14,7 @@ export class NoteFull extends Component {
     saveNote: React.PropTypes.func,
     closeNote: React.PropTypes.func,
     deleteNote: React.PropTypes.func,
+    fields: React.PropTypes.any,
   }
 
   constructor(props) {
@@ -39,7 +39,7 @@ export class NoteFull extends Component {
     }, 500);
   }
 
-  onEditClick(note) {
+  onEditClick() {
     this.setState({ editable: true });
   }
 
@@ -86,7 +86,7 @@ export class NoteFull extends Component {
             <span className="keywords">{note.keywords}</span>
             <span className="date">{note.date}</span>
             <div className="buttons">
-              <i className="icon fa fa-edit" onClick={() => this.onEditClick(note)}></i>
+              <i className="icon fa fa-edit" onClick={() => this.onEditClick()}></i>
               <i className="icon fa fa-trash-o" onClick={() => this.onDeleteClick(note) }></i>
             </div>
           </div>
@@ -121,12 +121,12 @@ export class NoteFull extends Component {
 }
 
 NoteFull = reduxForm({
-    form: 'noteEdit',
-    fields: ['title', 'text', 'keywords'],
-    destroyOnUnmount: false,
-  },
-  state => ({
-    initialValues: state.notes.activeNote,
+  form: 'noteEdit',
+  fields: ['title', 'text', 'keywords'],
+  destroyOnUnmount: false,
+},
+state => ({
+  initialValues: state.notes.activeNote,
 }))(NoteFull);
 
 export default NoteFull;

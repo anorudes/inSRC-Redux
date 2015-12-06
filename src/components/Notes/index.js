@@ -13,6 +13,8 @@ export class Notes extends Component {
     activeNote: React.PropTypes.object,
     openNote: React.PropTypes.func,
     saveScroll: React.PropTypes.func,
+    saveNote: React.propTypes.func,
+    closeNote: React.propTypes.func,
   }
 
   constructor(props) {

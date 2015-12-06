@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router';
+import { Route, IndexRoute } from 'react-router';
 import * as containers from './containers';
 
 const {
@@ -11,6 +11,7 @@ const {
 
 export default (
   <Route path="/" component={App}>
+    <IndexRoute component={List}/>
     <Route path="list" component={List} />
     <Route path="add" component={Add} />
     <Route path="options" component={Options} />

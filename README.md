@@ -12,7 +12,7 @@ And open in browser: [http://localhost:3000](http://localhost:3000)
 
 ## Run app (node-webkit)
 ```
-$ npm start
+$ npm run nw
 $ gulp nw
 ```
 

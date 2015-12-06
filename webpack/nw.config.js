@@ -5,17 +5,11 @@ var autoprefixer = require('autoprefixer');
 var csswring = require('csswring');
 
 module.exports = {
-  devtool: 'source-map',
+  target: 'node-webkit',
+
   entry: [
-    'webpack-hot-middleware/client',
     './src/index',
   ],
-
-  node: {
-    gui: 'empty',
-    fs: 'empty',
-    path: 'empty',
-  },
 
   output: {
     filename: 'bundle.js',

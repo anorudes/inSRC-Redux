@@ -1,6 +1,6 @@
 import{ createAction } from 'redux-actions';
-import { DB_PATH } from 'constants';
-import { fs } from '../nw.js';
+import { DB_PATH } from '../constants';
+import { nw, fs } from '../nw.js';
 
 export const searchNotes = createAction('SEARCH_NOTES');
 export const saveScroll = createAction('SAVE_SCROLL');
@@ -34,7 +34,7 @@ export function fetchNotes() {
     }
     return data;
   };
-  if (window.globalConfig.nw) {
+  if (nw) {
     return dispatch => {
       let data = JSON.parse(fs.readFileSync(DB_PATH, 'utf8'));
       data = toLower(data);

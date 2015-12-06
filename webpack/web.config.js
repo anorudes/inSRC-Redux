@@ -12,7 +12,7 @@ module.exports = {
   ],
 
   node: {
-    gui: 'empty',
+    nw: 'empty',
     fs: 'empty',
     path: 'empty',
   },

@@ -1,2 +1,4 @@
-export const DB_PATH = window.globalConfig.execPath + 'db/data.json';
-export const CONFIG_PATH = window.globalConfig.execPath + 'config.json';
+import { execPath } from '../nw.js';
+
+export const DB_PATH = execPath + 'db/data.json';
+export const CONFIG_PATH = execPath + 'config.json';

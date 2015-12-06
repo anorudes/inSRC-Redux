@@ -1,4 +1,4 @@
-import { CONFIG_PATH } from 'constants';
+import { CONFIG_PATH } from '../constants';
 import { nw } from '../nw.js';
 
 export function getConfig(data) {

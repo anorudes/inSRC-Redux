@@ -1,6 +1,7 @@
 import u from 'updeep';
 import { saveNotes } from 'actions/notes';
 import { trim } from 'utils/notes';
+import { nw, win } from '../nw.js';
 
 const initialState = {
   notes: [],
@@ -74,7 +75,7 @@ export function notes(state = initialState, action) {
       }, ...state.notes],
     };
     saveNotes(res.notes);
-    window.globalConfig.nw && win.hide();
+    nw && win.hide();
     return res;
 
   case 'DELETE_NOTE':

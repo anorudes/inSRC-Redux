@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import { nw } from '../../nw.js';
+
+
 // Bootstrap
 import 'bootstrap-webpack';
 
@@ -30,7 +33,7 @@ export class App extends Component {
       hljs.configure({
         tabReplace: '  ',
       });
-      if (window.globalConfig.nw) {
+      if (nw) {
         Hotkeys.init(data);
         Tray.init(data);
       }

@@ -2,7 +2,7 @@
   "name": "inSRC-redux",
   "version": "1.0.0",
   "description": "",
-  "main": "index-nw.html",
+  "main": "index.html",
   "scripts": {
     "start": "node server.js",
     "nw": "node server-nw.js",

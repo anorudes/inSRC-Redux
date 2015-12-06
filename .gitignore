@@ -63,3 +63,5 @@ build-temp/app
 cache
 binary
 backup
+@scripts
+db/data.json

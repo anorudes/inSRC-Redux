@@ -48,13 +48,18 @@ export class Notes extends Component {
 
     /* open efault first note in list */
     activeNote = notes.length === 1 ? notes[0] : activeNote;
+    let count = 0;
     return (
       <div className={styles}>
-        {notes.map(note =>
-          <Note key={note.id}
+        {notes.map(note => {
+          count++;
+          return count <= 100
+            ? <Note key={note.id}
                 active={note === activeNote}
                 note={note}
-                openNote={this.props.openNote} />)}
+                openNote={this.props.openNote} />
+            : null;
+        })}
         {activeNote.id &&
           <NoteFull note={activeNote}
                     saveNote={this.props.saveNote}

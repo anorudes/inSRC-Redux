@@ -7,7 +7,7 @@ var gulp = require('gulp'),
   runSequence = require('run-sequence'),
   shell = require('gulp-shell'),
   notify = require("gulp-notify"),
-  NwBuilder = require('node-webkit-builder'),
+  NwBuilder = require('nw-builder'),
   gutil = require('gulp-util'),
   merge = require('merge-stream'),
   clean = require('gulp-clean');
@@ -140,7 +140,7 @@ gulp.task('build-copy', function() {
 });
 
 gulp.task('build-js', shell.task([
-  'webpack -p --config webpack/nw.config.js'
+  'webpack -d --config webpack/nw.config.js'
 ]));
 
 gulp.task('build-clean', function () {

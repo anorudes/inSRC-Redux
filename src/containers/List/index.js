@@ -6,7 +6,7 @@ import * as actionCreators from 'actions/notes';
 import { Notes, SearchNotes } from 'components';
 
 @connect(
-  state => state.notes,
+  state => state.notes.toJS(),
   dispatch => bindActionCreators(actionCreators, dispatch)
 )
 export class List extends Component {

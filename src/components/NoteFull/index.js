@@ -128,7 +128,7 @@ NoteFull = reduxForm({
   destroyOnUnmount: false,
 },
 state => ({
-  initialValues: state.notes.activeNote,
+  initialValues: state.notes.toJS().activeNote,
 }))(NoteFull);
 
 export default NoteFull;

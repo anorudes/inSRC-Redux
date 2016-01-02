@@ -1,15 +1,11 @@
+import createReducer from './lib/createReducer';
+
 const initialState = {
   config: {},
 };
 
-export function config(state = initialState, action) {
-  switch (action.type) {
-  case 'GET_CONFIG':
-    return {
-      ...state,
-      config: action.data,
-    };
-  default:
-    return state;
-  }
-}
+export default createReducer(initialState, {
+  ['GET_CONFIG'](state, { data }) {
+    return state.update('config', () => data);
+  },
+});

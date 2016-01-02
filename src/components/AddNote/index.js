@@ -28,7 +28,6 @@ export class AddNote extends Component {
   }
 
   onClickAdd() {
-    console.log(this.state.note);
     this.props.addNote(this.state.note);
     history.replaceState(null, '/list');
   }

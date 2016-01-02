@@ -1,3 +1,5 @@
+import createReducer from './lib/createReducer';
+
 import u from 'updeep';
 import { saveNotes } from 'actions/notes';
 import { trim } from 'utils/notes';
@@ -10,96 +12,79 @@ const initialState = {
   searchText: '',
 };
 
-export function notes(state = initialState, action) {
-  let res;
-  let index;
+export default createReducer(initialState, {
+  ['SEARCH_NOTES'](state, { text }) {
+    return state
+      .update('activeNote', () => Object.create({}))
+      .update('searchText', () => text);
+  },
 
-  switch (action.type) {
-  case 'SEARCH_NOTES':
-    return {
-      ...state,
-      activeNote: {},
-      searchText: action.payload,
-    };
+  ['GET_NOTES'](state, { notes }) {
+    return state.update('notes', () => notes);
+  },
 
-  case 'GET_NOTES':
-    return {
-      ...state,
-      notes: action.payload,
-    };
+  ['OPEN_NOTE'](state, { note }) {
+    return state.update('activeNote', () => note);
+  },
 
-  case 'OPEN_NOTE':
-    return {
-      ...state,
-      activeNote: action.payload,
-    };
+  ['CLOSE_NOTE'](state) {
+    return state.update('activeNote', () => Object.create({}));
+  },
 
-  case 'CLOSE_NOTE':
-    return {
-      ...state,
-      activeNote: {},
-    };
-
-  case 'SAVE_NOTE':
-    index = state.notes.map(note => note.id).indexOf(action.payload.id);
-    action.payload = {
-      ...action.payload,
-      text: trim(action.payload.text),
-      keywordsL: action.payload.keywords.toLowerCase(),
-      titleL: action.payload.title.toLowerCase(),
-      textL: action.payload.text.toLowerCase(),
-    };
-    res = u({
-      notes: { [index]: action.payload },
-      activeNote: action.payload,
-    }, state);
-    saveNotes(res.notes);
+  ['SAVE_NOTE'](state, { note }) {
+    const res = state
+      .update('notes', notes => notes.map(item => {
+        if (item.id === note.id) {
+          item = {
+            ...note,
+            text: trim(note.text),
+            keywordsL: note.keywords.toLowerCase(),
+            titleL: note.title.toLowerCase(),
+            textL: note.text.toLowerCase(),
+          };
+        }
+        return item;
+      }))
+      .update('activeNote', () => note);
+    saveNotes(res.toJS().notes);
     return res;
+  },
 
-  case 'ADD_NOTE':
+  ['ADD_NOTE'](state, { note }) {
     const getMaxId = () => {
-      return Math.max.apply(Math, state.notes.map(el => el.id));
+      return Math.max.apply(Math, state.toJS().notes.map(item => item.id));
     };
     const id = getMaxId() + 1;
-    res = {
-      ...state,
-      notes: [{
-        id: id,
-        title: action.payload.title,
-        titleL: action.payload.title.toLowerCase(),
-        keywords: action.payload.keywords,
-        keywordsL: action.payload.keywords.toLowerCase(),
-        text: trim(action.payload.text),
-        textL: action.payload.text.toLowerCase(),
-        date: action.payload.date,
-      }, ...state.notes],
-    };
-    saveNotes(res.notes);
+    const res = state
+      .update('notes', notes => {
+        notes.unshift({
+          id: id,
+          title: note.title,
+          titleL: note.title.toLowerCase(),
+          keywords: note.keywords,
+          keywordsL: note.keywords.toLowerCase(),
+          text: trim(note.text),
+          textL: note.text.toLowerCase(),
+          date: note.date,
+        });
+        return notes;
+      });
+    saveNotes(res.toJS().notes);
     nw && win.hide();
     return res;
 
-  case 'DELETE_NOTE':
-    index = state.notes.map(note => note.id).indexOf(action.payload);
-    res = {
-      activeNote: {},
-      scrollY: state.scrollY,
-      searchText: state.searchText,
-      notes: [
-        ...state.notes.slice(0, index),
-        ...state.notes.slice(index + 1),
-      ],
-    };
-    saveNotes(res.notes);
-    return res;
+  },
 
-  case 'SAVE_SCROLL':
-    res = {
-      ...state,
-      scrollY: window.scrollY,
-    };
+  ['DELETE_NOTE'](state, { id }) {
+    const res = state
+      .update('activeNote', () => Object.create({}))
+      .update('notes', notes => notes.filter(note => note.id !== id));
+    saveNotes(res.toJS().notes);
     return res;
+  },
 
-  default:
-    return state;
-  }
-}
+  ['SAVE_SCROLL'](state) {
+    return state.update('scrollY', () => window.scrollY);
+  },
+});
+

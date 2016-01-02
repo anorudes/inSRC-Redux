@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { win } from '../../nw.js';
 
 // Component styles
-import styles from './styles';
+import { styles } from './styles.scss';
 
 import { linkAndBold } from './_linkAndBold';
 import { Code } from './_code';

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import debounce from 'lodash.debounce';
 
 // Component styles
-import styles from './styles';
+import { styles } from './styles.scss';
 
 export class SearchNotes extends Component {
   static propTypes = {

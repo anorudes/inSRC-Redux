@@ -63,7 +63,7 @@ module.exports = {
       exclude: /node_modules/,
     }, {
       test: /\.scss$/,
-      loader: 'css!postcss-loader!sass',
+      loader: 'style!css!postcss-loader!sass',
     }, {
       test: /\.png$/,
       loader: 'file?name=[name].[ext]',

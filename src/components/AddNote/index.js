@@ -4,7 +4,7 @@ import moment from 'moment';
 import history from '../../history';
 
 // Component styles
-import styles from './styles';
+import { styles } from './styles.scss';
 
 export class AddNote extends Component {
   static propTypes = {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // Component styles
-import styles from './styles';
+import { styles } from './styles.scss';
 import { Note, NoteFull } from 'components';
 import { search } from 'utils/notes';
 

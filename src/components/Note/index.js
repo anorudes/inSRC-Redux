@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 
 // Component styles
-import styles from './styles';
+import { styles } from './styles.scss';
 
 export class Note extends Component {
   static propTypes = {

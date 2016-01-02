@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Component styles
-import styles from './styles';
+import { styles } from './styles.scss';
 
 import { Link } from 'react-router';
 

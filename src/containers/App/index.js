@@ -9,7 +9,7 @@ import { nw } from '../../nw.js';
 import 'bootstrap-webpack';
 
 // Global styles
-import './styles';
+import '../../styles/main.scss';
 
 // Application components
 import { Header, Footer } from 'components';

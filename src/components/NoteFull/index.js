@@ -21,15 +21,15 @@ export class NoteFull extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { noteId: this.props.note.id, closeAnimate: false, editable: false };
+    this.state = { closeAnimate: false, editable: false };
   }
 
   componentDidMount() {
     this._linkAndBold();
   }
 
-  componentDidUpdate() {
-    if (!this.state.editable) {
+  componentDidUpdate(prevProps) {
+    if (prevProps.note.id !== this.props.note.id) {
       this._linkAndBold();
     }
   }

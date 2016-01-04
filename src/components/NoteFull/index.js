@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
-import classNames from 'classnames';
 
 import { win } from '../../nw.js';
 
@@ -21,7 +20,7 @@ export class NoteFull extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { closeAnimate: false, editable: false };
+    this.state = { editable: false };
   }
 
   componentDidMount() {
@@ -35,10 +34,7 @@ export class NoteFull extends Component {
   }
 
   onCloseClick() {
-    this.setState({closeAnimate: true});
-    setTimeout(() => {
-      this.props.closeNote();
-    }, 500);
+    this.props.closeNote();
   }
 
   onEditClick() {
@@ -74,9 +70,8 @@ export class NoteFull extends Component {
   render() {
     const { note, fields } = this.props;
     const { editable } = this.state;
-    const classes = classNames(styles, { closeAnimate: this.state.closeAnimate });
     return (
-      <div className={classes} id="noteFull">
+      <div className={styles} id="noteFull">
         <div className="close fa fa-times" onClick={() => this.onCloseClick()}></div>
         { /* show note code */}
         { !editable &&

@@ -9,38 +9,14 @@
   width: 55vw;
   height: 80vh;
   padding: 20px 25px;
-  transition: all .3s ease;
-  animation: .5s openNote ease-in-out forwards;
   background: white;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
 
+  right: 0px;
+  opacity: 1;
+
   font-smoothing: antialiased;
   backface-visibility: hidden;
-
-  &.closeAnimate {
-    animation: .5s closeNote ease-in-out forwards;
-  }
-
-  @keyframes openNote {
-    0% {
-      right: -50px;
-      opacity: 0;
-    }
-    100% {
-      right: 30px;
-      opacity: 1;
-    }
-  }
-  @keyframes closeNote {
-    0% {
-      right: 0;
-      opacity: 1;
-    }
-    100% {
-      right: -50px;
-      opacity: 0;
-    }
-  }
 
   .close {
     position: absolute;
@@ -171,6 +147,29 @@
           outline: none;
         }
       }
+    }
+  }
+}
+
+:global() {
+  .note-full-enter {
+    right: -50px;
+    opacity: 0;
+    transition: all .3s ease;
+
+    &.note-full-enter-active {
+      right: 0px;
+      opacity: 1;
+    }
+  }
+  .note-full-leave {
+    right: 0px;
+    opacity: 1;
+    transition: all .3s ease;
+
+    &.note-full-leave-active {
+      right: -50px;
+      opacity: 0;
     }
   }
 }

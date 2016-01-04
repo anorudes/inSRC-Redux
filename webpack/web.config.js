@@ -70,7 +70,7 @@ module.exports = {
       exclude: /node_modules/,
     }, {
       test: /\.scss$/,
-      loader: 'style!css?localIdentName=[path]!postcss-loader!sass',
+      loader: 'style!css?localIdentName=[path][name]-[local]-[hash:base64:5]!postcss-loader!sass',
     }, {
       test: /\.png$/,
       loader: 'file?name=[name].[ext]',

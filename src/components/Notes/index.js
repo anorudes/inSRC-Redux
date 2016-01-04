@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 // Component styles
 import { styles } from './styles.scss';
@@ -49,6 +50,7 @@ export class Notes extends Component {
     /* open efault first note in list */
     activeNote = notes.length === 1 ? notes[0] : activeNote;
     let count = 0;
+    console.log('123');
     return (
       <div className={styles}>
         {notes.map(note => {
@@ -60,11 +62,18 @@ export class Notes extends Component {
                 openNote={this.props.openNote} />
             : null;
         })}
-        {activeNote.id &&
-          <NoteFull note={activeNote}
-                    saveNote={this.props.saveNote}
-                    closeNote={this.props.closeNote}
-                    deleteNote={this.props.deleteNote} />}
+        <ReactCSSTransitionGroup
+            transitionName="note-full"
+            transitionEnterTimeout={300}
+            transitionLeaveTimeout={300}>
+          {activeNote.id &&
+            <NoteFull
+                      key={activeNote}
+                      note={activeNote}
+                      saveNote={this.props.saveNote}
+                      closeNote={this.props.closeNote}
+                      deleteNote={this.props.deleteNote} />}
+        </ReactCSSTransitionGroup>
       </div>
     );
   }

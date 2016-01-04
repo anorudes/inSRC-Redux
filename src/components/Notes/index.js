@@ -50,7 +50,6 @@ export class Notes extends Component {
     /* open efault first note in list */
     activeNote = notes.length === 1 ? notes[0] : activeNote;
     let count = 0;
-    console.log('123');
     return (
       <div className={styles}>
         {notes.map(note => {

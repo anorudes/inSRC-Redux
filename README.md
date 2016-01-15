@@ -18,7 +18,8 @@ $ gulp nw
 
 ## Build app (node-webkit)
 ```
-$ gulp build
+$ gulp build --win
+$ gulp build --linux
 ```
 
 ## Run karma

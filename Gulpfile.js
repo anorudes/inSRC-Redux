@@ -12,6 +12,14 @@ var gulp = require('gulp'),
   merge = require('merge-stream'),
   clean = require('gulp-clean');
 
+var linux = !!$.util.env.linux;
+var win = !!$.util.env.win;
+if (!linux) {
+  win = true;
+}
+
+var dir = win ? 'win64' : 'linux';
+
 var root = './';
 
 // ***************************************************************************
@@ -110,19 +118,30 @@ gulp.task('buld-clean-temp', function () {
 });
 
 gulp.task('copy-config', function () {
-  var config = gulp.src('config.json').pipe(gulp.dest('binary/inSRC-redux/win64/'))
-  var db = gulp.src('db/**/*').pipe(gulp.dest('binary/inSRC-redux/win64/db/'))
+  var config = gulp.src('config.json').pipe(gulp.dest('binary/inSRC-redux/' + dir + '/'))
+  var db = gulp.src('db/**/*').pipe(gulp.dest('binary/inSRC-redux/' + dir + '/db/'))
   return merge(config, db);
 });
 
 gulp.task('build-app', function () {
-    var nw = new NwBuilder({
-        version: '0.11.0',
-        files: './build-temp/**',
-        buildDir: './binary',
-        platforms: ['win64']
-    });
-    
+    if (win) {
+      var nw = new NwBuilder({
+          version: '0.11.0',
+          files: './build-temp/**',
+          buildDir: './binary',
+          platforms: ['win64']
+      });
+    }
+     
+    if (linux) {
+      var nw = new NwBuilder({
+          version: '0.11.0',
+          files: './build-temp/**',
+          buildDir: './binary',
+          platforms: ['linux']
+      });
+    }
+
     nw.on('log', function (msg) {
         gutil.log('node-webkit-builder', msg);
     });
@@ -135,7 +154,7 @@ gulp.task('build-app', function () {
 gulp.task('build-copy', function() {
   var dist = gulp.src(['dist/**/*']).pipe(gulp.dest('build-temp/dist/'));
   var bower = gulp.src(['bower_components/**/*']).pipe(gulp.dest('build-temp/bower_components/'));
-  var db = gulp.src(['binary/inSRC-redux/win64/db/*.*']).pipe(gulp.dest('db/'));
+  var db = gulp.src(['binary/inSRC-redux/' + dir + '/db/*.*']).pipe(gulp.dest('db/'));
   return merge(dist, bower, db);
 });
 

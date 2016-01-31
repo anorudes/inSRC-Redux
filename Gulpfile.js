@@ -1,4 +1,5 @@
 var gulp = require('gulp'),
+  gutil = require('gulp-util'),
   path = require('path'),
   rename = require('gulp-rename'),
   template = require('gulp-template'),
@@ -12,8 +13,8 @@ var gulp = require('gulp'),
   merge = require('merge-stream'),
   clean = require('gulp-clean');
 
-var linux = !!$.util.env.linux;
-var win = !!$.util.env.win;
+var linux = !!gutil.env.linux;
+var win = !!gutil.env.win;
 if (!linux) {
   win = true;
 }
